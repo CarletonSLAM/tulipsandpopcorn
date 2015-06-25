@@ -9,6 +9,7 @@
 #include "driverlib/rom.h"
 #include "driverlib/sysctl.h"
 #include "driverlib/uart.h"
+#include "ioFunctions.h"
 
 void UART_setup_wifiBoard()
 {
@@ -43,10 +44,57 @@ void wifiBoard_reset(void){
   
   UARTSend("AT+RST\n");
   
-  delayms(1000);
+  delayus(1000);
 
 }
-  //*************************************************************
+
+
+
+//**************************************************************
+//
+// The UART interrupt handler.
+//
+//**************************************************************
+void UART1IntHandler(void)
+{
+    uint32_t ui32Status;
+    char c;
+    uint32_t counter = 0;
+    //
+    // Get the interrrupt status.
+    //
+    ui32Status = ROM_UARTIntStatus(UART1_BASE, true);
+
+    //
+    // Clear the asserted interrupts.
+    //
+    ROM_UARTIntClear(UART1_BASE, ui32Status);
+
+    //
+    // Loop while there are characters in the receive FIFO.
+    //
+    while (ROM_UARTCharsAvail(UART1_BASE))
+    {
+      counter++;
+        //
+        // Read the next character from the UART and write it back to the UART.
+        //
+        c = ROM_UARTCharGetNonBlocking(UART1_BASE);
+
+        if (index++ >= BUFFERSIZE){
+          index = 0;
+        }
+
+        gps_buffer[index] = c;
+    }
+}
+
+
+
+
+
+
+//*************************************************************
 //
 // Send a string to the UART.
 //
