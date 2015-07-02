@@ -11,7 +11,7 @@
 #include "driverlib/uart.h"
 #include "ioFunctions.h"
 
-void UART_setup_wifiBoard()
+bool UART_setup_wifiBoard()
 {
   //
   // Enable the peripherals used by wifiBoard.
@@ -38,89 +38,79 @@ void UART_setup_wifiBoard()
   //
   ROM_IntEnable(INT_UART1);
   ROM_UARTIntEnable(UART1_BASE, UART_INT_RX | UART_INT_RT);
-}
 
-void wifiBoard_reset(void){
-  
-  UARTSend("AT+RST\n");
-  
-  delayus(1000);
+  bool received = UARTSendEcho(UART1_BASE,(uint8_t)"ATE0\r\n",6);
 
-}
-
-
-
-//**************************************************************
-//
-// The UART interrupt handler.
-//
-//**************************************************************
-void UART1IntHandler(void)
-{
-    uint32_t ui32Status;
-    char c;
-    uint32_t counter = 0;
-    //
-    // Get the interrrupt status.
-    //
-    ui32Status = ROM_UARTIntStatus(UART1_BASE, true);
-
-    //
-    // Clear the asserted interrupts.
-    //
-    ROM_UARTIntClear(UART1_BASE, ui32Status);
-
-    //
-    // Loop while there are characters in the receive FIFO.
-    //
-    while (ROM_UARTCharsAvail(UART1_BASE))
-    {
-      counter++;
-        //
-        // Read the next character from the UART and write it back to the UART.
-        //
-        c = ROM_UARTCharGetNonBlocking(UART1_BASE);
-
-        if (index++ >= BUFFERSIZE){
-          index = 0;
-        }
-
-        gps_buffer[index] = c;
+  if(received == true){
+    //UARTSend(UART0_BASE,(uint8_t*)"ECHO-SUCC\n",10);
+    uint8_t resp[10];
+    uint8_t cnt = 0;
+    while(ROM_UARTCharsAvail(UART1_BASE)){
+      //resp[cnt++]=(uint8_t) ROM_UARTCharGetNonBlocking(UART1_BASE);
+      ROM_UARTCharPut(UART0_BASE,ROM_UARTCharGet(UART1_BASE));
     }
-}
-
-
-
-
-
-
-//*************************************************************
-//
-// Send a string to the UART.
-//
-//*************************************************************
-void UARTSend(uint32_t ui32Base, const uint8_t *pui8Buffer, uint32_t ui32Count)
-{
-    //
-    // Loop while there are more characters to send.
-    //
-    while(ui32Count--)
-    {
-        //
-        // Write the next character to the UART.
-        //
-        ROM_UARTCharPutNonBlocking(ui32Base, *pui8Buffer++);
-        while (ROM_UARTBusy(ui32Base));
-
+    for(int i = 0;i<=cnt;i++){
+      if(resp[i]=='o' && resp[i+1]=='k'){
+        return true;
+      }
     }
+    return false;
+
+
+  }
+  else{
+    return false;
+  }
+
+  
 }
 
 
-}
 
-void wifiBoard_connect(char host, char port);
-*char wifiBoard_send(char message, int length);
-void wifiBoard_disconnect(void);
+
+
+
+unsigned char wifiBoard_reset(void){
+  uint8_t RECVLENGTH = 50;
+  uint8_t recv[RECVLENGTH];
+
+  uint8_t counter=0;
+  
+  //UARTSend(UART0_BASE,(uint8_t*)"AT+RST\r\n",8);
+  
+  UARTSend(UART1_BASE,(uint8_t*)"AT+RST\r\n",8);
+  
+  UARTSend(UART0_BASE,(uint8_t*)"AT+RST\r\n",8);
+  
+
+
+  while(!ROM_UARTCharsAvail(UART1_BASE));
+  while (counter<RECVLENGTH)
+    {
+      //
+      // Read the next character from the UART and write it back to the UART.
+      //recv[counter] = ROM_UARTCharGet(UART1_BASE);
+        
+      ROM_UARTCharPut(UART0_BASE, ROM_UARTCharGet(UART1_BASE));
+
+      //recv[counter++] = (uint8_t) ROM_UARTCharGet(UART1_BASE); 
+      //UARTSend(UART0_BASE,(uint8_t*) "OK\n",3);
+      //counter++;
+      //while(!ROM_UARTCharsAvail(UART1_BASE));  
+    }
+    UARTSend(UART0_BASE,(uint8_t*)recv[0],RECVLENGTH);
+
+    for(uint8_t i=0;i < RECVLENGTH;i++){
+      if(recv[i]=='O'&&recv[i+1]=='K'){
+        UARTSend(UART0_BASE,(uint8_t*)"1\n",2);
+        return 1;
+      }
+    }
+
+  UARTSend(UART0_BASE,(uint8_t*)"0\n",2);
+  return 0;
+  
+}
 
 
 
