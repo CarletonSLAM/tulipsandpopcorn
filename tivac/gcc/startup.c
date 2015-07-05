@@ -41,9 +41,8 @@ extern void WTIMER0A_Handler(void);
 extern void TIMER0A_Handler(void);
 extern void TIMER0B_Handler(void);
 extern void GPIOF_Handler(void);
-extern void UARTIntHandler(void);
-extern void timer_0A_handler(void);
-extern void timer_1A_handler(void);
+
+extern void wifiUARTIntHandler(void);
 
 extern void (*__init_array_start)();
 extern void (*__init_array_end)();
@@ -94,7 +93,7 @@ void (* const __Vectors[])(void) =
     IntDefaultHandler,                      // GPIO Port D
     IntDefaultHandler,                      // GPIO Port E
     IntDefaultHandler,                      // UART0 Rx and Tx
-    IntDefaultHandler,                         // UART1 Rx and Tx
+    wifiUARTIntHandler,                      // UART1 Rx and Tx
     IntDefaultHandler,                      // SSI0 Rx and Tx
     IntDefaultHandler,                      // I2C0 Master and Slave
     IntDefaultHandler,                      // PWM Fault

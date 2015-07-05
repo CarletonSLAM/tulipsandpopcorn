@@ -16,6 +16,8 @@
 #include "ioFunctions.h"
 #include "wifiBoard.h"
 
+#define UART_BUFFER_LENGTH 512
+
 
 /******************************************************************************************************/
 /***************************************FUNCTION PROTOTYPES********************************************/
@@ -24,13 +26,17 @@
 void Tiva_setup(void);
 void UART_setup_debug(void);
 
+/******************************************************************************************************/
+/*******************************************CONSTANTS**************************************************/
+/******************************************************************************************************/
 
 
 /******************************************************************************************************/
 /*******************************************VARIABLES**************************************************/
 /******************************************************************************************************/
 
-
+extern char wifiUARTBuffer[UART_BUFFER_LENGTH];
+extern uint16_t wifiUARTIndex; 
 
 //**************************************************************
 //
@@ -50,29 +56,45 @@ void __error__(char *pcFilename, uint32_t ui32Line)
 //************************************************************
 int main(void)
 {
-  unsigned char wifi_reset =0;
+  //unsigned char wifi_reset =0;
+  wifiUARTIndex = 0;
 
   Tiva_setup();
   // setup the logger
   UART_setup_debug();
 
+  UARTSend(UART0_BASE,(uint8_t*)"\n---------------\n",17);
+
   bool setup = UART_setup_wifiBoard();
+
   if(setup == true){
-    UARTSend(UART0_BASE,(uint8_t*)"TRUE\n",5);
-  }else{
-    UARTSend(UART0_BASE,(uint8_t*)"FALSE\n",6);
+
+    //Reinitialize setup variable
+    setup = false;
+
+    setup = wifiBoard_reset();
+
+    if(setup==true){
+       
+       setup = wifiBoard_setNetworkMode();
+
+       if(setup==true){
+          wifiBoard_listNetworks();
+       }
+
+    }
   }
-  //while(wifi_reset==0){
-   // wifi_reset = wifiBoard_reset();
   //}
 
   //UARTSend(UART1_BASE,(uint8_t*)"ATE0\r\n",6);
 
 
-  UARTSend(UART0_BASE,(uint8_t*)"RESET DONE\n",11);
-  while(ROM_UARTBusy(UART1_BASE));
+  //UARTSend(UART0_BASE,(uint8_t*)"RESET DONE\n",11);
+  //while(ROM_UARTBusy(UART1_BASE));
   
-  while(1);
+  while(1){
+
+  }
 }
 
 
@@ -125,6 +147,39 @@ void Tiva_setup(void)
   // Enable processor interrupts.
   //
   ROM_IntMasterEnable();
+
+
 }
 
 
+void wifiUARTIntHandler(void){
+  uint32_t ui32Status;
+    char c;
+    uint32_t counter = 0;
+
+
+    // Get the interrrupt status.
+    ui32Status = ROM_UARTIntStatus(UART1_BASE, true);
+
+    // Clear the asserted interrupts.
+    ROM_UARTIntClear(UART1_BASE, ui32Status);
+
+    // Loop while there are characters in the receive FIFO.
+    while (ROM_UARTCharsAvail(UART1_BASE))
+    {
+      counter++;
+        
+        // Read the next character from the UART and write it back to the UART.
+        c = ROM_UARTCharGetNonBlocking(UART1_BASE);
+        
+        //ROM_UARTCharPutNonBlocking(UART0_BASE,(uint8_t*) c);
+        
+        if (wifiUARTIndex++ >= UART_BUFFER_LENGTH){
+          wifiUARTIndex = 0;
+        }
+
+        wifiUARTBuffer[wifiUARTIndex] = c;
+    }
+
+
+}
