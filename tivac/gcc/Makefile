@@ -32,6 +32,7 @@ CXXFLAGS=-fno-exceptions -fno-rtti -g -g3 -nostartfiles -Wall -Wextra
 LD:=$(ARCH)-gcc
 LDFLAGS:=-Wl,-eResetISR,--gc-sections,-marmelf
 
+
 INCLUDE=$(INCLUDE_PATHS:%=-I%)
 
 SIZE=$(ARCH)-size
@@ -58,7 +59,7 @@ endif
 
 # include new .c files here
 
-SRC_C:=main.c CU_system_TM4C123.c startup.c wifiBoard.c ioFunctions.c  
+SRC_C:=main.c CU_system_TM4C123.c startup.c utilities.c wifiBoard.c
 SRC_CPP:=
 
 OBJ:=$(SRC_C:.c=.o) $(SRC_CPP:.cpp=.o)
