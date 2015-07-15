@@ -1,4 +1,3 @@
-#include "wifiBoard.h"
 #include <stdint.h>
 #include <stdbool.h>
 #include "inc/hw_ints.h"
@@ -9,152 +8,87 @@
 #include "driverlib/rom.h"
 #include "driverlib/sysctl.h"
 #include "driverlib/uart.h"
-#include "ioFunctions.h"
+#include "utilities.h"
+#include "wifiBoard.h"
+
+const AT_CMD _AT = {4,10,"AT\r\n"};
+const AT_CMD _ATE0 = {6,10,"ATE0\r\n"};
+const AT_CMD _ATRST = {8,5000,"AT+RST\r\n"};
+const AT_CMD _ATCWMODE = {13,100,"AT+CWMODE=3\r\n"};
+const AT_CMD _ATCWMODE_CUR = {16,100,"AT+CWMODE?\r\n"};
+const AT_CMD _ATCIPMUX =  {13,500, "AT+CIPMUX=1\r\n"};
+
+char wifiUARTBuffer[UART_BUFFER_LENGTH];
+uint16_t wifiUARTIndex;
+bool wifiResetComplete = false;
 
 
-
-bool UART_setup_wifiBoard()
+void init_wifi(void)
 {
-
-  
-  // Enable the peripherals used by wifiBoard.
   ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_UART1);
   ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOB);
-
-  // Set GPIO B0 and B1 as UART pins for the gps.
+ 
   ROM_GPIOPinConfigure(GPIO_PB0_U1RX);
   ROM_GPIOPinConfigure(GPIO_PB1_U1TX);
   ROM_GPIOPinTypeUART(GPIO_PORTB_BASE, GPIO_PIN_0 | GPIO_PIN_1);
-
-  // Configure the GPS for 9600, 8-N-1 operation.
+ 
   ROM_UARTConfigSetExpClk(UART1_BASE, ROM_SysCtlClockGet(), 9600,
-                          (UART_CONFIG_WLEN_8 | UART_CONFIG_STOP_ONE |
-                           UART_CONFIG_PAR_NONE));
-
-  // Enable the UART interrupt.
+                         (UART_CONFIG_WLEN_8 | UART_CONFIG_STOP_ONE | UART_CONFIG_PAR_NONE));
+ 
   ROM_IntEnable(INT_UART1);
   ROM_UARTIntEnable(UART1_BASE, UART_INT_RX | UART_INT_RT);
-
-
-  
-  delay_uS(1000);
-
-  UARTSend(UART0_BASE,(uint8_t*)"Wifi - Echo Off: ",17);
-  clearUARTBuffer(&wifiUARTIndex);
-
-  return wifiBoard_sendCommand(UART1_BASE,(uint8_t*)"ATE0",4,(char*)"OK" ,20, 100);
-
+ 
+  delay_miliSeconds(1);
 }
 
-
-
-bool wifiBoard_reset(void){
-
-  UARTSend(UART0_BASE,(uint8_t*)"Wifi - Reset: ",14);
-
-  //Reset wifi buffer pointer
-  clearUARTBuffer(&wifiUARTIndex);
-  
-  return wifiBoard_sendCommand(UART1_BASE,(uint8_t*)"AT+RST",6 ,(char*)"ready" ,200, 2000);
-
+void setup_wifi()
+{
+  send_wifiCommandBlocking(&_ATRST);
+  wifiResetComplete = true;
+  clear_wifiUartBuffer();
+  send_wifiCommandBlocking(&_ATE0);
+  send_wifiCommandBlocking(&_ATCIPMUX);
+  send_wifiCommandBlocking(&_ATCWMODE);  
 }
 
-
-
-
-
-bool wifiBoard_setNetworkMode(void){
-
-  
-  UARTSend(UART0_BASE,(uint8_t*)"Wifi - Setting Network Mode: ",29);
-
-  //Reset wifi buffer pointer
-  clearUARTBuffer(&wifiUARTIndex);
-  
-  return wifiBoard_sendCommand(UART1_BASE,(uint8_t*)"AT+CWMODE=3",11 ,(char*)"OK" ,20, 10);
-
-}
-
-
-void wifiBoard_listNetworks(void){
-
-  UARTSend(UART0_BASE,(uint8_t*)"List of available networks:\n",28);
-
-
-  //Reset wifi buffer pointer
-  clearUARTBuffer(&wifiUARTIndex);
-
-  UARTSend(UART1_BASE,(uint8_t*)  "AT+CWLAP", 8);
-  UARTSend(UART1_BASE,(uint8_t*)"\r\n",2);
-
-  delay_mS(1000);
-
-  //Reset wifi buffer pointer
-  clearUARTBuffer(&wifiUARTIndex);
-
-  delay_mS(2000);
-  uint16_t indexBuff =0;
-  uint16_t indexBuffnew=0;
-
-
-  //Trying to get the parsing for the network lists
-  while(indexBuffnew>wifiUARTIndex - 50){
-
-    for(uint8_t k=0; k<10;k++){
-      
-      indexBuffnew = findBrute( (wifiUARTBuffer+indexBuff) , "\n", 150 , 1);
-
-      if(indexBuffnew!=1099){
-        for( uint16_t i = 0 ; i < indexBuffnew-indexBuff ; i++ ){
-          wifiNetworks[k][i] = wifiUARTBuffer[indexBuff+i];
-        }
-
-        indexBuff = indexBuffnew+1;
-
-        UARTSend(UART0_BASE,(uint8_t*) wifiNetworks[k], 150);
-        
-        UARTSend(UART0_BASE,(uint8_t*)"\r\n",2);
-      }
+ 
+void send_wifiCommandBlocking(const AT_CMD *wificmd)
+{
+    for(uint8_t n =0; n < wificmd->lenght; n++) {
+        ROM_UARTCharPut(UART1_BASE, wificmd->cmd[n]);
     }
+    while (ROM_UARTBusy(UART1_BASE));
+
+    wait_forResponse(UART1_BASE);
+    delay_miliSeconds(wificmd->timeout);
+}
+
+void clear_wifiUartBuffer()
+{
+  for(uint16_t i =0; i< UART_BUFFER_LENGTH; i++){
+    wifiUARTBuffer[i] = (char) '\0';
   }
-
-
-
-  //Prints our raw buffer
-  UARTSend(UART0_BASE,(uint8_t*)"\n\n\n\n\n",5);
-   
-  UARTSend(UART0_BASE,(uint8_t*) wifiUARTBuffer, 1024);
-
-
-
+  wifiUARTIndex=0;
 }
 
 
+void wifiUARTIntHandler(void)
+{
+  uint32_t ui32Status = ROM_UARTIntStatus(UART1_BASE, true);
+  ROM_UARTIntClear(UART1_BASE, ui32Status);
 
-
-bool wifiBoard_sendCommand(uint32_t wifiBase, const uint8_t* wifiCommand, const uint16_t commandLen,  const char* wifiResponse, uint16_t searchLength, uint32_t commTimeoutmS){
-
-
-  UARTSend(UART1_BASE,(uint8_t*) wifiCommand, commandLen);
-  UARTSend(UART1_BASE,(uint8_t*)"\r\n",2);
-
-  delay_mS(commTimeoutmS);
-
-  uint16_t index = findBrute(wifiUARTBuffer, wifiResponse, searchLength, (sizeof(*wifiResponse)/sizeof(char)) );
-
-  if(index !=1099){
-    
-    //Reset wifi buffer pointer
-    clearUARTBuffer(&wifiUARTIndex);
-    
-    UARTSend(UART0_BASE,(uint8_t*)"SUCCESS\n",8);
-    return true;
+  if (wifiResetComplete) {
+      char c;
+      // Loop while there are characters in the receive FIFO.
+      while(ROM_UARTCharsAvail(UART1_BASE))
+      {
+        // Read the next character from the UART and write it back to the UART.
+        c = ROM_UARTCharGetNonBlocking(UART1_BASE);
+        //reset buffer to beginning
+        if (wifiUARTIndex++ >= UART_BUFFER_LENGTH){
+          wifiUARTIndex = 0;
+        }
+        wifiUARTBuffer[wifiUARTIndex] = c;
+      }
   }
-  else{
-    UARTSend(UART0_BASE,(uint8_t*)"ERROR\n",6);
-    UARTSend(UART0_BASE,(uint8_t*)"Wifi Buffer Output:\n",20); 
-    UARTSend(UART0_BASE,(uint8_t*) wifiUARTBuffer, 100);
-    return false;
-  }
-
 }
