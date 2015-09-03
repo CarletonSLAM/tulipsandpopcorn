@@ -7,17 +7,16 @@
 
 #define UART_BUFFER_LENGTH 1024
 typedef struct {
-  uint8_t lenght;
+  uint8_t length;
   uint32_t timeout;
   char cmd[];
 } AT_CMD;
 
-void setup_wifi(void);
-void init_debugConsole(void);
-void init_wifi(void);
-void send_wifiCommandBlocking(const AT_CMD *cmd);
-void clear_wifiUartBuffer(void);
-void wifiUARTIntHandler(void);
+void WIFI_init(void);
+void WIFI_set_config(void);
+void WIFI_send_commandBlocking(const AT_CMD *cmd);
+void WIFI_clear_UARTBuffer(void);
+void WIFI_UART_IntHandler(void);
 
 
 #endif /*__WIFIBOARD_H_*/

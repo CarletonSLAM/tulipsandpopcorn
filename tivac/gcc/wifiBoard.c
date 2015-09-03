@@ -23,7 +23,7 @@ uint16_t wifiUARTIndex;
 bool wifiResetComplete = false;
 
 
-void init_wifi(void)
+void WIFI_init(void)
 {
   ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_UART1);
   ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOB);
@@ -38,32 +38,33 @@ void init_wifi(void)
   ROM_IntEnable(INT_UART1);
   ROM_UARTIntEnable(UART1_BASE, UART_INT_RX | UART_INT_RT);
  
-  delay_miliSeconds(1);
+  TIVA_wait_miliSeconds(1);
 }
 
-void setup_wifi()
+void WIFI_set_config()
 {
-  send_wifiCommandBlocking(&_ATRST);
+  DEBUGCONSOLE_print_line("Wifi:List Networks",18);  
+  WIFI_send_commandBlocking(&_ATRST);
   wifiResetComplete = true;
-  clear_wifiUartBuffer();
-  send_wifiCommandBlocking(&_ATE0);
-  send_wifiCommandBlocking(&_ATCIPMUX);
-  send_wifiCommandBlocking(&_ATCWMODE);  
+  WIFI_clear_UARTBuffer();
+  WIFI_send_commandBlocking(&_ATE0);
+  WIFI_send_commandBlocking(&_ATCIPMUX);
+  WIFI_send_commandBlocking(&_ATCWMODE);  
 }
 
  
-void send_wifiCommandBlocking(const AT_CMD *wificmd)
+void WIFI_send_commandBlocking(const AT_CMD *wificmd)
 {
-    for(uint8_t n =0; n < wificmd->lenght; n++) {
+    for(uint8_t n =0; n < wificmd->length; n++) {
         ROM_UARTCharPut(UART1_BASE, wificmd->cmd[n]);
     }
     while (ROM_UARTBusy(UART1_BASE));
 
-    wait_forResponse(UART1_BASE);
-    delay_miliSeconds(wificmd->timeout);
+    UART_wait_forResponse(UART1_BASE);
+    TIVA_wait_miliSeconds(wificmd->timeout);
 }
 
-void clear_wifiUartBuffer()
+void WIFI_clear_UARTBuffer()
 {
   for(uint16_t i =0; i< UART_BUFFER_LENGTH; i++){
     wifiUARTBuffer[i] = (char) '\0';
@@ -72,7 +73,7 @@ void clear_wifiUartBuffer()
 }
 
 
-void wifiUARTIntHandler(void)
+void WIFI_UART_IntHandler(void)
 {
   uint32_t ui32Status = ROM_UARTIntStatus(UART1_BASE, true);
   ROM_UARTIntClear(UART1_BASE, ui32Status);

@@ -59,7 +59,7 @@ endif
 
 # include new .c files here
 
-SRC_C:=main.c CU_system_TM4C123.c startup.c utilities.c wifiBoard.c
+SRC_C:=main.c CU_system_TM4C123.c startup.c utilities.c wifiBoard.c dcMotor.c
 SRC_CPP:=
 
 OBJ:=$(SRC_C:.c=.o) $(SRC_CPP:.cpp=.o)
