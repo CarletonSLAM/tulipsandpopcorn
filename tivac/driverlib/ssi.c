@@ -2,7 +2,7 @@
 //
 // ssi.c - Driver for Synchronous Serial Interface.
 //
-// Copyright (c) 2005-2014 Texas Instruments Incorporated.  All rights reserved.
+// Copyright (c) 2005-2015 Texas Instruments Incorporated.  All rights reserved.
 // Software License Agreement
 // 
 //   Redistribution and use in source and binary forms, with or without
@@ -33,7 +33,7 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // 
-// This is part of revision 2.1.0.12573 of the Tiva Peripheral Driver Library.
+// This is part of revision 2.1.1.71 of the Tiva Peripheral Driver Library.
 //
 //*****************************************************************************
 
@@ -239,8 +239,7 @@ SSIConfigSetExpClk(uint32_t ui32Base, uint32_t ui32SSIClk,
            (ui32Protocol == SSI_FRF_TI) ||
            (ui32Protocol == SSI_FRF_NMW));
     ASSERT((ui32Mode == SSI_MODE_MASTER) ||
-           (ui32Mode == SSI_MODE_SLAVE) ||
-           (ui32Mode == SSI_MODE_SLAVE_OD));
+           (ui32Mode == SSI_MODE_SLAVE));
     ASSERT(((ui32Mode == SSI_MODE_MASTER) &&
             (ui32BitRate <= (ui32SSIClk / 2))) ||
            ((ui32Mode != SSI_MODE_MASTER) &&
@@ -251,8 +250,7 @@ SSIConfigSetExpClk(uint32_t ui32Base, uint32_t ui32SSIClk,
     //
     // Set the mode.
     //
-    ui32RegVal = (ui32Mode == SSI_MODE_SLAVE_OD) ? SSI_CR1_SOD : 0;
-    ui32RegVal |= (ui32Mode == SSI_MODE_MASTER) ? 0 : SSI_CR1_MS;
+    ui32RegVal = (ui32Mode == SSI_MODE_MASTER) ? 0 : SSI_CR1_MS;
     HWREG(ui32Base + SSI_O_CR1) = ui32RegVal;
 
     //

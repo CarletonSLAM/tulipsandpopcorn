@@ -2,7 +2,7 @@
 //
 // gpio.c - API for GPIO ports
 //
-// Copyright (c) 2005-2014 Texas Instruments Incorporated.  All rights reserved.
+// Copyright (c) 2005-2015 Texas Instruments Incorporated.  All rights reserved.
 // Software License Agreement
 // 
 //   Redistribution and use in source and binary forms, with or without
@@ -33,7 +33,7 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // 
-// This is part of revision 2.1.0.12573 of the Tiva Peripheral Driver Library.
+// This is part of revision 2.1.1.71 of the Tiva Peripheral Driver Library.
 //
 //*****************************************************************************
 
@@ -1197,6 +1197,42 @@ GPIOPinTypeComparator(uint32_t ui32Port, uint8_t ui8Pins)
     //
     GPIOPadConfigSet(ui32Port, ui8Pins, GPIO_STRENGTH_2MA,
                      GPIO_PIN_TYPE_ANALOG);
+}
+
+//*****************************************************************************
+//
+//! Configures pin(s) for use as an analog comparator output.
+//!
+//! \param ui32Port is the base address of the GPIO port.
+//! \param ui8Pins is the bit-packed representation of the pin(s).
+//!
+//! The analog comparator output pins must be properly configured for the analog
+//! comparator to function correctly.  This function provides the proper
+//! configuration for those pin(s).
+//!
+//! The pin(s) are specified using a bit-packed byte, where each bit that is
+//! set identifies the pin to be accessed, and where bit 0 of the byte
+//! represents GPIO port pin 0, bit 1 represents GPIO port pin 1, and so on.
+//!
+//! \return None.
+//
+//*****************************************************************************
+void GPIOPinTypeComparatorOutput(uint32_t ui32Port, uint8_t ui8Pins)
+{
+    //
+    // Check the arguments.
+    //
+    ASSERT(_GPIOBaseValid(ui32Port));
+
+    //
+    // Make the pin(s) be inputs.
+    //
+    GPIODirModeSet(ui32Port, ui8Pins, GPIO_DIR_MODE_HW);
+
+    //
+    // Set the pad(s) for standard push-pull operation.
+    //
+    GPIOPadConfigSet(ui32Port, ui8Pins, GPIO_STRENGTH_2MA, GPIO_PIN_TYPE_STD);
 }
 
 //*****************************************************************************
@@ -2513,7 +2549,7 @@ GPIOPinConfigure(uint32_t ui32PinConfig)
     //
     // Check the argument.
     //
-    ASSERT(((ui32PinConfig >> 16) & 0xff) < 15);
+    ASSERT(((ui32PinConfig >> 16) & 0xff) < 18);
     ASSERT(((ui32PinConfig >> 8) & 0xe3) == 0);
 
     //

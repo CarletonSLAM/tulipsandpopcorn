@@ -2,7 +2,7 @@
 //
 // sc4ce290ncpz.h - SC4CE290NCPZ Register Definitions
 //
-// Copyright (c) 2013-2014 Texas Instruments Incorporated.  All rights reserved.
+// Copyright (c) 2013-2015 Texas Instruments Incorporated.  All rights reserved.
 // Software License Agreement
 // 
 //   Redistribution and use in source and binary forms, with or without
@@ -33,7 +33,7 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // 
-// This is part of revision 2.1.0.12573 of the Tiva Firmware Development Package.
+// This is part of revision 2.1.1.71 of the Tiva Firmware Development Package.
 //
 //*****************************************************************************
 
@@ -788,6 +788,7 @@
 #define ADC0_SSFSTAT0_R         (*((volatile uint32_t *)0x4003804C))
 #define ADC0_SSOP0_R            (*((volatile uint32_t *)0x40038050))
 #define ADC0_SSDC0_R            (*((volatile uint32_t *)0x40038054))
+#define ADC0_SSEMUX0_R          (*((volatile uint32_t *)0x40038058))
 #define ADC0_SSTSH0_R           (*((volatile uint32_t *)0x4003805C))
 #define ADC0_SSMUX1_R           (*((volatile uint32_t *)0x40038060))
 #define ADC0_SSCTL1_R           (*((volatile uint32_t *)0x40038064))
@@ -795,6 +796,7 @@
 #define ADC0_SSFSTAT1_R         (*((volatile uint32_t *)0x4003806C))
 #define ADC0_SSOP1_R            (*((volatile uint32_t *)0x40038070))
 #define ADC0_SSDC1_R            (*((volatile uint32_t *)0x40038074))
+#define ADC0_SSEMUX1_R          (*((volatile uint32_t *)0x40038078))
 #define ADC0_SSTSH1_R           (*((volatile uint32_t *)0x4003807C))
 #define ADC0_SSMUX2_R           (*((volatile uint32_t *)0x40038080))
 #define ADC0_SSCTL2_R           (*((volatile uint32_t *)0x40038084))
@@ -802,6 +804,7 @@
 #define ADC0_SSFSTAT2_R         (*((volatile uint32_t *)0x4003808C))
 #define ADC0_SSOP2_R            (*((volatile uint32_t *)0x40038090))
 #define ADC0_SSDC2_R            (*((volatile uint32_t *)0x40038094))
+#define ADC0_SSEMUX2_R          (*((volatile uint32_t *)0x40038098))
 #define ADC0_SSTSH2_R           (*((volatile uint32_t *)0x4003809C))
 #define ADC0_SSMUX3_R           (*((volatile uint32_t *)0x400380A0))
 #define ADC0_SSCTL3_R           (*((volatile uint32_t *)0x400380A4))
@@ -809,6 +812,7 @@
 #define ADC0_SSFSTAT3_R         (*((volatile uint32_t *)0x400380AC))
 #define ADC0_SSOP3_R            (*((volatile uint32_t *)0x400380B0))
 #define ADC0_SSDC3_R            (*((volatile uint32_t *)0x400380B4))
+#define ADC0_SSEMUX3_R          (*((volatile uint32_t *)0x400380B8))
 #define ADC0_SSTSH3_R           (*((volatile uint32_t *)0x400380BC))
 #define ADC0_DCRIC_R            (*((volatile uint32_t *)0x40038D00))
 #define ADC0_DCCTL0_R           (*((volatile uint32_t *)0x40038E00))
@@ -855,6 +859,7 @@
 #define ADC1_SSFSTAT0_R         (*((volatile uint32_t *)0x4003904C))
 #define ADC1_SSOP0_R            (*((volatile uint32_t *)0x40039050))
 #define ADC1_SSDC0_R            (*((volatile uint32_t *)0x40039054))
+#define ADC1_SSEMUX0_R          (*((volatile uint32_t *)0x40039058))
 #define ADC1_SSTSH0_R           (*((volatile uint32_t *)0x4003905C))
 #define ADC1_SSMUX1_R           (*((volatile uint32_t *)0x40039060))
 #define ADC1_SSCTL1_R           (*((volatile uint32_t *)0x40039064))
@@ -862,6 +867,7 @@
 #define ADC1_SSFSTAT1_R         (*((volatile uint32_t *)0x4003906C))
 #define ADC1_SSOP1_R            (*((volatile uint32_t *)0x40039070))
 #define ADC1_SSDC1_R            (*((volatile uint32_t *)0x40039074))
+#define ADC1_SSEMUX1_R          (*((volatile uint32_t *)0x40039078))
 #define ADC1_SSTSH1_R           (*((volatile uint32_t *)0x4003907C))
 #define ADC1_SSMUX2_R           (*((volatile uint32_t *)0x40039080))
 #define ADC1_SSCTL2_R           (*((volatile uint32_t *)0x40039084))
@@ -869,6 +875,7 @@
 #define ADC1_SSFSTAT2_R         (*((volatile uint32_t *)0x4003908C))
 #define ADC1_SSOP2_R            (*((volatile uint32_t *)0x40039090))
 #define ADC1_SSDC2_R            (*((volatile uint32_t *)0x40039094))
+#define ADC1_SSEMUX2_R          (*((volatile uint32_t *)0x40039098))
 #define ADC1_SSTSH2_R           (*((volatile uint32_t *)0x4003909C))
 #define ADC1_SSMUX3_R           (*((volatile uint32_t *)0x400390A0))
 #define ADC1_SSCTL3_R           (*((volatile uint32_t *)0x400390A4))
@@ -876,6 +883,7 @@
 #define ADC1_SSFSTAT3_R         (*((volatile uint32_t *)0x400390AC))
 #define ADC1_SSOP3_R            (*((volatile uint32_t *)0x400390B0))
 #define ADC1_SSDC3_R            (*((volatile uint32_t *)0x400390B4))
+#define ADC1_SSEMUX3_R          (*((volatile uint32_t *)0x400390B8))
 #define ADC1_SSTSH3_R           (*((volatile uint32_t *)0x400390BC))
 #define ADC1_DCRIC_R            (*((volatile uint32_t *)0x40039D00))
 #define ADC1_DCCTL0_R           (*((volatile uint32_t *)0x40039E00))
@@ -3992,13 +4000,34 @@
 // The following are defines for the bit fields in the ADC_O_CTL register.
 //
 //*****************************************************************************
-#define ADC_CTL_DITHER          0x00000040  // Dither Mode Enable
 #define ADC_CTL_VREF_M          0x00000001  // Voltage Reference Select
 #define ADC_CTL_VREF_INTERNAL   0x00000000  // VDDA and GNDA are the voltage
                                             // references
 #define ADC_CTL_VREF_EXT_3V     0x00000001  // The external VREFA+ and VREFA-
                                             // inputs are the voltage
                                             // references
+
+//*****************************************************************************
+//
+// The following are defines for the bit fields in the ADC_O_SSMUX0 register.
+//
+//*****************************************************************************
+#define ADC_SSMUX0_MUX7_M       0xF0000000  // 8th Sample Input Select
+#define ADC_SSMUX0_MUX6_M       0x0F000000  // 7th Sample Input Select
+#define ADC_SSMUX0_MUX5_M       0x00F00000  // 6th Sample Input Select
+#define ADC_SSMUX0_MUX4_M       0x000F0000  // 5th Sample Input Select
+#define ADC_SSMUX0_MUX3_M       0x0000F000  // 4th Sample Input Select
+#define ADC_SSMUX0_MUX2_M       0x00000F00  // 3rd Sample Input Select
+#define ADC_SSMUX0_MUX1_M       0x000000F0  // 2nd Sample Input Select
+#define ADC_SSMUX0_MUX0_M       0x0000000F  // 1st Sample Input Select
+#define ADC_SSMUX0_MUX7_S       28
+#define ADC_SSMUX0_MUX6_S       24
+#define ADC_SSMUX0_MUX5_S       20
+#define ADC_SSMUX0_MUX4_S       16
+#define ADC_SSMUX0_MUX3_S       12
+#define ADC_SSMUX0_MUX2_S       8
+#define ADC_SSMUX0_MUX1_S       4
+#define ADC_SSMUX0_MUX0_S       0
 
 //*****************************************************************************
 //
@@ -4119,6 +4148,28 @@
 
 //*****************************************************************************
 //
+// The following are defines for the bit fields in the ADC_O_SSEMUX0 register.
+//
+//*****************************************************************************
+#define ADC_SSEMUX0_EMUX7       0x10000000  // 8th Sample Input Select (Upper
+                                            // Bit)
+#define ADC_SSEMUX0_EMUX6       0x01000000  // 7th Sample Input Select (Upper
+                                            // Bit)
+#define ADC_SSEMUX0_EMUX5       0x00100000  // 6th Sample Input Select (Upper
+                                            // Bit)
+#define ADC_SSEMUX0_EMUX4       0x00010000  // 5th Sample Input Select (Upper
+                                            // Bit)
+#define ADC_SSEMUX0_EMUX3       0x00001000  // 4th Sample Input Select (Upper
+                                            // Bit)
+#define ADC_SSEMUX0_EMUX2       0x00000100  // 3rd Sample Input Select (Upper
+                                            // Bit)
+#define ADC_SSEMUX0_EMUX1       0x00000010  // 2th Sample Input Select (Upper
+                                            // Bit)
+#define ADC_SSEMUX0_EMUX0       0x00000001  // 1st Sample Input Select (Upper
+                                            // Bit)
+
+//*****************************************************************************
+//
 // The following are defines for the bit fields in the ADC_O_SSTSH0 register.
 //
 //*****************************************************************************
@@ -4146,6 +4197,20 @@
 #define ADC_SSTSH0_TSH2_S       8
 #define ADC_SSTSH0_TSH1_S       4
 #define ADC_SSTSH0_TSH0_S       0
+
+//*****************************************************************************
+//
+// The following are defines for the bit fields in the ADC_O_SSMUX1 register.
+//
+//*****************************************************************************
+#define ADC_SSMUX1_MUX3_M       0x0000F000  // 4th Sample Input Select
+#define ADC_SSMUX1_MUX2_M       0x00000F00  // 3rd Sample Input Select
+#define ADC_SSMUX1_MUX1_M       0x000000F0  // 2nd Sample Input Select
+#define ADC_SSMUX1_MUX0_M       0x0000000F  // 1st Sample Input Select
+#define ADC_SSMUX1_MUX3_S       12
+#define ADC_SSMUX1_MUX2_S       8
+#define ADC_SSMUX1_MUX1_S       4
+#define ADC_SSMUX1_MUX0_S       0
 
 //*****************************************************************************
 //
@@ -4226,6 +4291,20 @@
 
 //*****************************************************************************
 //
+// The following are defines for the bit fields in the ADC_O_SSEMUX1 register.
+//
+//*****************************************************************************
+#define ADC_SSEMUX1_EMUX3       0x00001000  // 4th Sample Input Select (Upper
+                                            // Bit)
+#define ADC_SSEMUX1_EMUX2       0x00000100  // 3rd Sample Input Select (Upper
+                                            // Bit)
+#define ADC_SSEMUX1_EMUX1       0x00000010  // 2th Sample Input Select (Upper
+                                            // Bit)
+#define ADC_SSEMUX1_EMUX0       0x00000001  // 1st Sample Input Select (Upper
+                                            // Bit)
+
+//*****************************************************************************
+//
 // The following are defines for the bit fields in the ADC_O_SSTSH1 register.
 //
 //*****************************************************************************
@@ -4241,6 +4320,20 @@
 #define ADC_SSTSH1_TSH2_S       8
 #define ADC_SSTSH1_TSH1_S       4
 #define ADC_SSTSH1_TSH0_S       0
+
+//*****************************************************************************
+//
+// The following are defines for the bit fields in the ADC_O_SSMUX2 register.
+//
+//*****************************************************************************
+#define ADC_SSMUX2_MUX3_M       0x0000F000  // 4th Sample Input Select
+#define ADC_SSMUX2_MUX2_M       0x00000F00  // 3rd Sample Input Select
+#define ADC_SSMUX2_MUX1_M       0x000000F0  // 2nd Sample Input Select
+#define ADC_SSMUX2_MUX0_M       0x0000000F  // 1st Sample Input Select
+#define ADC_SSMUX2_MUX3_S       12
+#define ADC_SSMUX2_MUX2_S       8
+#define ADC_SSMUX2_MUX1_S       4
+#define ADC_SSMUX2_MUX0_S       0
 
 //*****************************************************************************
 //
@@ -4321,6 +4414,20 @@
 
 //*****************************************************************************
 //
+// The following are defines for the bit fields in the ADC_O_SSEMUX2 register.
+//
+//*****************************************************************************
+#define ADC_SSEMUX2_EMUX3       0x00001000  // 4th Sample Input Select (Upper
+                                            // Bit)
+#define ADC_SSEMUX2_EMUX2       0x00000100  // 3rd Sample Input Select (Upper
+                                            // Bit)
+#define ADC_SSEMUX2_EMUX1       0x00000010  // 2th Sample Input Select (Upper
+                                            // Bit)
+#define ADC_SSEMUX2_EMUX0       0x00000001  // 1st Sample Input Select (Upper
+                                            // Bit)
+
+//*****************************************************************************
+//
 // The following are defines for the bit fields in the ADC_O_SSTSH2 register.
 //
 //*****************************************************************************
@@ -4336,6 +4443,14 @@
 #define ADC_SSTSH2_TSH2_S       8
 #define ADC_SSTSH2_TSH1_S       4
 #define ADC_SSTSH2_TSH0_S       0
+
+//*****************************************************************************
+//
+// The following are defines for the bit fields in the ADC_O_SSMUX3 register.
+//
+//*****************************************************************************
+#define ADC_SSMUX3_MUX0_M       0x0000000F  // 1st Sample Input Select
+#define ADC_SSMUX3_MUX0_S       0
 
 //*****************************************************************************
 //
@@ -4382,6 +4497,14 @@
 //*****************************************************************************
 #define ADC_SSDC3_S0DCSEL_M     0x0000000F  // Sample 0 Digital Comparator
                                             // Select
+
+//*****************************************************************************
+//
+// The following are defines for the bit fields in the ADC_O_SSEMUX3 register.
+//
+//*****************************************************************************
+#define ADC_SSEMUX3_EMUX0       0x00000001  // 1st Sample Input Select (Upper
+                                            // Bit)
 
 //*****************************************************************************
 //
@@ -7089,7 +7212,6 @@
 //*****************************************************************************
 #define SYSCTL_RESC_MOSCFAIL    0x00010000  // MOSC Failure Reset
 #define SYSCTL_RESC_HSSR        0x00001000  // HSSR Reset
-#define SYSCTL_RESC_HIB         0x00000040  // HIB Reset
 #define SYSCTL_RESC_WDT1        0x00000020  // Watchdog Timer 1 Reset
 #define SYSCTL_RESC_SW          0x00000010  // Software Reset
 #define SYSCTL_RESC_WDT0        0x00000008  // Watchdog Timer 0 Reset

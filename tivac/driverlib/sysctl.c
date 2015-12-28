@@ -2,7 +2,7 @@
 //
 // sysctl.c - Driver for the system controller.
 //
-// Copyright (c) 2005-2014 Texas Instruments Incorporated.  All rights reserved.
+// Copyright (c) 2005-2015 Texas Instruments Incorporated.  All rights reserved.
 // Software License Agreement
 // 
 //   Redistribution and use in source and binary forms, with or without
@@ -33,7 +33,7 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // 
-// This is part of revision 2.1.0.12573 of the Tiva Peripheral Driver Library.
+// This is part of revision 2.1.1.71 of the Tiva Peripheral Driver Library.
 //
 //*****************************************************************************
 
@@ -202,7 +202,7 @@ g_sXTALtoMEMTIM[] =
                  (0 << SYSCTL_MEMTIM0_EWS_S) |
                  SYSCTL_MEMTIM0_MB1) },
     { 40000000, (SYSCTL_MEMTIM0_FBCHT_1_5 | (1 << SYSCTL_MEMTIM0_FWS_S) |
-                 SYSCTL_MEMTIM0_FBCHT_1_5 | (1 << SYSCTL_MEMTIM0_EWS_S) |
+                 SYSCTL_MEMTIM0_EBCHT_1_5 | (1 << SYSCTL_MEMTIM0_EWS_S) |
                  SYSCTL_MEMTIM0_MB1) },
     { 60000000, (SYSCTL_MEMTIM0_FBCHT_2 | (2 << SYSCTL_MEMTIM0_FWS_S) |
                  SYSCTL_MEMTIM0_EBCHT_2 | (2 << SYSCTL_MEMTIM0_EWS_S) |
@@ -418,6 +418,8 @@ _SysCtlPeripheralValid(uint32_t ui32Peripheral)
            (ui32Peripheral == SYSCTL_PERIPH_TIMER3) ||
            (ui32Peripheral == SYSCTL_PERIPH_TIMER4) ||
            (ui32Peripheral == SYSCTL_PERIPH_TIMER5) ||
+           (ui32Peripheral == SYSCTL_PERIPH_TIMER6) ||
+           (ui32Peripheral == SYSCTL_PERIPH_TIMER7) ||
            (ui32Peripheral == SYSCTL_PERIPH_UART0) ||
            (ui32Peripheral == SYSCTL_PERIPH_UART1) ||
            (ui32Peripheral == SYSCTL_PERIPH_UART2) ||
@@ -2076,6 +2078,13 @@ SysCtlResetBehaviorGet(void)
 //! function returns the current system frequency which may not match the
 //! requested frequency.
 //!
+//! If the application is using an external crystal then the frequency is
+//! set by using one of the following values:
+//! \b SYSCTL_XTAL_5MHZ, \b SYSCTL_XTAL_6MHZ, \b SYSCTL_XTAL_8MHZ,
+//! \b SYSCTL_XTAL_10MHZ, \b SYSCTL_XTAL_12MHZ, \b SYSCTL_XTAL_16MHZ,
+//! \b SYSCTL_XTAL_18MHZ, \b SYSCTL_XTAL_20MHZ, \b SYSCTL_XTAL_24MHZ, or
+//! \b SYSCTL_XTAL_25MHz.
+//!
 //! The oscillator source is chosen with one of the following values:
 //!
 //! - \b SYSCTL_OSC_MAIN to use an external crystal or oscillator.
@@ -2863,11 +2872,6 @@ SysCtlClockGet(void)
             case SYSCTL_DC1_MINSYSDIV_80:
             {
                 ui32Max = 80000000;
-                break;
-            }
-            case SYSCTL_DC1_MINSYSDIV_66:
-            {
-                ui32Max = 66666666;
                 break;
             }
             case SYSCTL_DC1_MINSYSDIV_50:

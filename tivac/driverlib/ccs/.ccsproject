@@ -4,6 +4,7 @@
 	<deviceVariant value="Cortex M.TM4C1230C3PM"/>
 	<deviceFamily value="TMS470"/>
 	<deviceEndianness value="little"/>
-	<codegenToolVersion value="5.0.4"/>
+	<codegenToolVersion value="5.1.8"/>
 	<isElfFormat value="true"/>
+	<createSlaveProjects value=""/>
 </projectOptions>

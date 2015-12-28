@@ -2,7 +2,7 @@
 //
 // rom.h - Macros to facilitate calling functions in the ROM.
 //
-// Copyright (c) 2007-2014 Texas Instruments Incorporated.  All rights reserved.
+// Copyright (c) 2007-2015 Texas Instruments Incorporated.  All rights reserved.
 // Software License Agreement
 // 
 //   Redistribution and use in source and binary forms, with or without
@@ -33,7 +33,7 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // 
-// This is part of revision 2.1.0.12573 of the Tiva Peripheral Driver Library.
+// This is part of revision 2.1.1.71 of the Tiva Peripheral Driver Library.
 //
 //*****************************************************************************
 
@@ -53,6 +53,9 @@
 #endif
 #ifdef TARGET_IS_SNOWFLAKE_RA1
 #define TARGET_IS_TM4C129_RA1
+#endif
+#ifdef TARGET_IS_SNOWFLAKE_RA2
+#define TARGET_IS_TM4C129_RA2
 #endif
 #ifdef TARGET_IS_BLIZZARD_RA1
 #define TARGET_IS_TM4C123_RA1
@@ -121,7 +124,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_ADCSequenceDataGet                                                \
         ((int32_t (*)(uint32_t ui32Base,                                      \
                       uint32_t ui32SequenceNum,                               \
@@ -131,7 +135,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_ADCIntDisable                                                     \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32SequenceNum))ROM_ADCTABLE[1])
@@ -140,7 +145,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_ADCIntEnable                                                      \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32SequenceNum))ROM_ADCTABLE[2])
@@ -149,7 +155,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_ADCIntStatus                                                      \
         ((uint32_t (*)(uint32_t ui32Base,                                     \
                        uint32_t ui32SequenceNum,                              \
@@ -159,7 +166,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_ADCIntClear                                                       \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32SequenceNum))ROM_ADCTABLE[4])
@@ -168,7 +176,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_ADCSequenceEnable                                                 \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32SequenceNum))ROM_ADCTABLE[5])
@@ -177,7 +186,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_ADCSequenceDisable                                                \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32SequenceNum))ROM_ADCTABLE[6])
@@ -186,7 +196,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_ADCSequenceConfigure                                              \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32SequenceNum,                                  \
@@ -197,7 +208,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_ADCSequenceStepConfigure                                          \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32SequenceNum,                                  \
@@ -208,7 +220,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_ADCSequenceOverflow                                               \
         ((int32_t (*)(uint32_t ui32Base,                                      \
                       uint32_t ui32SequenceNum))ROM_ADCTABLE[9])
@@ -217,7 +230,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_ADCSequenceOverflowClear                                          \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32SequenceNum))ROM_ADCTABLE[10])
@@ -226,7 +240,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_ADCSequenceUnderflow                                              \
         ((int32_t (*)(uint32_t ui32Base,                                      \
                       uint32_t ui32SequenceNum))ROM_ADCTABLE[11])
@@ -235,7 +250,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_ADCSequenceUnderflowClear                                         \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32SequenceNum))ROM_ADCTABLE[12])
@@ -244,7 +260,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_ADCProcessorTrigger                                               \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32SequenceNum))ROM_ADCTABLE[13])
@@ -253,7 +270,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_ADCHardwareOversampleConfigure                                    \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Factor))ROM_ADCTABLE[14])
@@ -262,7 +280,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_ADCComparatorConfigure                                            \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Comp,                                         \
@@ -272,7 +291,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_ADCComparatorRegionSet                                            \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Comp,                                         \
@@ -283,7 +303,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_ADCComparatorReset                                                \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Comp,                                         \
@@ -294,7 +315,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_ADCComparatorIntDisable                                           \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32SequenceNum))ROM_ADCTABLE[18])
@@ -303,7 +325,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_ADCComparatorIntEnable                                            \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32SequenceNum))ROM_ADCTABLE[19])
@@ -312,7 +335,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_ADCComparatorIntStatus                                            \
         ((uint32_t (*)(uint32_t ui32Base))ROM_ADCTABLE[20])
 #endif
@@ -320,7 +344,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_ADCComparatorIntClear                                             \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Status))ROM_ADCTABLE[21])
@@ -329,7 +354,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_ADCReferenceSet                                                   \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Ref))ROM_ADCTABLE[22])
@@ -338,7 +364,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_ADCReferenceGet                                                   \
         ((uint32_t (*)(uint32_t ui32Base))ROM_ADCTABLE[23])
 #endif
@@ -346,7 +373,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_ADCPhaseDelaySet                                                  \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Phase))ROM_ADCTABLE[24])
@@ -355,48 +383,49 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_ADCPhaseDelayGet                                                  \
         ((uint32_t (*)(uint32_t ui32Base))ROM_ADCTABLE[25])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
-#define ROM_ADCIntClearEx                                                     \
-        ((void (*)(uint32_t ui32Base,                                         \
-                   uint32_t ui32IntFlags))ROM_ADCTABLE[28])
-#endif
-#if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_ADCIntDisableEx                                                   \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32IntFlags))ROM_ADCTABLE[29])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_ADCIntEnableEx                                                    \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32IntFlags))ROM_ADCTABLE[30])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_ADCIntStatusEx                                                    \
         ((uint32_t (*)(uint32_t ui32Base,                                     \
                        bool bMasked))ROM_ADCTABLE[31])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_ADCSequenceDMAEnable                                              \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32SequenceNum))ROM_ADCTABLE[32])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_ADCSequenceDMADisable                                             \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32SequenceNum))ROM_ADCTABLE[33])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_ADCBusy                                                           \
         ((bool (*)(uint32_t ui32Base))ROM_ADCTABLE[34])
 #endif
@@ -407,25 +436,29 @@
 //
 //*****************************************************************************
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_AESIntStatus                                                      \
         ((uint32_t (*)(uint32_t ui32Base,                                     \
                        bool bMasked))ROM_AESTABLE[0])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_AESAuthLengthSet                                                  \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Length))ROM_AESTABLE[1])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_AESConfigSet                                                      \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Config))ROM_AESTABLE[2])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_AESDataAuth                                                       \
         ((bool (*)(uint32_t ui32Base,                                         \
                    uint32_t *pui32Src,                                        \
@@ -433,7 +466,8 @@
                    uint32_t *pui32Tag))ROM_AESTABLE[3])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_AESDataProcess                                                    \
         ((bool (*)(uint32_t ui32Base,                                         \
                    uint32_t *pui32Src,                                        \
@@ -441,7 +475,8 @@
                    uint32_t ui32Length))ROM_AESTABLE[4])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_AESDataProcessAuth                                                \
         ((bool (*)(uint32_t ui32Base,                                         \
                    uint32_t *pui32Src,                                        \
@@ -452,98 +487,114 @@
                    uint32_t *pui32Tag))ROM_AESTABLE[5])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_AESDataRead                                                       \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t *pui32Dest))ROM_AESTABLE[6])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_AESDataReadNonBlocking                                            \
         ((bool (*)(uint32_t ui32Base,                                         \
                    uint32_t *pui32Dest))ROM_AESTABLE[7])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_AESDataWrite                                                      \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t *pui32Src))ROM_AESTABLE[8])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_AESDataWriteNonBlocking                                           \
         ((bool (*)(uint32_t ui32Base,                                         \
                    uint32_t *pui32Src))ROM_AESTABLE[9])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_AESDMADisable                                                     \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Flags))ROM_AESTABLE[10])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_AESDMAEnable                                                      \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Flags))ROM_AESTABLE[11])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_AESIntClear                                                       \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32IntFlags))ROM_AESTABLE[12])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_AESIntDisable                                                     \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32IntFlags))ROM_AESTABLE[13])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_AESIntEnable                                                      \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32IntFlags))ROM_AESTABLE[14])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_AESIVSet                                                          \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t *pui32IVdata))ROM_AESTABLE[15])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_AESKey1Set                                                        \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t *pui32Key,                                        \
                    uint32_t ui32Keysize))ROM_AESTABLE[16])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_AESKey2Set                                                        \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t *pui32Key,                                        \
                    uint32_t ui32Keysize))ROM_AESTABLE[17])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_AESKey3Set                                                        \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t *pui32Key))ROM_AESTABLE[18])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_AESLengthSet                                                      \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint64_t ui64Length))ROM_AESTABLE[19])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_AESReset                                                          \
         ((void (*)(uint32_t ui32Base))ROM_AESTABLE[20])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_AESTagRead                                                        \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t *pui32TagData))ROM_AESTABLE[21])
@@ -563,7 +614,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_CANIntClear                                                       \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32IntClr))ROM_CANTABLE[0])
@@ -572,7 +624,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_CANInit                                                           \
         ((void (*)(uint32_t ui32Base))ROM_CANTABLE[1])
 #endif
@@ -580,7 +633,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_CANEnable                                                         \
         ((void (*)(uint32_t ui32Base))ROM_CANTABLE[2])
 #endif
@@ -588,7 +642,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_CANDisable                                                        \
         ((void (*)(uint32_t ui32Base))ROM_CANTABLE[3])
 #endif
@@ -596,7 +651,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_CANBitTimingSet                                                   \
         ((void (*)(uint32_t ui32Base,                                         \
                    tCANBitClkParms *psClkParms))ROM_CANTABLE[4])
@@ -605,7 +661,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_CANBitTimingGet                                                   \
         ((void (*)(uint32_t ui32Base,                                         \
                    tCANBitClkParms *psClkParms))ROM_CANTABLE[5])
@@ -614,7 +671,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_CANMessageSet                                                     \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32ObjID,                                        \
@@ -625,7 +683,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_CANMessageGet                                                     \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32ObjID,                                        \
@@ -636,7 +695,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_CANStatusGet                                                      \
         ((uint32_t (*)(uint32_t ui32Base,                                     \
                        tCANStsReg eStatusReg))ROM_CANTABLE[8])
@@ -645,7 +705,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_CANMessageClear                                                   \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32ObjID))ROM_CANTABLE[9])
@@ -654,7 +715,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_CANIntEnable                                                      \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32IntFlags))ROM_CANTABLE[10])
@@ -663,7 +725,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_CANIntDisable                                                     \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32IntFlags))ROM_CANTABLE[11])
@@ -672,7 +735,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_CANIntStatus                                                      \
         ((uint32_t (*)(uint32_t ui32Base,                                     \
                        tCANIntStsReg eIntStsReg))ROM_CANTABLE[12])
@@ -681,7 +745,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_CANRetryGet                                                       \
         ((bool (*)(uint32_t ui32Base))ROM_CANTABLE[13])
 #endif
@@ -689,7 +754,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_CANRetrySet                                                       \
         ((void (*)(uint32_t ui32Base,                                         \
                    bool bAutoRetry))ROM_CANTABLE[14])
@@ -698,7 +764,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_CANErrCntrGet                                                     \
         ((bool (*)(uint32_t ui32Base,                                         \
                    uint32_t *pui32RxCount,                                    \
@@ -708,7 +775,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_CANBitRateSet                                                     \
         ((uint32_t (*)(uint32_t ui32Base,                                     \
                        uint32_t ui32SourceClock,                              \
@@ -724,7 +792,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_ComparatorIntClear                                                \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Comp))ROM_COMPARATORTABLE[0])
@@ -733,7 +802,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_ComparatorConfigure                                               \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Comp,                                         \
@@ -743,7 +813,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_ComparatorRefSet                                                  \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Ref))ROM_COMPARATORTABLE[2])
@@ -752,7 +823,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_ComparatorValueGet                                                \
         ((bool (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Comp))ROM_COMPARATORTABLE[3])
@@ -761,7 +833,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_ComparatorIntEnable                                               \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Comp))ROM_COMPARATORTABLE[4])
@@ -770,7 +843,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_ComparatorIntDisable                                              \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Comp))ROM_COMPARATORTABLE[5])
@@ -779,7 +853,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_ComparatorIntStatus                                               \
         ((bool (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Comp,                                         \
@@ -792,13 +867,15 @@
 //
 //*****************************************************************************
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_CRCConfigSet                                                      \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32CRCConfig))ROM_CRCTABLE[0])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_CRCDataProcess                                                    \
         ((uint32_t (*)(uint32_t ui32Base,                                     \
                        uint32_t *pui32DataIn,                                 \
@@ -806,19 +883,22 @@
                        bool bPPResult))ROM_CRCTABLE[1])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_CRCDataWrite                                                      \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Data))ROM_CRCTABLE[2])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_CRCResultRead                                                     \
         ((uint32_t (*)(uint32_t ui32Base,                                     \
                        bool bPPResult))ROM_CRCTABLE[3])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_CRCSeedSet                                                        \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Seed))ROM_CRCTABLE[4])
@@ -830,31 +910,36 @@
 //
 //*****************************************************************************
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_DESIntStatus                                                      \
         ((uint32_t (*)(uint32_t ui32Base,                                     \
                        bool bMasked))ROM_DESTABLE[0])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_DESConfigSet                                                      \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Config))ROM_DESTABLE[1])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_DESDataRead                                                       \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t *pui32Dest))ROM_DESTABLE[2])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_DESDataReadNonBlocking                                            \
         ((bool (*)(uint32_t ui32Base,                                         \
                    uint32_t *pui32Dest))ROM_DESTABLE[3])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_DESDataProcess                                                    \
         ((bool (*)(uint32_t ui32Base,                                         \
                    uint32_t *pui32Src,                                        \
@@ -862,67 +947,78 @@
                    uint32_t ui32Length))ROM_DESTABLE[4])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_DESDataWrite                                                      \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t *pui32Src))ROM_DESTABLE[5])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_DESDataWriteNonBlocking                                           \
         ((bool (*)(uint32_t ui32Base,                                         \
                    uint32_t *pui32Src))ROM_DESTABLE[6])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_DESDMADisable                                                     \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Flags))ROM_DESTABLE[7])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_DESDMAEnable                                                      \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Flags))ROM_DESTABLE[8])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_DESIntClear                                                       \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32IntFlags))ROM_DESTABLE[9])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_DESIntDisable                                                     \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32IntFlags))ROM_DESTABLE[10])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_DESIntEnable                                                      \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32IntFlags))ROM_DESTABLE[11])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_DESIVSet                                                          \
         ((bool (*)(uint32_t ui32Base,                                         \
                    uint32_t *pui32IVdata))ROM_DESTABLE[12])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_DESKeySet                                                         \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t *pui32Key))ROM_DESTABLE[13])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_DESLengthSet                                                      \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Length))ROM_DESTABLE[14])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_DESReset                                                          \
         ((void (*)(uint32_t ui32Base))ROM_DESTABLE[15])
 #endif
@@ -935,7 +1031,8 @@
 #if defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EEPROMRead                                                        \
         ((void (*)(uint32_t *pui32Data,                                       \
                    uint32_t ui32Address,                                      \
@@ -944,28 +1041,32 @@
 #if defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EEPROMBlockCountGet                                               \
         ((uint32_t (*)(void))ROM_EEPROMTABLE[1])
 #endif
 #if defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EEPROMBlockHide                                                   \
         ((void (*)(uint32_t ui32Block))ROM_EEPROMTABLE[2])
 #endif
 #if defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EEPROMBlockLock                                                   \
         ((uint32_t (*)(uint32_t ui32Block))ROM_EEPROMTABLE[3])
 #endif
 #if defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EEPROMBlockPasswordSet                                            \
         ((uint32_t (*)(uint32_t ui32Block,                                    \
                        uint32_t *pui32Password,                               \
@@ -974,14 +1075,16 @@
 #if defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EEPROMBlockProtectGet                                             \
         ((uint32_t (*)(uint32_t ui32Block))ROM_EEPROMTABLE[5])
 #endif
 #if defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EEPROMBlockProtectSet                                             \
         ((uint32_t (*)(uint32_t ui32Block,                                    \
                        uint32_t ui32Protect))ROM_EEPROMTABLE[6])
@@ -989,7 +1092,8 @@
 #if defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EEPROMBlockUnlock                                                 \
         ((uint32_t (*)(uint32_t ui32Block,                                    \
                        uint32_t *pui32Password,                               \
@@ -998,28 +1102,32 @@
 #if defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EEPROMIntClear                                                    \
         ((void (*)(uint32_t ui32IntFlags))ROM_EEPROMTABLE[8])
 #endif
 #if defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EEPROMIntDisable                                                  \
         ((void (*)(uint32_t ui32IntFlags))ROM_EEPROMTABLE[9])
 #endif
 #if defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EEPROMIntEnable                                                   \
         ((void (*)(uint32_t ui32IntFlags))ROM_EEPROMTABLE[10])
 #endif
 #if defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EEPROMIntStatus                                                   \
         ((uint32_t (*)(bool bMasked))ROM_EEPROMTABLE[11])
 #endif
@@ -1031,7 +1139,8 @@
 #if defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EEPROMProgram                                                     \
         ((uint32_t (*)(uint32_t *pui32Data,                                   \
                        uint32_t ui32Address,                                  \
@@ -1040,7 +1149,8 @@
 #if defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EEPROMProgramNonBlocking                                          \
         ((uint32_t (*)(uint32_t ui32Data,                                     \
                        uint32_t ui32Address))ROM_EEPROMTABLE[14])
@@ -1048,21 +1158,24 @@
 #if defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EEPROMSizeGet                                                     \
         ((uint32_t (*)(void))ROM_EEPROMTABLE[15])
 #endif
 #if defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EEPROMStatusGet                                                   \
         ((uint32_t (*)(void))ROM_EEPROMTABLE[16])
 #endif
 #if defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EEPROMInit                                                        \
         ((uint32_t (*)(void))ROM_EEPROMTABLE[17])
 #endif
@@ -1073,32 +1186,37 @@
 //
 //*****************************************************************************
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EPIIntStatus                                                      \
         ((uint32_t (*)(uint32_t ui32Base,                                     \
                        bool bMasked))ROM_EPITABLE[0])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EPIModeSet                                                        \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Mode))ROM_EPITABLE[1])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EPIDividerSet                                                     \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Divider))ROM_EPITABLE[2])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EPIConfigSDRAMSet                                                 \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Config,                                       \
                    uint32_t ui32Refresh))ROM_EPITABLE[3])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EPIConfigGPModeSet                                                \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Config,                                       \
@@ -1106,27 +1224,31 @@
                    uint32_t ui32MaxWait))ROM_EPITABLE[4])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EPIConfigHB8Set                                                   \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Config,                                       \
                    uint32_t ui32MaxWait))ROM_EPITABLE[5])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EPIConfigHB16Set                                                  \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Config,                                       \
                    uint32_t ui32MaxWait))ROM_EPITABLE[6])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EPIAddressMapSet                                                  \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Map))ROM_EPITABLE[7])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EPINonBlockingReadConfigure                                       \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Channel,                                      \
@@ -1134,147 +1256,170 @@
                    uint32_t ui32Address))ROM_EPITABLE[8])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EPINonBlockingReadStart                                           \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Channel,                                      \
                    uint32_t ui32Count))ROM_EPITABLE[9])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EPINonBlockingReadStop                                            \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Channel))ROM_EPITABLE[10])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EPINonBlockingReadCount                                           \
         ((uint32_t (*)(uint32_t ui32Base,                                     \
                        uint32_t ui32Channel))ROM_EPITABLE[11])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EPINonBlockingReadAvail                                           \
         ((uint32_t (*)(uint32_t ui32Base))ROM_EPITABLE[12])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EPINonBlockingReadGet32                                           \
         ((uint32_t (*)(uint32_t ui32Base,                                     \
                        uint32_t ui32Count,                                    \
                        uint32_t *pui32Buf))ROM_EPITABLE[13])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EPINonBlockingReadGet16                                           \
         ((uint32_t (*)(uint32_t ui32Base,                                     \
                        uint32_t ui32Count,                                    \
                        uint16_t *pui16Buf))ROM_EPITABLE[14])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EPINonBlockingReadGet8                                            \
         ((uint32_t (*)(uint32_t ui32Base,                                     \
                        uint32_t ui32Count,                                    \
                        uint8_t *pui8Buf))ROM_EPITABLE[15])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EPIFIFOConfig                                                     \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Config))ROM_EPITABLE[16])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EPIWriteFIFOCountGet                                              \
         ((uint32_t (*)(uint32_t ui32Base))ROM_EPITABLE[17])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EPIIntEnable                                                      \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32IntFlags))ROM_EPITABLE[18])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EPIIntDisable                                                     \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32IntFlags))ROM_EPITABLE[19])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EPIIntErrorStatus                                                 \
         ((uint32_t (*)(uint32_t ui32Base))ROM_EPITABLE[20])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EPIIntErrorClear                                                  \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32ErrFlags))ROM_EPITABLE[21])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EPIDividerCSSet                                                   \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32CS,                                           \
                    uint32_t ui32Divider))ROM_EPITABLE[22])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EPIDMATxCount                                                     \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Count))ROM_EPITABLE[23])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EPIConfigHB8CSSet                                                 \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32CS,                                           \
                    uint32_t ui32Config))ROM_EPITABLE[24])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EPIConfigHB16CSSet                                                \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32CS,                                           \
                    uint32_t ui32Config))ROM_EPITABLE[25])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EPIConfigHB8TimingSet                                             \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32CS,                                           \
                    uint32_t ui32Config))ROM_EPITABLE[26])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EPIConfigHB16TimingSet                                            \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32CS,                                           \
                    uint32_t ui32Config))ROM_EPITABLE[27])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EPIPSRAMConfigRegSet                                              \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32CS,                                           \
                    uint32_t ui32CR))ROM_EPITABLE[28])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EPIPSRAMConfigRegRead                                             \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32CS))ROM_EPITABLE[29])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EPIPSRAMConfigRegGetNonBlocking                                   \
         ((bool (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32CS,                                           \
                    uint32_t *pui32CR))ROM_EPITABLE[30])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EPIPSRAMConfigRegGet                                              \
         ((uint32_t (*)(uint32_t ui32Base,                                     \
                        uint32_t ui32CS))ROM_EPITABLE[31])
@@ -1286,27 +1431,31 @@
 //
 //*****************************************************************************
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EMACIntStatus                                                     \
         ((uint32_t (*)(uint32_t ui32Base,                                     \
                        bool bMasked))ROM_EMACTABLE[0])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EMACAddrGet                                                       \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Index,                                        \
                    uint8_t *pui8MACAddr))ROM_EMACTABLE[1])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EMACAddrSet                                                       \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Index,                                        \
                    const uint8_t *pui8MACAddr))ROM_EMACTABLE[2])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EMACConfigGet                                                     \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t *pui32Config,                                     \
@@ -1314,7 +1463,8 @@
                    uint32_t *pui32RxMaxFrameSize))ROM_EMACTABLE[3])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EMACConfigSet                                                     \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Config,                                       \
@@ -1322,23 +1472,25 @@
                    uint32_t ui32RxMaxFrameSize))ROM_EMACTABLE[4])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EMACDMAStateGet                                                   \
         ((uint32_t (*)(uint32_t ui32Base))ROM_EMACTABLE[5])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EMACFrameFilterGet                                                \
         ((uint32_t (*)(uint32_t ui32Base))ROM_EMACTABLE[6])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EMACFrameFilterSet                                                \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32FilterOpts))ROM_EMACTABLE[7])
 #endif
-#if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+#if defined(TARGET_IS_TM4C129_RA1)
 #define ROM_EMACInit                                                          \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32SysClk,                                       \
@@ -1348,19 +1500,22 @@
                    uint32_t ui32DescSkipSize))ROM_EMACTABLE[8])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EMACIntClear                                                      \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32IntFlags))ROM_EMACTABLE[9])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EMACIntDisable                                                    \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32IntFlags))ROM_EMACTABLE[10])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EMACIntEnable                                                     \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32IntFlags))ROM_EMACTABLE[11])
@@ -1371,26 +1526,30 @@
                    uint32_t ui32Config))ROM_EMACTABLE[12])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EMACPHYPowerOff                                                   \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint8_t ui8PhyAddr))ROM_EMACTABLE[13])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EMACPHYPowerOn                                                    \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint8_t ui8PhyAddr))ROM_EMACTABLE[14])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EMACPHYRead                                                       \
         ((uint16_t (*)(uint32_t ui32Base,                                     \
                         uint8_t ui8PhyAddr,                                   \
                        uint8_t ui8RegAddr))ROM_EMACTABLE[15])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EMACPHYWrite                                                      \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint8_t ui8PhyAddr,                                        \
@@ -1398,95 +1557,113 @@
                    uint16_t ui16Data))ROM_EMACTABLE[16])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EMACReset                                                         \
         ((void (*)(uint32_t ui32Base))ROM_EMACTABLE[17])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EMACRxDisable                                                     \
         ((void (*)(uint32_t ui32Base))ROM_EMACTABLE[18])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EMACRxDMACurrentBufferGet                                         \
         ((uint8_t * (*)(uint32_t ui32Base))ROM_EMACTABLE[19])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EMACRxDMACurrentDescriptorGet                                     \
         ((tEMACDMADescriptor * (*)(uint32_t ui32Base))ROM_EMACTABLE[20])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EMACRxDMADescriptorListGet                                        \
         ((tEMACDMADescriptor * (*)(uint32_t ui32Base))ROM_EMACTABLE[21])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EMACRxDMADescriptorListSet                                        \
         ((void (*)(uint32_t ui32Base,                                         \
                    tEMACDMADescriptor *pDescriptor))ROM_EMACTABLE[22])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EMACRxDMAPollDemand                                               \
         ((void (*)(uint32_t ui32Base))ROM_EMACTABLE[23])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EMACRxEnable                                                      \
         ((void (*)(uint32_t ui32Base))ROM_EMACTABLE[24])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EMACRxWatchdogTimerSet                                            \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint8_t ui8Timeout))ROM_EMACTABLE[25])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EMACStatusGet                                                     \
         ((uint32_t (*)(uint32_t ui32Base))ROM_EMACTABLE[26])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EMACTxDisable                                                     \
         ((void (*)(uint32_t ui32Base))ROM_EMACTABLE[27])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EMACTxDMACurrentBufferGet                                         \
         ((uint8_t * (*)(uint32_t ui32Base))ROM_EMACTABLE[28])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EMACTxDMACurrentDescriptorGet                                     \
         ((tEMACDMADescriptor * (*)(uint32_t ui32Base))ROM_EMACTABLE[29])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EMACTxDMADescriptorListGet                                        \
         ((tEMACDMADescriptor * (*)(uint32_t ui32Base))ROM_EMACTABLE[30])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EMACTxDMADescriptorListSet                                        \
         ((void (*)(uint32_t ui32Base,                                         \
                    tEMACDMADescriptor *pDescriptor))ROM_EMACTABLE[31])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EMACTxDMAPollDemand                                               \
         ((void (*)(uint32_t ui32Base))ROM_EMACTABLE[32])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EMACTxEnable                                                      \
         ((void (*)(uint32_t ui32Base))ROM_EMACTABLE[33])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EMACTxFlush                                                       \
         ((void (*)(uint32_t ui32Base))ROM_EMACTABLE[34])
 #endif
@@ -1512,7 +1689,8 @@
                    uint32_t *pui32HashLo))ROM_EMACTABLE[38])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_EMACHashFilterSet                                                 \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32HashHi,                                       \
@@ -1689,7 +1867,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_FlashProgram                                                      \
         ((int32_t (*)(uint32_t *pui32Data,                                    \
                       uint32_t ui32Address,                                   \
@@ -1699,7 +1878,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_FlashErase                                                        \
         ((int32_t (*)(uint32_t ui32Address))ROM_FLASHTABLE[3])
 #endif
@@ -1707,7 +1887,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_FlashProtectGet                                                   \
         ((tFlashProtection (*)(uint32_t ui32Address))ROM_FLASHTABLE[4])
 #endif
@@ -1715,7 +1896,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_FlashProtectSet                                                   \
         ((int32_t (*)(uint32_t ui32Address,                                   \
                       tFlashProtection eProtect))ROM_FLASHTABLE[5])
@@ -1724,7 +1906,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_FlashProtectSave                                                  \
         ((int32_t (*)(void))ROM_FLASHTABLE[6])
 #endif
@@ -1732,7 +1915,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_FlashUserGet                                                      \
         ((int32_t (*)(uint32_t *pui32User0,                                   \
                       uint32_t *pui32User1))ROM_FLASHTABLE[7])
@@ -1741,7 +1925,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_FlashUserSet                                                      \
         ((int32_t (*)(uint32_t ui32User0,                                     \
                       uint32_t ui32User1))ROM_FLASHTABLE[8])
@@ -1750,7 +1935,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_FlashUserSave                                                     \
         ((int32_t (*)(void))ROM_FLASHTABLE[9])
 #endif
@@ -1758,7 +1944,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_FlashIntEnable                                                    \
         ((void (*)(uint32_t ui32IntFlags))ROM_FLASHTABLE[10])
 #endif
@@ -1766,7 +1953,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_FlashIntDisable                                                   \
         ((void (*)(uint32_t ui32IntFlags))ROM_FLASHTABLE[11])
 #endif
@@ -1774,7 +1962,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_FlashIntStatus                                                    \
         ((uint32_t (*)(bool bMasked))ROM_FLASHTABLE[12])
 #endif
@@ -1782,7 +1971,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_FlashIntClear                                                     \
         ((void (*)(uint32_t ui32IntFlags))ROM_FLASHTABLE[13])
 #endif
@@ -1796,7 +1986,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_FPUEnable                                                         \
         ((void (*)(void))ROM_FPUTABLE[0])
 #endif
@@ -1804,7 +1995,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_FPUDisable                                                        \
         ((void (*)(void))ROM_FPUTABLE[1])
 #endif
@@ -1812,7 +2004,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_FPUFlushToZeroModeSet                                             \
         ((void (*)(uint32_t ui32Mode))ROM_FPUTABLE[2])
 #endif
@@ -1820,7 +2013,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_FPUHalfPrecisionModeSet                                           \
         ((void (*)(uint32_t ui32Mode))ROM_FPUTABLE[3])
 #endif
@@ -1828,7 +2022,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_FPULazyStackingEnable                                             \
         ((void (*)(void))ROM_FPUTABLE[4])
 #endif
@@ -1836,7 +2031,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_FPUNaNModeSet                                                     \
         ((void (*)(uint32_t ui32Mode))ROM_FPUTABLE[5])
 #endif
@@ -1844,7 +2040,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_FPURoundingModeSet                                                \
         ((void (*)(uint32_t ui32Mode))ROM_FPUTABLE[6])
 #endif
@@ -1852,7 +2049,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_FPUStackingDisable                                                \
         ((void (*)(void))ROM_FPUTABLE[7])
 #endif
@@ -1860,7 +2058,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_FPUStackingEnable                                                 \
         ((void (*)(void))ROM_FPUTABLE[8])
 #endif
@@ -1874,7 +2073,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_GPIOPinWrite                                                      \
         ((void (*)(uint32_t ui32Port,                                         \
                    uint8_t ui8Pins,                                           \
@@ -1884,7 +2084,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_GPIODirModeSet                                                    \
         ((void (*)(uint32_t ui32Port,                                         \
                    uint8_t ui8Pins,                                           \
@@ -1894,7 +2095,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_GPIODirModeGet                                                    \
         ((uint32_t (*)(uint32_t ui32Port,                                     \
                        uint8_t ui8Pin))ROM_GPIOTABLE[2])
@@ -1903,7 +2105,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_GPIOIntTypeSet                                                    \
         ((void (*)(uint32_t ui32Port,                                         \
                    uint8_t ui8Pins,                                           \
@@ -1913,7 +2116,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_GPIOIntTypeGet                                                    \
         ((uint32_t (*)(uint32_t ui32Port,                                     \
                        uint8_t ui8Pin))ROM_GPIOTABLE[4])
@@ -1931,7 +2135,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_GPIOPadConfigGet                                                  \
         ((void (*)(uint32_t ui32Port,                                         \
                    uint8_t ui8Pin,                                            \
@@ -1942,7 +2147,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_GPIOPinRead                                                       \
         ((int32_t (*)(uint32_t ui32Port,                                      \
                       uint8_t ui8Pins))ROM_GPIOTABLE[11])
@@ -1958,7 +2164,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_GPIOPinTypeComparator                                             \
         ((void (*)(uint32_t ui32Port,                                         \
                    uint8_t ui8Pins))ROM_GPIOTABLE[13])
@@ -1967,7 +2174,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_GPIOPinTypeGPIOInput                                              \
         ((void (*)(uint32_t ui32Port,                                         \
                    uint8_t ui8Pins))ROM_GPIOTABLE[14])
@@ -1976,7 +2184,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_GPIOPinTypeGPIOOutput                                             \
         ((void (*)(uint32_t ui32Port,                                         \
                    uint8_t ui8Pins))ROM_GPIOTABLE[15])
@@ -1985,7 +2194,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_GPIOPinTypeI2C                                                    \
         ((void (*)(uint32_t ui32Port,                                         \
                    uint8_t ui8Pins))ROM_GPIOTABLE[16])
@@ -1994,7 +2204,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_GPIOPinTypePWM                                                    \
         ((void (*)(uint32_t ui32Port,                                         \
                    uint8_t ui8Pins))ROM_GPIOTABLE[17])
@@ -2003,7 +2214,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_GPIOPinTypeQEI                                                    \
         ((void (*)(uint32_t ui32Port,                                         \
                    uint8_t ui8Pins))ROM_GPIOTABLE[18])
@@ -2012,7 +2224,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_GPIOPinTypeSSI                                                    \
         ((void (*)(uint32_t ui32Port,                                         \
                    uint8_t ui8Pins))ROM_GPIOTABLE[19])
@@ -2021,7 +2234,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_GPIOPinTypeTimer                                                  \
         ((void (*)(uint32_t ui32Port,                                         \
                    uint8_t ui8Pins))ROM_GPIOTABLE[20])
@@ -2030,7 +2244,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_GPIOPinTypeUART                                                   \
         ((void (*)(uint32_t ui32Port,                                         \
                    uint8_t ui8Pins))ROM_GPIOTABLE[21])
@@ -2039,7 +2254,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_GPIOPinTypeGPIOOutputOD                                           \
         ((void (*)(uint32_t ui32Port,                                         \
                    uint8_t ui8Pins))ROM_GPIOTABLE[22])
@@ -2048,7 +2264,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_GPIOPinTypeADC                                                    \
         ((void (*)(uint32_t ui32Port,                                         \
                    uint8_t ui8Pins))ROM_GPIOTABLE[23])
@@ -2057,7 +2274,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_GPIOPinTypeUSBDigital                                             \
         ((void (*)(uint32_t ui32Port,                                         \
                    uint8_t ui8Pins))ROM_GPIOTABLE[24])
@@ -2066,7 +2284,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_GPIOPinConfigure                                                  \
         ((void (*)(uint32_t ui32PinConfig))ROM_GPIOTABLE[26])
 #endif
@@ -2074,7 +2293,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_GPIOPinTypeUSBAnalog                                              \
         ((void (*)(uint32_t ui32Port,                                         \
                    uint8_t ui8Pins))ROM_GPIOTABLE[28])
@@ -2083,7 +2303,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_GPIODMATriggerEnable                                              \
         ((void (*)(uint32_t ui32Port,                                         \
                    uint8_t ui8Pins))ROM_GPIOTABLE[31])
@@ -2092,7 +2313,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_GPIODMATriggerDisable                                             \
         ((void (*)(uint32_t ui32Port,                                         \
                    uint8_t ui8Pins))ROM_GPIOTABLE[32])
@@ -2101,7 +2323,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_GPIOADCTriggerEnable                                              \
         ((void (*)(uint32_t ui32Port,                                         \
                    uint8_t ui8Pins))ROM_GPIOTABLE[33])
@@ -2110,7 +2333,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_GPIOADCTriggerDisable                                             \
         ((void (*)(uint32_t ui32Port,                                         \
                    uint8_t ui8Pins))ROM_GPIOTABLE[34])
@@ -2118,55 +2342,64 @@
 #if defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_GPIOPinTypeI2CSCL                                                 \
         ((void (*)(uint32_t ui32Port,                                         \
                    uint8_t ui8Pins))ROM_GPIOTABLE[39])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_GPIOPinTypeOneWire                                                \
         ((void (*)(uint32_t ui32Port,                                         \
                    uint8_t ui8Pins))ROM_GPIOTABLE[44])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_GPIOPinTypeWakeHigh                                               \
         ((void (*)(uint32_t ui32Port,                                         \
                    uint8_t ui8Pins))ROM_GPIOTABLE[48])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_GPIOPinTypeWakeLow                                                \
         ((void (*)(uint32_t ui32Port,                                         \
                    uint8_t ui8Pins))ROM_GPIOTABLE[49])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_GPIOIntClear                                                      \
         ((void (*)(uint32_t ui32Port,                                         \
                    uint32_t ui32IntFlags))ROM_GPIOTABLE[51])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_GPIOIntDisable                                                    \
         ((void (*)(uint32_t ui32Port,                                         \
                    uint32_t ui32IntFlags))ROM_GPIOTABLE[52])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_GPIOIntEnable                                                     \
         ((void (*)(uint32_t ui32Port,                                         \
                    uint32_t ui32IntFlags))ROM_GPIOTABLE[53])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_GPIOIntStatus                                                     \
         ((uint32_t (*)(uint32_t ui32Port,                                     \
                        bool bMasked))ROM_GPIOTABLE[54])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_GPIOPinWakeStatus                                                 \
         ((uint32_t (*)(uint32_t ui32Port))ROM_GPIOTABLE[55])
 #endif
@@ -2180,7 +2413,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_HibernateIntClear                                                 \
         ((void (*)(uint32_t ui32IntFlags))ROM_HIBERNATETABLE[0])
 #endif
@@ -2188,7 +2422,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_HibernateEnableExpClk                                             \
         ((void (*)(uint32_t ui32HibClk))ROM_HIBERNATETABLE[1])
 #endif
@@ -2196,7 +2431,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_HibernateDisable                                                  \
         ((void (*)(void))ROM_HIBERNATETABLE[2])
 #endif
@@ -2204,7 +2440,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_HibernateRTCEnable                                                \
         ((void (*)(void))ROM_HIBERNATETABLE[4])
 #endif
@@ -2212,7 +2449,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_HibernateRTCDisable                                               \
         ((void (*)(void))ROM_HIBERNATETABLE[5])
 #endif
@@ -2220,7 +2458,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_HibernateWakeSet                                                  \
         ((void (*)(uint32_t ui32WakeFlags))ROM_HIBERNATETABLE[6])
 #endif
@@ -2228,7 +2467,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_HibernateWakeGet                                                  \
         ((uint32_t (*)(void))ROM_HIBERNATETABLE[7])
 #endif
@@ -2236,7 +2476,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_HibernateLowBatSet                                                \
         ((void (*)(uint32_t ui32LowBatFlags))ROM_HIBERNATETABLE[8])
 #endif
@@ -2244,7 +2485,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_HibernateLowBatGet                                                \
         ((uint32_t (*)(void))ROM_HIBERNATETABLE[9])
 #endif
@@ -2252,7 +2494,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_HibernateRTCSet                                                   \
         ((void (*)(uint32_t ui32RTCValue))ROM_HIBERNATETABLE[10])
 #endif
@@ -2260,7 +2503,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_HibernateRTCGet                                                   \
         ((uint32_t (*)(void))ROM_HIBERNATETABLE[11])
 #endif
@@ -2268,7 +2512,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_HibernateRTCTrimSet                                               \
         ((void (*)(uint32_t ui32Trim))ROM_HIBERNATETABLE[16])
 #endif
@@ -2276,7 +2521,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_HibernateRTCTrimGet                                               \
         ((uint32_t (*)(void))ROM_HIBERNATETABLE[17])
 #endif
@@ -2284,7 +2530,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_HibernateDataSet                                                  \
         ((void (*)(uint32_t *pui32Data,                                       \
                    uint32_t ui32Count))ROM_HIBERNATETABLE[18])
@@ -2293,7 +2540,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_HibernateDataGet                                                  \
         ((void (*)(uint32_t *pui32Data,                                       \
                    uint32_t ui32Count))ROM_HIBERNATETABLE[19])
@@ -2302,7 +2550,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_HibernateRequest                                                  \
         ((void (*)(void))ROM_HIBERNATETABLE[20])
 #endif
@@ -2310,7 +2559,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_HibernateIntEnable                                                \
         ((void (*)(uint32_t ui32IntFlags))ROM_HIBERNATETABLE[21])
 #endif
@@ -2318,7 +2568,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_HibernateIntDisable                                               \
         ((void (*)(uint32_t ui32IntFlags))ROM_HIBERNATETABLE[22])
 #endif
@@ -2326,7 +2577,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_HibernateIntStatus                                                \
         ((uint32_t (*)(bool bMasked))ROM_HIBERNATETABLE[23])
 #endif
@@ -2334,7 +2586,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_HibernateIsActive                                                 \
         ((uint32_t (*)(void))ROM_HIBERNATETABLE[24])
 #endif
@@ -2342,7 +2595,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_HibernateRTCSSGet                                                 \
         ((uint32_t (*)(void))ROM_HIBERNATETABLE[27])
 #endif
@@ -2350,7 +2604,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_HibernateClockConfig                                              \
         ((void (*)(uint32_t ui32Config))ROM_HIBERNATETABLE[28])
 #endif
@@ -2358,7 +2613,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_HibernateBatCheckStart                                            \
         ((void (*)(void))ROM_HIBERNATETABLE[29])
 #endif
@@ -2366,103 +2622,122 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_HibernateBatCheckDone                                             \
         ((uint32_t (*)(void))ROM_HIBERNATETABLE[30])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_HibernateGPIORetentionEnable                                      \
         ((void (*)(void))ROM_HIBERNATETABLE[31])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_HibernateGPIORetentionDisable                                     \
         ((void (*)(void))ROM_HIBERNATETABLE[32])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_HibernateGPIORetentionGet                                         \
         ((bool (*)(void))ROM_HIBERNATETABLE[33])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_HibernateCounterMode                                              \
         ((void (*)(uint32_t ui32Config))ROM_HIBERNATETABLE[34])
 #endif
 #if defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_HibernateCalendarSet                                              \
         ((void (*)(struct tm *psTime))ROM_HIBERNATETABLE[35])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_HibernateCalendarGet                                              \
         ((int (*)(struct tm *psTime))ROM_HIBERNATETABLE[36])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_HibernateCalendarMatchSet                                         \
         ((void (*)(uint32_t ui32Index,                                        \
                    struct tm *psTime))ROM_HIBERNATETABLE[37])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_HibernateCalendarMatchGet                                         \
         ((void (*)(uint32_t ui32Index,                                        \
                    struct tm *psTime))ROM_HIBERNATETABLE[38])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_HibernateTamperDisable                                            \
         ((void (*)(void))ROM_HIBERNATETABLE[39])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_HibernateTamperEnable                                             \
         ((void (*)(void))ROM_HIBERNATETABLE[40])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_HibernateTamperEventsClear                                        \
         ((void (*)(void))ROM_HIBERNATETABLE[41])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_HibernateTamperEventsConfig                                       \
         ((void (*)(uint32_t ui32Config))ROM_HIBERNATETABLE[42])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_HibernateTamperEventsGet                                          \
         ((bool (*)(uint32_t ui32Index,                                        \
                    uint32_t *pui32RTC,                                        \
                    uint32_t *pui32Event))ROM_HIBERNATETABLE[43])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_HibernateTamperExtOscValid                                        \
         ((bool (*)(void))ROM_HIBERNATETABLE[44])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_HibernateTamperExtOscRecover                                      \
         ((void (*)(void))ROM_HIBERNATETABLE[45])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_HibernateTamperIODisable                                          \
         ((void (*)(uint32_t ui32Input))ROM_HIBERNATETABLE[46])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_HibernateTamperIOEnable                                           \
         ((void (*)(uint32_t ui32Input,                                        \
                    uint32_t ui32Config))ROM_HIBERNATETABLE[47])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_HibernateTamperStatusGet                                          \
         ((uint32_t (*)(void))ROM_HIBERNATETABLE[48])
 #endif
@@ -2476,7 +2751,8 @@
                    uint32_t ui32Value))ROM_HIBERNATETABLE[50])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_HibernateRTCSSMatchGet                                            \
         ((uint32_t (*)(uint32_t ui32Match))ROM_HIBERNATETABLE[51])
 #endif
@@ -2495,7 +2771,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_I2CMasterDataPut                                                  \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint8_t ui8Data))ROM_I2CTABLE[0])
@@ -2504,7 +2781,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_I2CMasterInitExpClk                                               \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32I2CClk,                                       \
@@ -2519,7 +2797,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_I2CMasterEnable                                                   \
         ((void (*)(uint32_t ui32Base))ROM_I2CTABLE[3])
 #endif
@@ -2531,7 +2810,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_I2CMasterDisable                                                  \
         ((void (*)(uint32_t ui32Base))ROM_I2CTABLE[5])
 #endif
@@ -2543,7 +2823,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_I2CMasterIntEnable                                                \
         ((void (*)(uint32_t ui32Base))ROM_I2CTABLE[7])
 #endif
@@ -2555,7 +2836,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_I2CMasterIntDisable                                               \
         ((void (*)(uint32_t ui32Base))ROM_I2CTABLE[9])
 #endif
@@ -2567,7 +2849,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_I2CMasterIntStatus                                                \
         ((bool (*)(uint32_t ui32Base,                                         \
                    bool bMasked))ROM_I2CTABLE[11])
@@ -2581,7 +2864,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_I2CMasterIntClear                                                 \
         ((void (*)(uint32_t ui32Base))ROM_I2CTABLE[13])
 #endif
@@ -2593,7 +2877,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_I2CMasterSlaveAddrSet                                             \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint8_t ui8SlaveAddr,                                      \
@@ -2603,7 +2888,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_I2CMasterBusy                                                     \
         ((bool (*)(uint32_t ui32Base))ROM_I2CTABLE[16])
 #endif
@@ -2611,7 +2897,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_I2CMasterBusBusy                                                  \
         ((bool (*)(uint32_t ui32Base))ROM_I2CTABLE[17])
 #endif
@@ -2619,7 +2906,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_I2CMasterControl                                                  \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Cmd))ROM_I2CTABLE[18])
@@ -2628,7 +2916,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_I2CMasterErr                                                      \
         ((uint32_t (*)(uint32_t ui32Base))ROM_I2CTABLE[19])
 #endif
@@ -2636,7 +2925,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_I2CMasterDataGet                                                  \
         ((uint32_t (*)(uint32_t ui32Base))ROM_I2CTABLE[20])
 #endif
@@ -2657,7 +2947,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_UpdateI2C                                                         \
         ((void (*)(void))ROM_I2CTABLE[24])
 #endif
@@ -2685,7 +2976,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_I2CMasterIntEnableEx                                              \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32IntFlags))ROM_I2CTABLE[29])
@@ -2694,7 +2986,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_I2CMasterIntDisableEx                                             \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32IntFlags))ROM_I2CTABLE[30])
@@ -2703,7 +2996,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_I2CMasterIntStatusEx                                              \
         ((uint32_t (*)(uint32_t ui32Base,                                     \
                        bool bMasked))ROM_I2CTABLE[31])
@@ -2712,7 +3006,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_I2CMasterIntClearEx                                               \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32IntFlags))ROM_I2CTABLE[32])
@@ -2721,7 +3016,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_I2CMasterTimeoutSet                                               \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Value))ROM_I2CTABLE[33])
@@ -2746,68 +3042,80 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_I2CMasterLineStateGet                                             \
         ((uint32_t (*)(uint32_t ui32Base))ROM_I2CTABLE[38])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_I2CTxFIFOConfigSet                                                \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Config))ROM_I2CTABLE[39])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_I2CTxFIFOFlush                                                    \
         ((void (*)(uint32_t ui32Base))ROM_I2CTABLE[40])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_I2CRxFIFOConfigSet                                                \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Config))ROM_I2CTABLE[41])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_I2CRxFIFOFlush                                                    \
         ((void (*)(uint32_t ui32Base))ROM_I2CTABLE[42])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_I2CFIFOStatus                                                     \
         ((uint32_t (*)(uint32_t ui32Base))ROM_I2CTABLE[43])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_I2CFIFODataPut                                                    \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint8_t ui8Data))ROM_I2CTABLE[44])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_I2CFIFODataPutNonBlocking                                         \
         ((uint32_t (*)(uint32_t ui32Base,                                     \
                        uint8_t ui8Data))ROM_I2CTABLE[45])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_I2CFIFODataGet                                                    \
         ((uint32_t (*)(uint32_t ui32Base))ROM_I2CTABLE[46])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_I2CFIFODataGetNonBlocking                                         \
         ((uint32_t (*)(uint32_t ui32Base,                                     \
                        uint8_t *pui8Data))ROM_I2CTABLE[47])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_I2CMasterBurstLengthSet                                           \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint8_t ui8Length))ROM_I2CTABLE[48])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_I2CMasterBurstCountGet                                            \
         ((uint32_t (*)(uint32_t ui32Base))ROM_I2CTABLE[49])
 #endif
@@ -2821,7 +3129,8 @@
                    uint32_t ui32Config))ROM_I2CTABLE[51])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_I2CMasterGlitchFilterConfigSet                                    \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Config))ROM_I2CTABLE[54])
@@ -2836,7 +3145,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_IntEnable                                                         \
         ((void (*)(uint32_t ui32Interrupt))ROM_INTERRUPTTABLE[0])
 #endif
@@ -2844,7 +3154,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_IntMasterEnable                                                   \
         ((bool (*)(void))ROM_INTERRUPTTABLE[1])
 #endif
@@ -2852,7 +3163,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_IntMasterDisable                                                  \
         ((bool (*)(void))ROM_INTERRUPTTABLE[2])
 #endif
@@ -2860,7 +3172,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_IntDisable                                                        \
         ((void (*)(uint32_t ui32Interrupt))ROM_INTERRUPTTABLE[3])
 #endif
@@ -2868,7 +3181,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_IntPriorityGroupingSet                                            \
         ((void (*)(uint32_t ui32Bits))ROM_INTERRUPTTABLE[4])
 #endif
@@ -2876,7 +3190,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_IntPriorityGroupingGet                                            \
         ((uint32_t (*)(void))ROM_INTERRUPTTABLE[5])
 #endif
@@ -2884,7 +3199,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_IntPrioritySet                                                    \
         ((void (*)(uint32_t ui32Interrupt,                                    \
                    uint8_t ui8Priority))ROM_INTERRUPTTABLE[6])
@@ -2893,7 +3209,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_IntPriorityGet                                                    \
         ((int32_t (*)(uint32_t ui32Interrupt))ROM_INTERRUPTTABLE[7])
 #endif
@@ -2901,7 +3218,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_IntPendSet                                                        \
         ((void (*)(uint32_t ui32Interrupt))ROM_INTERRUPTTABLE[8])
 #endif
@@ -2909,7 +3227,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_IntPendClear                                                      \
         ((void (*)(uint32_t ui32Interrupt))ROM_INTERRUPTTABLE[9])
 #endif
@@ -2917,7 +3236,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_IntPriorityMaskSet                                                \
         ((void (*)(uint32_t ui32PriorityMask))ROM_INTERRUPTTABLE[10])
 #endif
@@ -2925,13 +3245,15 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_IntPriorityMaskGet                                                \
         ((uint32_t (*)(void))ROM_INTERRUPTTABLE[11])
 #endif
 #if defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_IntIsEnabled                                                      \
         ((uint32_t (*)(uint32_t ui32Interrupt))ROM_INTERRUPTTABLE[12])
 #endif
@@ -2946,56 +3268,65 @@
 //
 //*****************************************************************************
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_LCDIntStatus                                                      \
         ((uint32_t (*)(uint32_t ui32Base,                                     \
                        bool bMasked))ROM_LCDTABLE[0])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_LCDClockReset                                                     \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Clocks))ROM_LCDTABLE[1])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_LCDDMAConfigSet                                                   \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Config))ROM_LCDTABLE[2])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_LCDIDDCommandWrite                                                \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32CS,                                           \
                    uint16_t ui16Cmd))ROM_LCDTABLE[3])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_LCDIDDConfigSet                                                   \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Config))ROM_LCDTABLE[4])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_LCDIDDDataRead                                                    \
         ((uint16_t (*)(uint32_t ui32Base,                                     \
                        uint32_t ui32CS))ROM_LCDTABLE[5])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_LCDIDDDataWrite                                                   \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32CS,                                           \
                    uint16_t ui16Data))ROM_LCDTABLE[6])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_LCDIDDDMADisable                                                  \
         ((void (*)(uint32_t ui32Base))ROM_LCDTABLE[7])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_LCDIDDDMAWrite                                                    \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32CS,                                           \
@@ -3003,14 +3334,16 @@
                    uint32_t ui32Count))ROM_LCDTABLE[8])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_LCDIDDIndexedRead                                                 \
         ((uint16_t (*)(uint32_t ui32Base,                                     \
                        uint32_t ui32CS,                                       \
                        uint16_t ui16Addr))ROM_LCDTABLE[9])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_LCDIDDIndexedWrite                                                \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32CS,                                           \
@@ -3018,38 +3351,44 @@
                    uint16_t ui16Data))ROM_LCDTABLE[10])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_LCDIDDStatusRead                                                  \
         ((uint16_t (*)(uint32_t ui32Base,                                     \
                        uint32_t ui32CS))ROM_LCDTABLE[11])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_LCDIDDTimingSet                                                   \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32CS,                                           \
                    const tLCDIDDTiming *pTiming))ROM_LCDTABLE[12])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_LCDIntClear                                                       \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32IntFlags))ROM_LCDTABLE[13])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_LCDIntDisable                                                     \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32IntFlags))ROM_LCDTABLE[14])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_LCDIntEnable                                                      \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32IntFlags))ROM_LCDTABLE[15])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_LCDModeSet                                                        \
         ((uint32_t (*)(uint32_t ui32Base,                                     \
                        uint8_t ui8Mode,                                       \
@@ -3057,30 +3396,35 @@
                        uint32_t ui32SysClk))ROM_LCDTABLE[16])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_LCDRasterACBiasIntCountSet                                        \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint8_t ui8Count))ROM_LCDTABLE[17])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_LCDRasterConfigSet                                                \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Config,                                       \
                    uint8_t ui8PalLoadDelay))ROM_LCDTABLE[18])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_LCDRasterDisable                                                  \
         ((void (*)(uint32_t ui32Base))ROM_LCDTABLE[19])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_LCDRasterEnable                                                   \
         ((void (*)(uint32_t ui32Base))ROM_LCDTABLE[20])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_LCDRasterFrameBufferSet                                           \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint8_t ui8Buffer,                                         \
@@ -3088,7 +3432,8 @@
                    uint32_t ui32NumBytes))ROM_LCDTABLE[21])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_LCDRasterPaletteSet                                               \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Type,                                         \
@@ -3098,7 +3443,8 @@
                    uint32_t ui32Count))ROM_LCDTABLE[22])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_LCDRasterSubPanelConfigSet                                        \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Flags,                                        \
@@ -3106,17 +3452,20 @@
                    uint32_t ui32DefaultPixel))ROM_LCDTABLE[23])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_LCDRasterSubPanelDisable                                          \
         ((void (*)(uint32_t ui32Base))ROM_LCDTABLE[24])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_LCDRasterSubPanelEnable                                           \
         ((void (*)(uint32_t ui32Base))ROM_LCDTABLE[25])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_LCDRasterTimingSet                                                \
         ((void (*)(uint32_t ui32Base,                                         \
                    const tLCDRasterTiming *pTiming))ROM_LCDTABLE[26])
@@ -3135,7 +3484,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_MPUEnable                                                         \
         ((void (*)(uint32_t ui32MPUConfig))ROM_MPUTABLE[0])
 #endif
@@ -3143,7 +3493,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_MPUDisable                                                        \
         ((void (*)(void))ROM_MPUTABLE[1])
 #endif
@@ -3151,7 +3502,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_MPURegionCountGet                                                 \
         ((uint32_t (*)(void))ROM_MPUTABLE[2])
 #endif
@@ -3159,7 +3511,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_MPURegionEnable                                                   \
         ((void (*)(uint32_t ui32Region))ROM_MPUTABLE[3])
 #endif
@@ -3167,7 +3520,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_MPURegionDisable                                                  \
         ((void (*)(uint32_t ui32Region))ROM_MPUTABLE[4])
 #endif
@@ -3175,7 +3529,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_MPURegionSet                                                      \
         ((void (*)(uint32_t ui32Region,                                       \
                    uint32_t ui32Addr,                                         \
@@ -3185,7 +3540,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_MPURegionGet                                                      \
         ((void (*)(uint32_t ui32Region,                                       \
                    uint32_t *pui32Addr,                                       \
@@ -3198,59 +3554,69 @@
 //
 //*****************************************************************************
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_OneWireIntStatus                                                  \
         ((uint32_t (*)(uint32_t ui32Base,                                     \
                        bool bMasked))ROM_ONEWIRETABLE[0])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_OneWireBusReset                                                   \
         ((void (*)(uint32_t ui32Base))ROM_ONEWIRETABLE[1])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_OneWireBusStatus                                                  \
         ((uint32_t (*)(uint32_t ui32Base))ROM_ONEWIRETABLE[2])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_OneWireDataGet                                                    \
         ((void (*)(uint32_t u3i2Base,                                         \
                    uint32_t *pui32Data))ROM_ONEWIRETABLE[3])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_OneWireDataGetNonBlocking                                         \
         ((bool (*)(uint32_t ui32Base,                                         \
                    uint32_t *pui32Data))ROM_ONEWIRETABLE[4])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_OneWireInit                                                       \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32InitFlags))ROM_ONEWIRETABLE[5])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_OneWireIntClear                                                   \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32IntFlags))ROM_ONEWIRETABLE[6])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_OneWireIntDisable                                                 \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32IntFlags))ROM_ONEWIRETABLE[7])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_OneWireIntEnable                                                  \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32IntFlags))ROM_ONEWIRETABLE[8])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_OneWireTransaction                                                \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32OpFlags,                                      \
@@ -3258,13 +3624,15 @@
                    uint32_t ui32BitCnt))ROM_ONEWIRETABLE[9])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_OneWireDMADisable                                                 \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32DMAFlags))ROM_ONEWIRETABLE[10])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_OneWireDMAEnable                                                  \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32DMAFlags))ROM_ONEWIRETABLE[11])
@@ -3279,7 +3647,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_PWMPulseWidthSet                                                  \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32PWMOut,                                       \
@@ -3289,7 +3658,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_PWMGenConfigure                                                   \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Gen,                                          \
@@ -3299,7 +3669,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_PWMGenPeriodSet                                                   \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Gen,                                          \
@@ -3309,7 +3680,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_PWMGenPeriodGet                                                   \
         ((uint32_t (*)(uint32_t ui32Base,                                     \
                        uint32_t ui32Gen))ROM_PWMTABLE[3])
@@ -3318,7 +3690,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_PWMGenEnable                                                      \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Gen))ROM_PWMTABLE[4])
@@ -3327,7 +3700,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_PWMGenDisable                                                     \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Gen))ROM_PWMTABLE[5])
@@ -3336,7 +3710,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_PWMPulseWidthGet                                                  \
         ((uint32_t (*)(uint32_t ui32Base,                                     \
                        uint32_t ui32PWMOut))ROM_PWMTABLE[6])
@@ -3345,7 +3720,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_PWMDeadBandEnable                                                 \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Gen,                                          \
@@ -3356,7 +3732,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_PWMDeadBandDisable                                                \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Gen))ROM_PWMTABLE[8])
@@ -3365,7 +3742,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_PWMSyncUpdate                                                     \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32GenBits))ROM_PWMTABLE[9])
@@ -3374,7 +3752,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_PWMSyncTimeBase                                                   \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32GenBits))ROM_PWMTABLE[10])
@@ -3383,7 +3762,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_PWMOutputState                                                    \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32PWMOutBits,                                   \
@@ -3393,7 +3773,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_PWMOutputInvert                                                   \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32PWMOutBits,                                   \
@@ -3403,7 +3784,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_PWMOutputFault                                                    \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32PWMOutBits,                                   \
@@ -3413,7 +3795,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_PWMGenIntTrigEnable                                               \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Gen,                                          \
@@ -3423,7 +3806,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_PWMGenIntTrigDisable                                              \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Gen,                                          \
@@ -3433,7 +3817,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_PWMGenIntStatus                                                   \
         ((uint32_t (*)(uint32_t ui32Base,                                     \
                        uint32_t ui32Gen,                                      \
@@ -3443,7 +3828,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_PWMGenIntClear                                                    \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Gen,                                          \
@@ -3453,7 +3839,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_PWMIntEnable                                                      \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32GenFault))ROM_PWMTABLE[18])
@@ -3462,7 +3849,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_PWMIntDisable                                                     \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32GenFault))ROM_PWMTABLE[19])
@@ -3471,7 +3859,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_PWMFaultIntClear                                                  \
         ((void (*)(uint32_t ui32Base))ROM_PWMTABLE[20])
 #endif
@@ -3479,7 +3868,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_PWMIntStatus                                                      \
         ((uint32_t (*)(uint32_t ui32Base,                                     \
                        bool bMasked))ROM_PWMTABLE[21])
@@ -3488,7 +3878,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_PWMOutputFaultLevel                                               \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32PWMOutBits,                                   \
@@ -3498,7 +3889,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_PWMFaultIntClearExt                                               \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32FaultInts))ROM_PWMTABLE[23])
@@ -3507,7 +3899,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_PWMGenFaultConfigure                                              \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Gen,                                          \
@@ -3518,7 +3911,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_PWMGenFaultTriggerSet                                             \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Gen,                                          \
@@ -3529,7 +3923,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_PWMGenFaultTriggerGet                                             \
         ((uint32_t (*)(uint32_t ui32Base,                                     \
                        uint32_t ui32Gen,                                      \
@@ -3539,7 +3934,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_PWMGenFaultStatus                                                 \
         ((uint32_t (*)(uint32_t ui32Base,                                     \
                        uint32_t ui32Gen,                                      \
@@ -3549,7 +3945,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_PWMGenFaultClear                                                  \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Gen,                                          \
@@ -3557,19 +3954,22 @@
                    uint32_t ui32FaultTriggers))ROM_PWMTABLE[28])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_PWMClockSet                                                       \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Config))ROM_PWMTABLE[29])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_PWMClockGet                                                       \
         ((uint32_t (*)(uint32_t ui32Base))ROM_PWMTABLE[30])
 #endif
 #if defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_PWMOutputUpdateMode                                               \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32PWMOutBits,                                   \
@@ -3585,7 +3985,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_QEIPositionGet                                                    \
         ((uint32_t (*)(uint32_t ui32Base))ROM_QEITABLE[0])
 #endif
@@ -3593,7 +3994,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_QEIEnable                                                         \
         ((void (*)(uint32_t ui32Base))ROM_QEITABLE[1])
 #endif
@@ -3601,7 +4003,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_QEIDisable                                                        \
         ((void (*)(uint32_t ui32Base))ROM_QEITABLE[2])
 #endif
@@ -3609,7 +4012,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_QEIConfigure                                                      \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Config,                                       \
@@ -3619,7 +4023,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_QEIPositionSet                                                    \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Position))ROM_QEITABLE[4])
@@ -3628,7 +4033,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_QEIDirectionGet                                                   \
         ((int32_t (*)(uint32_t ui32Base))ROM_QEITABLE[5])
 #endif
@@ -3636,7 +4042,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_QEIErrorGet                                                       \
         ((bool (*)(uint32_t ui32Base))ROM_QEITABLE[6])
 #endif
@@ -3644,7 +4051,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_QEIVelocityEnable                                                 \
         ((void (*)(uint32_t ui32Base))ROM_QEITABLE[7])
 #endif
@@ -3652,7 +4060,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_QEIVelocityDisable                                                \
         ((void (*)(uint32_t ui32Base))ROM_QEITABLE[8])
 #endif
@@ -3660,7 +4069,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_QEIVelocityConfigure                                              \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32PreDiv,                                       \
@@ -3670,7 +4080,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_QEIVelocityGet                                                    \
         ((uint32_t (*)(uint32_t ui32Base))ROM_QEITABLE[10])
 #endif
@@ -3678,7 +4089,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_QEIIntEnable                                                      \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32IntFlags))ROM_QEITABLE[11])
@@ -3687,7 +4099,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_QEIIntDisable                                                     \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32IntFlags))ROM_QEITABLE[12])
@@ -3696,7 +4109,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_QEIIntStatus                                                      \
         ((uint32_t (*)(uint32_t ui32Base,                                     \
                        bool bMasked))ROM_QEITABLE[13])
@@ -3705,7 +4119,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_QEIIntClear                                                       \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32IntFlags))ROM_QEITABLE[14])
@@ -3717,19 +4132,22 @@
 //
 //*****************************************************************************
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SHAMD5IntStatus                                                   \
         ((uint32_t (*)(uint32_t ui32Base,                                     \
                        bool bMasked))ROM_SHAMD5TABLE[0])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SHAMD5ConfigSet                                                   \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Mode))ROM_SHAMD5TABLE[1])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SHAMD5DataProcess                                                 \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t *pui32DataSrc,                                    \
@@ -3737,54 +4155,63 @@
                    uint32_t *pui32HashResult))ROM_SHAMD5TABLE[2])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SHAMD5DataWrite                                                   \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t *pui32Src))ROM_SHAMD5TABLE[3])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SHAMD5DataWriteNonBlocking                                        \
         ((bool (*)(uint32_t ui32Base,                                         \
                    uint32_t *pui32Src))ROM_SHAMD5TABLE[4])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SHAMD5DMADisable                                                  \
         ((void (*)(uint32_t ui32Base))ROM_SHAMD5TABLE[5])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SHAMD5DMAEnable                                                   \
         ((void (*)(uint32_t ui32Base))ROM_SHAMD5TABLE[6])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SHAMD5HashLengthSet                                               \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Length))ROM_SHAMD5TABLE[7])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SHAMD5HMACKeySet                                                  \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t *pui32Src))ROM_SHAMD5TABLE[8])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SHAMD5HMACPPKeyGenerate                                           \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t *pui32Key,                                        \
                    uint32_t *pui32PPKey))ROM_SHAMD5TABLE[9])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SHAMD5HMACPPKeySet                                                \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t *pui32Src))ROM_SHAMD5TABLE[10])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SHAMD5HMACProcess                                                 \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t *pui32DataSrc,                                    \
@@ -3792,30 +4219,35 @@
                    uint32_t *pui32HashResult))ROM_SHAMD5TABLE[11])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SHAMD5IntClear                                                    \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32IntFlags))ROM_SHAMD5TABLE[12])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SHAMD5IntDisable                                                  \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32IntFlags))ROM_SHAMD5TABLE[13])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SHAMD5IntEnable                                                   \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32IntFlags))ROM_SHAMD5TABLE[14])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SHAMD5Reset                                                       \
         ((void (*)(uint32_t ui32Base))ROM_SHAMD5TABLE[15])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SHAMD5ResultRead                                                  \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t *pui32Dest))ROM_SHAMD5TABLE[16])
@@ -3830,7 +4262,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusMasterIntProcess                                             \
         ((tSMBusStatus (*)(tSMBus *psSMBus))ROM_SMBUSTABLE[0])
 #endif
@@ -3838,7 +4271,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusARPDisable                                                   \
         ((void (*)(tSMBus *psSMBus))ROM_SMBUSTABLE[1])
 #endif
@@ -3846,7 +4280,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusARPEnable                                                    \
         ((void (*)(tSMBus *psSMBus))ROM_SMBUSTABLE[2])
 #endif
@@ -3854,7 +4289,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusARPUDIDPacketDecode                                          \
         ((void (*)(tSMBusUDID *pUDID,                                         \
                    uint8_t *pui8Address,                                      \
@@ -3864,7 +4300,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusARPUDIDPacketEncode                                          \
         ((void (*)(tSMBusUDID *pUDID,                                         \
                    uint8_t ui8Address,                                        \
@@ -3874,7 +4311,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusMasterARPAssignAddress                                       \
         ((tSMBusStatus (*)(tSMBus *psSMBus,                                   \
                            uint8_t *pui8Data))ROM_SMBUSTABLE[5])
@@ -3883,7 +4321,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusMasterARPGetUDIDDir                                          \
         ((tSMBusStatus (*)(tSMBus *psSMBus,                                   \
                            uint8_t ui8TargetAddress,                          \
@@ -3893,7 +4332,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusMasterARPGetUDIDGen                                          \
         ((tSMBusStatus (*)(tSMBus *psSMBus,                                   \
                            uint8_t *pui8Data))ROM_SMBUSTABLE[7])
@@ -3902,7 +4342,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusMasterARPNotifyMaster                                        \
         ((tSMBusStatus (*)(tSMBus *psSMBus,                                   \
                            uint8_t *pui8Data))ROM_SMBUSTABLE[8])
@@ -3911,7 +4352,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusMasterARPPrepareToARP                                        \
         ((tSMBusStatus (*)(tSMBus *psSMBus))ROM_SMBUSTABLE[9])
 #endif
@@ -3919,7 +4361,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusMasterARPResetDeviceDir                                      \
         ((tSMBusStatus (*)(tSMBus *psSMBus,                                   \
                            uint8_t ui8TargetAddress))ROM_SMBUSTABLE[10])
@@ -3928,7 +4371,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusMasterARPResetDeviceGen                                      \
         ((tSMBusStatus (*)(tSMBus *psSMBus))ROM_SMBUSTABLE[11])
 #endif
@@ -3936,7 +4380,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusMasterBlockProcessCall                                       \
         ((tSMBusStatus (*)(tSMBus *psSMBus,                                   \
                            uint8_t ui8TargetAddress,                          \
@@ -3948,7 +4393,8 @@
 #if defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusMasterBlockRead                                              \
         ((tSMBusStatus (*)(tSMBus *psSMBus,                                   \
                            uint8_t ui8TargetAddress,                          \
@@ -3959,7 +4405,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusMasterBlockWrite                                             \
         ((tSMBusStatus (*)(tSMBus *psSMBus,                                   \
                            uint8_t ui8TargetAddress,                          \
@@ -3971,7 +4418,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusMasterByteReceive                                            \
         ((tSMBusStatus (*)(tSMBus *psSMBus,                                   \
                            uint8_t ui8TargetAddress,                          \
@@ -3981,7 +4429,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusMasterByteSend                                               \
         ((tSMBusStatus (*)(tSMBus *psSMBus,                                   \
                            uint8_t ui8TargetAddress,                          \
@@ -3991,7 +4440,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusMasterByteWordRead                                           \
         ((tSMBusStatus (*)(tSMBus *psSMBus,                                   \
                            uint8_t ui8TargetAddress,                          \
@@ -4003,7 +4453,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusMasterByteWordWrite                                          \
         ((tSMBusStatus (*)(tSMBus *psSMBus,                                   \
                            uint8_t ui8TargetAddress,                          \
@@ -4015,7 +4466,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusMasterHostNotify                                             \
         ((tSMBusStatus (*)(tSMBus *psSMBus,                                   \
                            uint8_t ui8OwnSlaveAddress,                        \
@@ -4025,7 +4477,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusMasterI2CRead                                                \
         ((tSMBusStatus (*)(tSMBus *psSMBus,                                   \
                            uint8_t ui8TargetAddress,                          \
@@ -4036,7 +4489,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusMasterI2CWrite                                               \
         ((tSMBusStatus (*)(tSMBus *psSMBus,                                   \
                            uint8_t ui8TargetAddress,                          \
@@ -4047,7 +4501,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusMasterI2CWriteRead                                           \
         ((tSMBusStatus (*)(tSMBus *psSMBus,                                   \
                            uint8_t ui8TargetAddress,                          \
@@ -4060,7 +4515,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusMasterInit                                                   \
         ((void (*)(tSMBus *psSMBus,                                           \
                    uint32_t ui32I2CBase,                                      \
@@ -4070,7 +4526,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusMasterIntEnable                                              \
         ((void (*)(tSMBus *psSMBus))ROM_SMBUSTABLE[24])
 #endif
@@ -4078,7 +4535,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusMasterProcessCall                                            \
         ((tSMBusStatus (*)(tSMBus *psSMBus,                                   \
                            uint8_t ui8TargetAddress,                          \
@@ -4090,7 +4548,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusMasterQuickCommand                                           \
         ((tSMBusStatus (*)(tSMBus *psSMBus,                                   \
                            uint8_t ui8TargetAddress,                          \
@@ -4100,7 +4559,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusPECDisable                                                   \
         ((void (*)(tSMBus *psSMBus))ROM_SMBUSTABLE[27])
 #endif
@@ -4108,7 +4568,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusPECEnable                                                    \
         ((void (*)(tSMBus *psSMBus))ROM_SMBUSTABLE[28])
 #endif
@@ -4116,7 +4577,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusRxPacketSizeGet                                              \
         ((uint8_t (*)(tSMBus *psSMBus))ROM_SMBUSTABLE[29])
 #endif
@@ -4124,7 +4586,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusSlaveACKSend                                                 \
         ((void (*)(tSMBus *psSMBus,                                           \
                    bool bACK))ROM_SMBUSTABLE[30])
@@ -4133,7 +4596,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusSlaveAddressSet                                              \
         ((void (*)(tSMBus *psSMBus,                                           \
                    uint8_t ui8AddressNum,                                     \
@@ -4143,7 +4607,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusSlaveARPFlagARGet                                            \
         ((bool (*)(tSMBus *psSMBus))ROM_SMBUSTABLE[32])
 #endif
@@ -4151,7 +4616,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusSlaveARPFlagARSet                                            \
         ((void (*)(tSMBus *psSMBus,                                           \
                    bool bValue))ROM_SMBUSTABLE[33])
@@ -4160,7 +4626,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusSlaveARPFlagAVGet                                            \
         ((bool (*)(tSMBus *psSMBus))ROM_SMBUSTABLE[34])
 #endif
@@ -4168,7 +4635,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusSlaveARPFlagAVSet                                            \
         ((void (*)(tSMBus *psSMBus,                                           \
                    bool bValue))ROM_SMBUSTABLE[35])
@@ -4177,7 +4645,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusSlaveBlockTransferDisable                                    \
         ((void (*)(tSMBus *psSMBus))ROM_SMBUSTABLE[36])
 #endif
@@ -4185,7 +4654,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusSlaveBlockTransferEnable                                     \
         ((void (*)(tSMBus *psSMBus))ROM_SMBUSTABLE[37])
 #endif
@@ -4193,7 +4663,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusSlaveCommandGet                                              \
         ((uint8_t (*)(tSMBus *psSMBus))ROM_SMBUSTABLE[38])
 #endif
@@ -4201,7 +4672,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusSlaveI2CDisable                                              \
         ((void (*)(tSMBus *psSMBus))ROM_SMBUSTABLE[39])
 #endif
@@ -4209,7 +4681,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusSlaveI2CEnable                                               \
         ((void (*)(tSMBus *psSMBus))ROM_SMBUSTABLE[40])
 #endif
@@ -4217,7 +4690,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusSlaveInit                                                    \
         ((void (*)(tSMBus *psSMBus,                                           \
                    uint32_t ui32I2CBase))ROM_SMBUSTABLE[41])
@@ -4226,7 +4700,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusSlaveIntAddressGet                                           \
         ((tSMBusStatus (*)(tSMBus *psSMBus))ROM_SMBUSTABLE[42])
 #endif
@@ -4234,7 +4709,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusSlaveIntEnable                                               \
         ((void (*)(tSMBus *psSMBus))ROM_SMBUSTABLE[43])
 #endif
@@ -4242,7 +4718,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusSlaveIntProcess                                              \
         ((tSMBusStatus (*)(tSMBus *psSMBus))ROM_SMBUSTABLE[44])
 #endif
@@ -4250,7 +4727,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusSlaveManualACKDisable                                        \
         ((void (*)(tSMBus *psSMBus))ROM_SMBUSTABLE[45])
 #endif
@@ -4258,7 +4736,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusSlaveManualACKEnable                                         \
         ((void (*)(tSMBus *psSMBus))ROM_SMBUSTABLE[46])
 #endif
@@ -4266,7 +4745,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusSlaveManualACKStatusGet                                      \
         ((bool (*)(tSMBus *psSMBus))ROM_SMBUSTABLE[47])
 #endif
@@ -4274,7 +4754,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusSlaveProcessCallDisable                                      \
         ((void (*)(tSMBus *psSMBus))ROM_SMBUSTABLE[48])
 #endif
@@ -4282,7 +4763,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusSlaveProcessCallEnable                                       \
         ((void (*)(tSMBus *psSMBus))ROM_SMBUSTABLE[49])
 #endif
@@ -4290,7 +4772,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusSlaveRxBufferSet                                             \
         ((void (*)(tSMBus *psSMBus,                                           \
                    uint8_t *pui8Data,                                         \
@@ -4300,7 +4783,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusSlaveTransferInit                                            \
         ((void (*)(tSMBus *psSMBus))ROM_SMBUSTABLE[51])
 #endif
@@ -4308,7 +4792,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusSlaveTxBufferSet                                             \
         ((void (*)(tSMBus *psSMBus,                                           \
                    uint8_t *pui8Data,                                         \
@@ -4318,7 +4803,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusSlaveUDIDSet                                                 \
         ((void (*)(tSMBus *psSMBus,                                           \
                    tSMBusUDID *pUDID))ROM_SMBUSTABLE[53])
@@ -4327,36 +4813,42 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusStatusGet                                                    \
         ((tSMBusStatus (*)(tSMBus *psSMBus))ROM_SMBUSTABLE[54])
 #endif
 #if defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusSlaveDataSend                                                \
         ((tSMBusStatus (*)(tSMBus *psSMBus))ROM_SMBUSTABLE[55])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusFIFOEnable                                                   \
         ((void (*)(tSMBus *psSMBus))ROM_SMBUSTABLE[56])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusFIFODisable                                                  \
         ((void (*)(tSMBus *psSMBus))ROM_SMBUSTABLE[57])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusDMAEnable                                                    \
         ((void (*)(tSMBus *psSMBus,                                           \
                    uint8_t ui8TxChannel,                                      \
                    uint8_t ui8RxChannel))ROM_SMBUSTABLE[58])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SMBusDMADisable                                                   \
         ((void (*)(tSMBus *psSMBus))ROM_SMBUSTABLE[59])
 #endif
@@ -4367,25 +4859,29 @@
 //
 //*****************************************************************************
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SPIFlashIntHandler                                                \
         ((uint32_t (*)(tSPIFlashState *pState))ROM_SPIFLASHTABLE[0])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SPIFlashInit                                                      \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Clock,                                        \
                    uint32_t ui32BitRate))ROM_SPIFLASHTABLE[1])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SPIFlashWriteStatus                                               \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint8_t ui8Status))ROM_SPIFLASHTABLE[2])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SPIFlashPageProgram                                               \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Addr,                                         \
@@ -4393,7 +4889,8 @@
                    uint32_t ui32Count))ROM_SPIFLASHTABLE[3])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SPIFlashPageProgramNonBlocking                                    \
         ((void (*)(tSPIFlashState *pState,                                    \
                    uint32_t ui32Base,                                         \
@@ -4404,7 +4901,8 @@
                    uint32_t ui32TxChannel))ROM_SPIFLASHTABLE[4])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SPIFlashRead                                                      \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Addr,                                         \
@@ -4412,7 +4910,8 @@
                    uint32_t ui32Count))ROM_SPIFLASHTABLE[5])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SPIFlashReadNonBlocking                                           \
         ((void (*)(tSPIFlashState *pState,                                    \
                    uint32_t ui32Base,                                         \
@@ -4424,22 +4923,26 @@
                    uint32_t ui32RxChannel))ROM_SPIFLASHTABLE[6])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SPIFlashWriteDisable                                              \
         ((void (*)(uint32_t ui32Base))ROM_SPIFLASHTABLE[7])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SPIFlashReadStatus                                                \
         ((uint8_t (*)(uint32_t ui32Base))ROM_SPIFLASHTABLE[8])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SPIFlashWriteEnable                                               \
         ((void (*)(uint32_t ui32Base))ROM_SPIFLASHTABLE[9])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SPIFlashFastRead                                                  \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Addr,                                         \
@@ -4447,7 +4950,8 @@
                    uint32_t ui32Count))ROM_SPIFLASHTABLE[10])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SPIFlashFastReadNonBlocking                                       \
         ((void (*)(tSPIFlashState *pState,                                    \
                    uint32_t ui32Base,                                         \
@@ -4459,13 +4963,15 @@
                    uint32_t ui32RxChannel))ROM_SPIFLASHTABLE[11])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SPIFlashSectorErase                                               \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Addr))ROM_SPIFLASHTABLE[12])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SPIFlashDualRead                                                  \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Addr,                                         \
@@ -4473,7 +4979,8 @@
                    uint32_t ui32Count))ROM_SPIFLASHTABLE[13])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SPIFlashDualReadNonBlocking                                       \
         ((void (*)(tSPIFlashState *pState,                                    \
                    uint32_t ui32Base,                                         \
@@ -4485,13 +4992,15 @@
                    uint32_t ui32RxChannel))ROM_SPIFLASHTABLE[14])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SPIFlashBlockErase32                                              \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Addr))ROM_SPIFLASHTABLE[15])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SPIFlashQuadRead                                                  \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Addr,                                         \
@@ -4499,7 +5008,8 @@
                    uint32_t ui32Count))ROM_SPIFLASHTABLE[16])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SPIFlashQuadReadNonBlocking                                       \
         ((void (*)(tSPIFlashState *pState,                                    \
                    uint32_t ui32Base,                                         \
@@ -4511,19 +5021,22 @@
                    uint32_t ui32RxChannel))ROM_SPIFLASHTABLE[17])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SPIFlashReadID                                                    \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint8_t *pui8ManufacturerID,                               \
                    uint16_t *pui16DeviceID))ROM_SPIFLASHTABLE[18])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SPIFlashChipErase                                                 \
         ((void (*)(uint32_t ui32Base))ROM_SPIFLASHTABLE[19])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SPIFlashBlockErase64                                              \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Addr))ROM_SPIFLASHTABLE[20])
@@ -4538,7 +5051,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SSIDataPut                                                        \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Data))ROM_SSITABLE[0])
@@ -4547,7 +5061,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SSIConfigSetExpClk                                                \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32SSIClk,                                       \
@@ -4560,7 +5075,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SSIEnable                                                         \
         ((void (*)(uint32_t ui32Base))ROM_SSITABLE[2])
 #endif
@@ -4568,7 +5084,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SSIDisable                                                        \
         ((void (*)(uint32_t ui32Base))ROM_SSITABLE[3])
 #endif
@@ -4576,7 +5093,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SSIIntEnable                                                      \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32IntFlags))ROM_SSITABLE[4])
@@ -4585,7 +5103,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SSIIntDisable                                                     \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32IntFlags))ROM_SSITABLE[5])
@@ -4594,7 +5113,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SSIIntStatus                                                      \
         ((uint32_t (*)(uint32_t ui32Base,                                     \
                        bool bMasked))ROM_SSITABLE[6])
@@ -4603,7 +5123,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SSIIntClear                                                       \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32IntFlags))ROM_SSITABLE[7])
@@ -4612,7 +5133,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SSIDataPutNonBlocking                                             \
         ((int32_t (*)(uint32_t ui32Base,                                      \
                       uint32_t ui32Data))ROM_SSITABLE[8])
@@ -4621,7 +5143,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SSIDataGet                                                        \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t *pui32Data))ROM_SSITABLE[9])
@@ -4630,7 +5153,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SSIDataGetNonBlocking                                             \
         ((int32_t (*)(uint32_t ui32Base,                                      \
                       uint32_t *pui32Data))ROM_SSITABLE[10])
@@ -4639,7 +5163,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_UpdateSSI                                                         \
         ((void (*)(void))ROM_SSITABLE[11])
 #endif
@@ -4647,7 +5172,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SSIDMAEnable                                                      \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32DMAFlags))ROM_SSITABLE[12])
@@ -4656,7 +5182,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SSIDMADisable                                                     \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32DMAFlags))ROM_SSITABLE[13])
@@ -4665,7 +5192,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SSIBusy                                                           \
         ((bool (*)(uint32_t ui32Base))ROM_SSITABLE[14])
 #endif
@@ -4673,7 +5201,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SSIClockSourceGet                                                 \
         ((uint32_t (*)(uint32_t ui32Base))ROM_SSITABLE[15])
 #endif
@@ -4681,36 +5210,42 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SSIClockSourceSet                                                 \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Source))ROM_SSITABLE[16])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SSIAdvModeSet                                                     \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Mode))ROM_SSITABLE[17])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SSIAdvDataPutFrameEnd                                             \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Data))ROM_SSITABLE[18])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SSIAdvDataPutFrameEndNonBlocking                                  \
         ((int32_t (*)(uint32_t ui32Base,                                      \
                       uint32_t ui32Data))ROM_SSITABLE[19])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SSIAdvFrameHoldEnable                                             \
         ((void (*)(uint32_t ui32Base))ROM_SSITABLE[20])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SSIAdvFrameHoldDisable                                            \
         ((void (*)(uint32_t ui32Base))ROM_SSITABLE[21])
 #endif
@@ -4724,7 +5259,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SysCtlSleep                                                       \
         ((void (*)(void))ROM_SYSCTLTABLE[0])
 #endif
@@ -4732,7 +5268,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SysCtlSRAMSizeGet                                                 \
         ((uint32_t (*)(void))ROM_SYSCTLTABLE[1])
 #endif
@@ -4740,7 +5277,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SysCtlFlashSizeGet                                                \
         ((uint32_t (*)(void))ROM_SYSCTLTABLE[2])
 #endif
@@ -4748,7 +5286,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SysCtlPeripheralPresent                                           \
         ((bool (*)(uint32_t ui32Peripheral))ROM_SYSCTLTABLE[4])
 #endif
@@ -4756,7 +5295,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SysCtlPeripheralReset                                             \
         ((void (*)(uint32_t ui32Peripheral))ROM_SYSCTLTABLE[5])
 #endif
@@ -4764,7 +5304,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SysCtlPeripheralEnable                                            \
         ((void (*)(uint32_t ui32Peripheral))ROM_SYSCTLTABLE[6])
 #endif
@@ -4772,7 +5313,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SysCtlPeripheralDisable                                           \
         ((void (*)(uint32_t ui32Peripheral))ROM_SYSCTLTABLE[7])
 #endif
@@ -4780,7 +5322,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SysCtlPeripheralSleepEnable                                       \
         ((void (*)(uint32_t ui32Peripheral))ROM_SYSCTLTABLE[8])
 #endif
@@ -4788,7 +5331,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SysCtlPeripheralSleepDisable                                      \
         ((void (*)(uint32_t ui32Peripheral))ROM_SYSCTLTABLE[9])
 #endif
@@ -4796,7 +5340,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SysCtlPeripheralDeepSleepEnable                                   \
         ((void (*)(uint32_t ui32Peripheral))ROM_SYSCTLTABLE[10])
 #endif
@@ -4804,7 +5349,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SysCtlPeripheralDeepSleepDisable                                  \
         ((void (*)(uint32_t ui32Peripheral))ROM_SYSCTLTABLE[11])
 #endif
@@ -4812,7 +5358,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SysCtlPeripheralClockGating                                       \
         ((void (*)(bool bEnable))ROM_SYSCTLTABLE[12])
 #endif
@@ -4820,7 +5367,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SysCtlIntEnable                                                   \
         ((void (*)(uint32_t ui32Ints))ROM_SYSCTLTABLE[13])
 #endif
@@ -4828,7 +5376,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SysCtlIntDisable                                                  \
         ((void (*)(uint32_t ui32Ints))ROM_SYSCTLTABLE[14])
 #endif
@@ -4836,7 +5385,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SysCtlIntClear                                                    \
         ((void (*)(uint32_t ui32Ints))ROM_SYSCTLTABLE[15])
 #endif
@@ -4844,7 +5394,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SysCtlIntStatus                                                   \
         ((uint32_t (*)(bool bMasked))ROM_SYSCTLTABLE[16])
 #endif
@@ -4852,7 +5403,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SysCtlReset                                                       \
         ((void (*)(void))ROM_SYSCTLTABLE[19])
 #endif
@@ -4860,7 +5412,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SysCtlDeepSleep                                                   \
         ((void (*)(void))ROM_SYSCTLTABLE[20])
 #endif
@@ -4868,7 +5421,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SysCtlResetCauseGet                                               \
         ((uint32_t (*)(void))ROM_SYSCTLTABLE[21])
 #endif
@@ -4876,7 +5430,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SysCtlResetCauseClear                                             \
         ((void (*)(uint32_t ui32Causes))ROM_SYSCTLTABLE[22])
 #endif
@@ -4920,7 +5475,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SysCtlDelay                                                       \
         ((void (*)(uint32_t ui32Count))ROM_SYSCTLTABLE[34])
 #endif
@@ -4928,7 +5484,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SysCtlPeripheralReady                                             \
         ((bool (*)(uint32_t ui32Peripheral))ROM_SYSCTLTABLE[35])
 #endif
@@ -4936,7 +5493,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SysCtlPeripheralPowerOn                                           \
         ((void (*)(uint32_t ui32Peripheral))ROM_SYSCTLTABLE[36])
 #endif
@@ -4944,7 +5502,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SysCtlPeripheralPowerOff                                          \
         ((void (*)(uint32_t ui32Peripheral))ROM_SYSCTLTABLE[37])
 #endif
@@ -4952,7 +5511,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SysCtlMOSCConfigSet                                               \
         ((void (*)(uint32_t ui32Config))ROM_SYSCTLTABLE[44])
 #endif
@@ -4960,7 +5520,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SysCtlPIOSCCalibrate                                              \
         ((uint32_t (*)(uint32_t ui32Type))ROM_SYSCTLTABLE[45])
 #endif
@@ -4971,7 +5532,8 @@
         ((void (*)(uint32_t ui32Config))ROM_SYSCTLTABLE[46])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SysCtlDeepSleepClockConfigSet                                     \
         ((void (*)(uint32_t ui32Div,                                          \
                    uint32_t ui32Config))ROM_SYSCTLTABLE[47])
@@ -4982,54 +5544,64 @@
                        uint32_t ui32SysClock))ROM_SYSCTLTABLE[48])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SysCtlResetBehaviorSet                                            \
         ((void (*)(uint32_t ui32Behavior))ROM_SYSCTLTABLE[51])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SysCtlResetBehaviorGet                                            \
         ((uint32_t (*)(void))ROM_SYSCTLTABLE[52])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SysCtlFlashSectorSizeGet                                          \
         ((uint32_t (*)(void))ROM_SYSCTLTABLE[54])
 #endif
 #if defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SysCtlVoltageEventConfig                                          \
         ((void (*)(uint32_t ui32Config))ROM_SYSCTLTABLE[55])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SysCtlVoltageEventStatus                                          \
         ((uint32_t (*)(void))ROM_SYSCTLTABLE[56])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SysCtlVoltageEventClear                                           \
         ((void (*)(uint32_t ui32Status))ROM_SYSCTLTABLE[57])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SysCtlNMIStatus                                                   \
         ((uint32_t (*)(void))ROM_SYSCTLTABLE[58])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SysCtlNMIClear                                                    \
         ((void (*)(uint32_t ui32Status))ROM_SYSCTLTABLE[59])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SysCtlClockOutConfig                                              \
         ((void (*)(uint32_t ui32Config,                                       \
                    uint32_t ui32Div))ROM_SYSCTLTABLE[60])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SysCtlAltClkConfig                                                \
         ((void (*)(uint32_t ui32Config))ROM_SYSCTLTABLE[61])
 #endif
@@ -5043,7 +5615,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SysExcIntStatus                                                   \
         ((uint32_t (*)(bool bMasked))ROM_SYSEXCTABLE[0])
 #endif
@@ -5051,7 +5624,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SysExcIntClear                                                    \
         ((void (*)(uint32_t ui32IntFlags))ROM_SYSEXCTABLE[1])
 #endif
@@ -5059,7 +5633,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SysExcIntDisable                                                  \
         ((void (*)(uint32_t ui32IntFlags))ROM_SYSEXCTABLE[2])
 #endif
@@ -5067,7 +5642,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SysExcIntEnable                                                   \
         ((void (*)(uint32_t ui32IntFlags))ROM_SYSEXCTABLE[3])
 #endif
@@ -5081,7 +5657,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SysTickValueGet                                                   \
         ((uint32_t (*)(void))ROM_SYSTICKTABLE[0])
 #endif
@@ -5089,7 +5666,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SysTickEnable                                                     \
         ((void (*)(void))ROM_SYSTICKTABLE[1])
 #endif
@@ -5097,7 +5675,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SysTickDisable                                                    \
         ((void (*)(void))ROM_SYSTICKTABLE[2])
 #endif
@@ -5105,7 +5684,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SysTickIntEnable                                                  \
         ((void (*)(void))ROM_SYSTICKTABLE[3])
 #endif
@@ -5113,7 +5693,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SysTickIntDisable                                                 \
         ((void (*)(void))ROM_SYSTICKTABLE[4])
 #endif
@@ -5121,7 +5702,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SysTickPeriodSet                                                  \
         ((void (*)(uint32_t ui32Period))ROM_SYSTICKTABLE[5])
 #endif
@@ -5129,7 +5711,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_SysTickPeriodGet                                                  \
         ((uint32_t (*)(void))ROM_SYSTICKTABLE[6])
 #endif
@@ -5143,7 +5726,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_TimerIntClear                                                     \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32IntFlags))ROM_TIMERTABLE[0])
@@ -5152,7 +5736,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_TimerEnable                                                       \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Timer))ROM_TIMERTABLE[1])
@@ -5161,7 +5746,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_TimerDisable                                                      \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Timer))ROM_TIMERTABLE[2])
@@ -5170,7 +5756,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_TimerConfigure                                                    \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Config))ROM_TIMERTABLE[3])
@@ -5179,7 +5766,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_TimerControlLevel                                                 \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Timer,                                        \
@@ -5198,7 +5786,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_TimerControlEvent                                                 \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Timer,                                        \
@@ -5208,7 +5797,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_TimerControlStall                                                 \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Timer,                                        \
@@ -5218,7 +5808,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_TimerRTCEnable                                                    \
         ((void (*)(uint32_t ui32Base))ROM_TIMERTABLE[8])
 #endif
@@ -5226,7 +5817,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_TimerRTCDisable                                                   \
         ((void (*)(uint32_t ui32Base))ROM_TIMERTABLE[9])
 #endif
@@ -5234,7 +5826,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_TimerPrescaleSet                                                  \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Timer,                                        \
@@ -5244,7 +5837,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_TimerPrescaleGet                                                  \
         ((uint32_t (*)(uint32_t ui32Base,                                     \
                        uint32_t ui32Timer))ROM_TIMERTABLE[11])
@@ -5253,7 +5847,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_TimerPrescaleMatchSet                                             \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Timer,                                        \
@@ -5263,7 +5858,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_TimerPrescaleMatchGet                                             \
         ((uint32_t (*)(uint32_t ui32Base,                                     \
                        uint32_t ui32Timer))ROM_TIMERTABLE[13])
@@ -5272,7 +5868,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_TimerLoadSet                                                      \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Timer,                                        \
@@ -5282,7 +5879,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_TimerLoadGet                                                      \
         ((uint32_t (*)(uint32_t ui32Base,                                     \
                        uint32_t ui32Timer))ROM_TIMERTABLE[15])
@@ -5291,7 +5889,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_TimerValueGet                                                     \
         ((uint32_t (*)(uint32_t ui32Base,                                     \
                        uint32_t ui32Timer))ROM_TIMERTABLE[16])
@@ -5300,7 +5899,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_TimerMatchSet                                                     \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Timer,                                        \
@@ -5310,7 +5910,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_TimerMatchGet                                                     \
         ((uint32_t (*)(uint32_t ui32Base,                                     \
                        uint32_t ui32Timer))ROM_TIMERTABLE[18])
@@ -5319,7 +5920,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_TimerIntEnable                                                    \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32IntFlags))ROM_TIMERTABLE[19])
@@ -5328,7 +5930,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_TimerIntDisable                                                   \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32IntFlags))ROM_TIMERTABLE[20])
@@ -5337,7 +5940,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_TimerIntStatus                                                    \
         ((uint32_t (*)(uint32_t ui32Base,                                     \
                        bool bMasked))ROM_TIMERTABLE[21])
@@ -5346,7 +5950,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_TimerControlWaitOnTrigger                                         \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Timer,                                        \
@@ -5385,40 +5990,47 @@
         ((uint64_t (*)(uint32_t ui32Base))ROM_TIMERTABLE[27])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_TimerClockSourceGet                                               \
         ((uint32_t (*)(uint32_t ui32Base))ROM_TIMERTABLE[28])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_TimerClockSourceSet                                               \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Source))ROM_TIMERTABLE[29])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_TimerADCEventGet                                                  \
         ((uint32_t (*)(uint32_t ui32Base))ROM_TIMERTABLE[30])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_TimerADCEventSet                                                  \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32ADCEvent))ROM_TIMERTABLE[31])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_TimerDMAEventGet                                                  \
         ((uint32_t (*)(uint32_t ui32Base))ROM_TIMERTABLE[32])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_TimerDMAEventSet                                                  \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32DMAEvent))ROM_TIMERTABLE[33])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_TimerSynchronize                                                  \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Timers))ROM_TIMERTABLE[34])
@@ -5433,7 +6045,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_UARTCharPut                                                       \
         ((void (*)(uint32_t ui32Base,                                         \
                    unsigned char ucData))ROM_UARTTABLE[0])
@@ -5442,7 +6055,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_UARTParityModeSet                                                 \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Parity))ROM_UARTTABLE[1])
@@ -5451,7 +6065,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_UARTParityModeGet                                                 \
         ((uint32_t (*)(uint32_t ui32Base))ROM_UARTTABLE[2])
 #endif
@@ -5459,7 +6074,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_UARTFIFOLevelSet                                                  \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32TxLevel,                                      \
@@ -5469,7 +6085,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_UARTFIFOLevelGet                                                  \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t *pui32TxLevel,                                    \
@@ -5479,7 +6096,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_UARTConfigSetExpClk                                               \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32UARTClk,                                      \
@@ -5490,7 +6108,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_UARTConfigGetExpClk                                               \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32UARTClk,                                      \
@@ -5501,7 +6120,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_UARTEnable                                                        \
         ((void (*)(uint32_t ui32Base))ROM_UARTTABLE[7])
 #endif
@@ -5509,7 +6129,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_UARTDisable                                                       \
         ((void (*)(uint32_t ui32Base))ROM_UARTTABLE[8])
 #endif
@@ -5517,7 +6138,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_UARTEnableSIR                                                     \
         ((void (*)(uint32_t ui32Base,                                         \
                    bool bLowPower))ROM_UARTTABLE[9])
@@ -5526,7 +6148,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_UARTDisableSIR                                                    \
         ((void (*)(uint32_t ui32Base))ROM_UARTTABLE[10])
 #endif
@@ -5534,7 +6157,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_UARTCharsAvail                                                    \
         ((bool (*)(uint32_t ui32Base))ROM_UARTTABLE[11])
 #endif
@@ -5542,7 +6166,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_UARTSpaceAvail                                                    \
         ((bool (*)(uint32_t ui32Base))ROM_UARTTABLE[12])
 #endif
@@ -5550,7 +6175,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_UARTCharGetNonBlocking                                            \
         ((int32_t (*)(uint32_t ui32Base))ROM_UARTTABLE[13])
 #endif
@@ -5558,7 +6184,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_UARTCharGet                                                       \
         ((int32_t (*)(uint32_t ui32Base))ROM_UARTTABLE[14])
 #endif
@@ -5566,7 +6193,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_UARTCharPutNonBlocking                                            \
         ((bool (*)(uint32_t ui32Base,                                         \
                    unsigned char ucData))ROM_UARTTABLE[15])
@@ -5575,7 +6203,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_UARTBreakCtl                                                      \
         ((void (*)(uint32_t ui32Base,                                         \
                    bool bBreakState))ROM_UARTTABLE[16])
@@ -5584,7 +6213,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_UARTIntEnable                                                     \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32IntFlags))ROM_UARTTABLE[17])
@@ -5593,7 +6223,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_UARTIntDisable                                                    \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32IntFlags))ROM_UARTTABLE[18])
@@ -5602,7 +6233,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_UARTIntStatus                                                     \
         ((uint32_t (*)(uint32_t ui32Base,                                     \
                        bool bMasked))ROM_UARTTABLE[19])
@@ -5611,7 +6243,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_UARTIntClear                                                      \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32IntFlags))ROM_UARTTABLE[20])
@@ -5620,7 +6253,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_UpdateUART                                                        \
         ((void (*)(void))ROM_UARTTABLE[21])
 #endif
@@ -5628,7 +6262,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_UARTDMAEnable                                                     \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32DMAFlags))ROM_UARTTABLE[22])
@@ -5637,7 +6272,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_UARTDMADisable                                                    \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32DMAFlags))ROM_UARTTABLE[23])
@@ -5646,7 +6282,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_UARTFIFOEnable                                                    \
         ((void (*)(uint32_t ui32Base))ROM_UARTTABLE[24])
 #endif
@@ -5654,7 +6291,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_UARTFIFODisable                                                   \
         ((void (*)(uint32_t ui32Base))ROM_UARTTABLE[25])
 #endif
@@ -5662,7 +6300,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_UARTBusy                                                          \
         ((bool (*)(uint32_t ui32Base))ROM_UARTTABLE[26])
 #endif
@@ -5670,7 +6309,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_UARTTxIntModeSet                                                  \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Mode))ROM_UARTTABLE[27])
@@ -5679,7 +6319,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_UARTTxIntModeGet                                                  \
         ((uint32_t (*)(uint32_t ui32Base))ROM_UARTTABLE[28])
 #endif
@@ -5687,7 +6328,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_UARTRxErrorGet                                                    \
         ((uint32_t (*)(uint32_t ui32Base))ROM_UARTTABLE[29])
 #endif
@@ -5695,7 +6337,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_UARTRxErrorClear                                                  \
         ((void (*)(uint32_t ui32Base))ROM_UARTTABLE[30])
 #endif
@@ -5703,7 +6346,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_UARTClockSourceSet                                                \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Source))ROM_UARTTABLE[31])
@@ -5712,7 +6356,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_UARTClockSourceGet                                                \
         ((uint32_t (*)(uint32_t ui32Base))ROM_UARTTABLE[32])
 #endif
@@ -5720,7 +6365,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_UART9BitEnable                                                    \
         ((void (*)(uint32_t ui32Base))ROM_UARTTABLE[33])
 #endif
@@ -5728,7 +6374,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_UART9BitDisable                                                   \
         ((void (*)(uint32_t ui32Base))ROM_UARTTABLE[34])
 #endif
@@ -5736,7 +6383,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_UART9BitAddrSet                                                   \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint8_t ui8Addr,                                           \
@@ -5746,51 +6394,60 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_UART9BitAddrSend                                                  \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint8_t ui8Addr))ROM_UARTTABLE[36])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_UARTSmartCardDisable                                              \
         ((void (*)(uint32_t ui32Base))ROM_UARTTABLE[37])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_UARTSmartCardEnable                                               \
         ((void (*)(uint32_t ui32Base))ROM_UARTTABLE[38])
 #endif
 #if defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_UARTModemControlClear                                             \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Control))ROM_UARTTABLE[39])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_UARTModemControlGet                                               \
         ((uint32_t (*)(uint32_t ui32Base))ROM_UARTTABLE[40])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_UARTModemControlSet                                               \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Control))ROM_UARTTABLE[41])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_UARTModemStatusGet                                                \
         ((uint32_t (*)(uint32_t ui32Base))ROM_UARTTABLE[42])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_UARTFlowControlGet                                                \
         ((uint32_t (*)(uint32_t ui32Base))ROM_UARTTABLE[43])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_UARTFlowControlSet                                                \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Mode))ROM_UARTTABLE[44])
@@ -5805,7 +6462,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_uDMAChannelTransferSet                                            \
         ((void (*)(uint32_t ui32ChannelStructIndex,                           \
                    uint32_t ui32Mode,                                         \
@@ -5817,7 +6475,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_uDMAEnable                                                        \
         ((void (*)(void))ROM_UDMATABLE[1])
 #endif
@@ -5825,7 +6484,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_uDMADisable                                                       \
         ((void (*)(void))ROM_UDMATABLE[2])
 #endif
@@ -5833,7 +6493,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_uDMAErrorStatusGet                                                \
         ((uint32_t (*)(void))ROM_UDMATABLE[3])
 #endif
@@ -5841,7 +6502,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_uDMAErrorStatusClear                                              \
         ((void (*)(void))ROM_UDMATABLE[4])
 #endif
@@ -5849,7 +6511,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_uDMAChannelEnable                                                 \
         ((void (*)(uint32_t ui32ChannelNum))ROM_UDMATABLE[5])
 #endif
@@ -5857,7 +6520,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_uDMAChannelDisable                                                \
         ((void (*)(uint32_t ui32ChannelNum))ROM_UDMATABLE[6])
 #endif
@@ -5865,7 +6529,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_uDMAChannelIsEnabled                                              \
         ((bool (*)(uint32_t ui32ChannelNum))ROM_UDMATABLE[7])
 #endif
@@ -5873,7 +6538,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_uDMAControlBaseSet                                                \
         ((void (*)(void *pControlTable))ROM_UDMATABLE[8])
 #endif
@@ -5881,7 +6547,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_uDMAControlBaseGet                                                \
         ((void * (*)(void))ROM_UDMATABLE[9])
 #endif
@@ -5889,7 +6556,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_uDMAChannelRequest                                                \
         ((void (*)(uint32_t ui32ChannelNum))ROM_UDMATABLE[10])
 #endif
@@ -5897,7 +6565,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_uDMAChannelAttributeEnable                                        \
         ((void (*)(uint32_t ui32ChannelNum,                                   \
                    uint32_t ui32Attr))ROM_UDMATABLE[11])
@@ -5906,7 +6575,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_uDMAChannelAttributeDisable                                       \
         ((void (*)(uint32_t ui32ChannelNum,                                   \
                    uint32_t ui32Attr))ROM_UDMATABLE[12])
@@ -5915,7 +6585,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_uDMAChannelAttributeGet                                           \
         ((uint32_t (*)(uint32_t ui32ChannelNum))ROM_UDMATABLE[13])
 #endif
@@ -5923,7 +6594,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_uDMAChannelControlSet                                             \
         ((void (*)(uint32_t ui32ChannelStructIndex,                           \
                    uint32_t ui32Control))ROM_UDMATABLE[14])
@@ -5932,7 +6604,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_uDMAChannelSizeGet                                                \
         ((uint32_t (*)(uint32_t ui32ChannelStructIndex))ROM_UDMATABLE[15])
 #endif
@@ -5940,7 +6613,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_uDMAChannelModeGet                                                \
         ((uint32_t (*)(uint32_t ui32ChannelStructIndex))ROM_UDMATABLE[16])
 #endif
@@ -5948,7 +6622,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_uDMAChannelSelectSecondary                                        \
         ((void (*)(uint32_t ui32SecPeriphs))ROM_UDMATABLE[17])
 #endif
@@ -5956,7 +6631,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_uDMAChannelSelectDefault                                          \
         ((void (*)(uint32_t ui32DefPeriphs))ROM_UDMATABLE[18])
 #endif
@@ -5964,7 +6640,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_uDMAIntStatus                                                     \
         ((uint32_t (*)(void))ROM_UDMATABLE[19])
 #endif
@@ -5972,7 +6649,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_uDMAIntClear                                                      \
         ((void (*)(uint32_t ui32ChanMask))ROM_UDMATABLE[20])
 #endif
@@ -5980,7 +6658,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_uDMAControlAlternateBaseGet                                       \
         ((void * (*)(void))ROM_UDMATABLE[21])
 #endif
@@ -5988,7 +6667,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_uDMAChannelScatterGatherSet                                       \
         ((void (*)(uint32_t ui32ChannelNum,                                   \
                    uint32_t ui32TaskCount,                                    \
@@ -5999,7 +6679,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_uDMAChannelAssign                                                 \
         ((void (*)(uint32_t ui32Mapping))ROM_UDMATABLE[23])
 #endif
@@ -6013,7 +6694,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBDevAddrGet                                                     \
         ((uint32_t (*)(uint32_t ui32Base))ROM_USBTABLE[1])
 #endif
@@ -6021,7 +6703,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBDevAddrSet                                                     \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Address))ROM_USBTABLE[2])
@@ -6030,7 +6713,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBDevConnect                                                     \
         ((void (*)(uint32_t ui32Base))ROM_USBTABLE[3])
 #endif
@@ -6038,7 +6722,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBDevDisconnect                                                  \
         ((void (*)(uint32_t ui32Base))ROM_USBTABLE[4])
 #endif
@@ -6046,7 +6731,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBDevEndpointConfigSet                                           \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Endpoint,                                     \
@@ -6057,7 +6743,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBDevEndpointDataAck                                             \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Endpoint,                                     \
@@ -6067,7 +6754,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBDevEndpointStall                                               \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Endpoint,                                     \
@@ -6077,7 +6765,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBDevEndpointStallClear                                          \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Endpoint,                                     \
@@ -6087,7 +6776,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBDevEndpointStatusClear                                         \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Endpoint,                                     \
@@ -6097,7 +6787,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBEndpointDataGet                                                \
         ((int32_t (*)(uint32_t ui32Base,                                      \
                       uint32_t ui32Endpoint,                                  \
@@ -6108,7 +6799,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBEndpointDataPut                                                \
         ((int32_t (*)(uint32_t ui32Base,                                      \
                       uint32_t ui32Endpoint,                                  \
@@ -6119,7 +6811,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBEndpointDataSend                                               \
         ((int32_t (*)(uint32_t ui32Base,                                      \
                       uint32_t ui32Endpoint,                                  \
@@ -6129,7 +6822,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBEndpointDataToggleClear                                        \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Endpoint,                                     \
@@ -6139,7 +6833,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBEndpointStatus                                                 \
         ((uint32_t (*)(uint32_t ui32Base,                                     \
                        uint32_t ui32Endpoint))ROM_USBTABLE[14])
@@ -6148,7 +6843,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBFIFOAddrGet                                                    \
         ((uint32_t (*)(uint32_t ui32Base,                                     \
                        uint32_t ui32Endpoint))ROM_USBTABLE[15])
@@ -6157,7 +6853,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBFIFOConfigGet                                                  \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Endpoint,                                     \
@@ -6169,7 +6866,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBFIFOConfigSet                                                  \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Endpoint,                                     \
@@ -6181,7 +6879,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBFIFOFlush                                                      \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Endpoint,                                     \
@@ -6191,7 +6890,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBFrameNumberGet                                                 \
         ((uint32_t (*)(uint32_t ui32Base))ROM_USBTABLE[19])
 #endif
@@ -6199,7 +6899,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBHostAddrGet                                                    \
         ((uint32_t (*)(uint32_t ui32Base,                                     \
                        uint32_t ui32Endpoint,                                 \
@@ -6209,7 +6910,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBHostAddrSet                                                    \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Endpoint,                                     \
@@ -6219,7 +6921,8 @@
 #if defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBHostEndpointConfig                                             \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Endpoint,                                     \
@@ -6232,7 +6935,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBHostEndpointDataAck                                            \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Endpoint))ROM_USBTABLE[23])
@@ -6241,7 +6945,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBHostEndpointDataToggle                                         \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Endpoint,                                     \
@@ -6252,7 +6957,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBHostEndpointStatusClear                                        \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Endpoint,                                     \
@@ -6262,7 +6968,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBHostHubAddrGet                                                 \
         ((uint32_t (*)(uint32_t ui32Base,                                     \
                        uint32_t ui32Endpoint,                                 \
@@ -6272,7 +6979,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBHostHubAddrSet                                                 \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Endpoint,                                     \
@@ -6283,7 +6991,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBHostPwrDisable                                                 \
         ((void (*)(uint32_t ui32Base))ROM_USBTABLE[28])
 #endif
@@ -6291,7 +7000,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBHostPwrEnable                                                  \
         ((void (*)(uint32_t ui32Base))ROM_USBTABLE[29])
 #endif
@@ -6299,7 +7009,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBHostPwrConfig                                                  \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Flags))ROM_USBTABLE[30])
@@ -6308,7 +7019,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBHostPwrFaultDisable                                            \
         ((void (*)(uint32_t ui32Base))ROM_USBTABLE[31])
 #endif
@@ -6316,7 +7028,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBHostPwrFaultEnable                                             \
         ((void (*)(uint32_t ui32Base))ROM_USBTABLE[32])
 #endif
@@ -6324,7 +7037,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBHostRequestIN                                                  \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Endpoint))ROM_USBTABLE[33])
@@ -6333,7 +7047,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBHostRequestStatus                                              \
         ((void (*)(uint32_t ui32Base))ROM_USBTABLE[34])
 #endif
@@ -6341,7 +7056,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBHostReset                                                      \
         ((void (*)(uint32_t ui32Base,                                         \
                    bool bStart))ROM_USBTABLE[35])
@@ -6350,7 +7066,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBHostResume                                                     \
         ((void (*)(uint32_t ui32Base,                                         \
                    bool bStart))ROM_USBTABLE[36])
@@ -6359,7 +7076,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBHostSpeedGet                                                   \
         ((uint32_t (*)(uint32_t ui32Base))ROM_USBTABLE[37])
 #endif
@@ -6367,7 +7085,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBHostSuspend                                                    \
         ((void (*)(uint32_t ui32Base))ROM_USBTABLE[38])
 #endif
@@ -6375,7 +7094,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBDevEndpointConfigGet                                           \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Endpoint,                                     \
@@ -6386,7 +7106,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBEndpointDMAEnable                                              \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Endpoint,                                     \
@@ -6396,7 +7117,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBEndpointDMADisable                                             \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Endpoint,                                     \
@@ -6406,21 +7128,18 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBEndpointDataAvail                                              \
         ((uint32_t (*)(uint32_t ui32Base,                                     \
                        uint32_t ui32Endpoint))ROM_USBTABLE[44])
-#endif
-#if defined(TARGET_IS_TM4C129_RA1)
-#define ROM_USBOTGHostRequest                                                 \
-        ((void (*)(uint32_t ui32Base,                                         \
-                   bool bHNP))ROM_USBTABLE[45])
 #endif
 #if defined(TARGET_IS_TM4C123_RA1) ||                                         \
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBModeGet                                                        \
         ((uint32_t (*)(uint32_t ui32Base))ROM_USBTABLE[46])
 #endif
@@ -6428,7 +7147,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBEndpointDMAChannel                                             \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Endpoint,                                     \
@@ -6438,7 +7158,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBIntDisableControl                                              \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32IntFlags))ROM_USBTABLE[48])
@@ -6447,7 +7168,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBIntEnableControl                                               \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32IntFlags))ROM_USBTABLE[49])
@@ -6456,7 +7178,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBIntStatusControl                                               \
         ((uint32_t (*)(uint32_t ui32Base))ROM_USBTABLE[50])
 #endif
@@ -6464,7 +7187,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBIntDisableEndpoint                                             \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32IntFlags))ROM_USBTABLE[51])
@@ -6473,7 +7197,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBIntEnableEndpoint                                              \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32IntFlags))ROM_USBTABLE[52])
@@ -6482,7 +7207,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBIntStatusEndpoint                                              \
         ((uint32_t (*)(uint32_t ui32Base))ROM_USBTABLE[53])
 #endif
@@ -6490,7 +7216,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBHostMode                                                       \
         ((void (*)(uint32_t ui32Base))ROM_USBTABLE[54])
 #endif
@@ -6498,7 +7225,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBDevMode                                                        \
         ((void (*)(uint32_t ui32Base))ROM_USBTABLE[55])
 #endif
@@ -6506,7 +7234,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBPHYPowerOff                                                    \
         ((void (*)(uint32_t ui32Base))ROM_USBTABLE[56])
 #endif
@@ -6514,14 +7243,16 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBPHYPowerOn                                                     \
         ((void (*)(uint32_t ui32Base))ROM_USBTABLE[57])
 #endif
 #if defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_UpdateUSB                                                         \
         ((void (*)(uint8_t *pui8DescriptorInfo))ROM_USBTABLE[58])
 #endif
@@ -6529,82 +7260,96 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBOTGMode                                                        \
         ((void (*)(uint32_t ui32Base))ROM_USBTABLE[59])
 #endif
 #if defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBHostRequestINClear                                             \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Endpoint))ROM_USBTABLE[60])
 #endif
 #if defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBNumEndpointsGet                                                \
         ((uint32_t (*)(uint32_t ui32Base))ROM_USBTABLE[61])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBClockDisable                                                   \
         ((void (*)(uint32_t ui32Base))ROM_USBTABLE[62])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBClockEnable                                                    \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Div,                                          \
                    uint32_t ui32Flags))ROM_USBTABLE[63])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBControllerVersion                                              \
         ((uint32_t (*)(uint32_t ui32Base))ROM_USBTABLE[64])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBDevLPMConfig                                                   \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Config))ROM_USBTABLE[65])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBDevLPMDisable                                                  \
         ((void (*)(uint32_t ui32Base))ROM_USBTABLE[66])
 #endif
 #if defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBDevLPMEnable                                                   \
         ((void (*)(uint32_t ui32Base))ROM_USBTABLE[67])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBDevLPMRemoteWake                                               \
         ((void (*)(uint32_t ui32Base))ROM_USBTABLE[68])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBDevSpeedGet                                                    \
         ((uint32_t (*)(uint32_t ui32Base))ROM_USBTABLE[69])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBDMAChannelAddressGet                                           \
         ((void * (*)(uint32_t ui32Base,                                       \
                      uint32_t ui32Channel))ROM_USBTABLE[70])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBDMAChannelAddressSet                                           \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Channel,                                      \
                    void *pvAddress))ROM_USBTABLE[71])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBDMAChannelConfigSet                                            \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Channel,                                      \
@@ -6612,159 +7357,185 @@
                    uint32_t ui32Config))ROM_USBTABLE[72])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBDMAChannelDisable                                              \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Channel))ROM_USBTABLE[73])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBDMAChannelEnable                                               \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Channel))ROM_USBTABLE[74])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBDMAChannelIntDisable                                           \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Channel))ROM_USBTABLE[75])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBDMAChannelIntEnable                                            \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Channel))ROM_USBTABLE[76])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBDMAChannelCountGet                                             \
         ((uint32_t (*)(uint32_t ui32Base,                                     \
                        uint32_t ui32Channel))ROM_USBTABLE[77])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBDMAChannelCountSet                                             \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Count,                                        \
                    uint32_t ui32Channel))ROM_USBTABLE[78])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBDMAChannelIntStatus                                            \
         ((uint32_t (*)(uint32_t ui32Base))ROM_USBTABLE[79])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBDMAChannelStatus                                               \
         ((uint32_t (*)(uint32_t ui32Base,                                     \
                        uint32_t ui32Channel))ROM_USBTABLE[80])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBDMAChannelStatusClear                                          \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Channel,                                      \
                    uint32_t ui32Status))ROM_USBTABLE[81])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBHighSpeed                                                      \
         ((void (*)(uint32_t ui32Base,                                         \
                    bool bEnable))ROM_USBTABLE[82])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBHostEndpointPing                                               \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Endpoint,                                     \
                    bool bEnable))ROM_USBTABLE[83])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBHostEndpointSpeed                                              \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Endpoint,                                     \
                    uint32_t ui32Flags))ROM_USBTABLE[84])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBHostLPMConfig                                                  \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32ResumeTime,                                   \
                    uint32_t ui32Config))ROM_USBTABLE[85])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBHostLPMResume                                                  \
         ((void (*)(uint32_t ui32Base))ROM_USBTABLE[86])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBHostLPMSend                                                    \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Address,                                      \
                    uint32_t uiEndpoint))ROM_USBTABLE[87])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBLPMIntDisable                                                  \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Ints))ROM_USBTABLE[88])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBLPMIntEnable                                                   \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Ints))ROM_USBTABLE[89])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBLPMIntStatus                                                   \
         ((uint32_t (*)(uint32_t ui32Base))ROM_USBTABLE[90])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBLPMLinkStateGet                                                \
         ((uint32_t (*)(uint32_t ui32Base))ROM_USBTABLE[91])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBEndpointPacketCountSet                                         \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Endpoint,                                     \
                    uint32_t ui32Count))ROM_USBTABLE[92])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBULPIConfig                                                     \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Config))ROM_USBTABLE[93])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBULPIDisable                                                    \
         ((void (*)(uint32_t ui32Base))ROM_USBTABLE[94])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBULPIEnable                                                     \
         ((void (*)(uint32_t ui32Base))ROM_USBTABLE[95])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBULPIRegRead                                                    \
         ((uint8_t (*)(uint32_t ui32Base,                                      \
                       uint8_t ui8Reg))ROM_USBTABLE[96])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBULPIRegWrite                                                   \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint8_t ui8Reg,                                            \
                    uint8_t ui8Data))ROM_USBTABLE[97])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBOTGSessionRequest                                              \
         ((void (*)(uint32_t ui32Base,                                         \
                    bool bStart))ROM_USBTABLE[98])
@@ -6784,7 +7555,8 @@
         ((bool (*)(uint32_t ui32Base))ROM_USBTABLE[102])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_USBModeConfig                                                     \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Mode))ROM_USBTABLE[103])
@@ -6799,7 +7571,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_WatchdogIntClear                                                  \
         ((void (*)(uint32_t ui32Base))ROM_WATCHDOGTABLE[0])
 #endif
@@ -6807,7 +7580,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_WatchdogRunning                                                   \
         ((bool (*)(uint32_t ui32Base))ROM_WATCHDOGTABLE[1])
 #endif
@@ -6815,7 +7589,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_WatchdogEnable                                                    \
         ((void (*)(uint32_t ui32Base))ROM_WATCHDOGTABLE[2])
 #endif
@@ -6823,7 +7598,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_WatchdogResetEnable                                               \
         ((void (*)(uint32_t ui32Base))ROM_WATCHDOGTABLE[3])
 #endif
@@ -6831,7 +7607,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_WatchdogResetDisable                                              \
         ((void (*)(uint32_t ui32Base))ROM_WATCHDOGTABLE[4])
 #endif
@@ -6839,7 +7616,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_WatchdogLock                                                      \
         ((void (*)(uint32_t ui32Base))ROM_WATCHDOGTABLE[5])
 #endif
@@ -6847,7 +7625,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_WatchdogUnlock                                                    \
         ((void (*)(uint32_t ui32Base))ROM_WATCHDOGTABLE[6])
 #endif
@@ -6855,7 +7634,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_WatchdogLockState                                                 \
         ((bool (*)(uint32_t ui32Base))ROM_WATCHDOGTABLE[7])
 #endif
@@ -6863,7 +7643,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_WatchdogReloadSet                                                 \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32LoadVal))ROM_WATCHDOGTABLE[8])
@@ -6872,7 +7653,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_WatchdogReloadGet                                                 \
         ((uint32_t (*)(uint32_t ui32Base))ROM_WATCHDOGTABLE[9])
 #endif
@@ -6880,7 +7662,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_WatchdogValueGet                                                  \
         ((uint32_t (*)(uint32_t ui32Base))ROM_WATCHDOGTABLE[10])
 #endif
@@ -6888,7 +7671,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_WatchdogIntEnable                                                 \
         ((void (*)(uint32_t ui32Base))ROM_WATCHDOGTABLE[11])
 #endif
@@ -6896,7 +7680,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_WatchdogIntStatus                                                 \
         ((uint32_t (*)(uint32_t ui32Base,                                     \
                        bool bMasked))ROM_WATCHDOGTABLE[12])
@@ -6905,7 +7690,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_WatchdogStallEnable                                               \
         ((void (*)(uint32_t ui32Base))ROM_WATCHDOGTABLE[13])
 #endif
@@ -6913,7 +7699,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_WatchdogStallDisable                                              \
         ((void (*)(uint32_t ui32Base))ROM_WATCHDOGTABLE[14])
 #endif
@@ -6921,7 +7708,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_WatchdogIntTypeSet                                                \
         ((void (*)(uint32_t ui32Base,                                         \
                    uint32_t ui32Type))ROM_WATCHDOGTABLE[15])
@@ -6936,7 +7724,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_Crc16Array                                                        \
         ((uint16_t (*)(uint32_t ui32WordLen,                                  \
                        const uint32_t *pui32Data))ROM_SOFTWARETABLE[1])
@@ -6945,7 +7734,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_Crc16Array3                                                       \
         ((void (*)(uint32_t ui32WordLen,                                      \
                    const uint32_t *pui32Data,                                 \
@@ -6955,7 +7745,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_Crc16                                                             \
         ((uint16_t (*)(uint16_t ui16Crc,                                      \
                        const uint8_t *pui8Data,                               \
@@ -6965,14 +7756,16 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_Crc8CCITT                                                         \
         ((uint8_t (*)(uint8_t ui8Crc,                                         \
                       const uint8_t *pui8Data,                                \
                       uint32_t ui32Count))ROM_SOFTWARETABLE[4])
 #endif
 #if defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_Crc32                                                             \
         ((uint32_t (*)(uint32_t ui32Crc,                                      \
                        const uint8_t *pui8Data,                               \
@@ -6982,7 +7775,8 @@
     defined(TARGET_IS_TM4C123_RA3) ||                                         \
     defined(TARGET_IS_TM4C123_RB1) ||                                         \
     defined(TARGET_IS_TM4C129_RA0) ||                                         \
-    defined(TARGET_IS_TM4C129_RA1)
+    defined(TARGET_IS_TM4C129_RA1) ||                                         \
+    defined(TARGET_IS_TM4C129_RA2)
 #define ROM_pvAESTable                                                        \
         ((void *)&(ROM_SOFTWARETABLE[7]))
 #endif

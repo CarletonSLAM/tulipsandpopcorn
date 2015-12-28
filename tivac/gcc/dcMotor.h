@@ -2,7 +2,6 @@
 #define __DC_MOTOR_H__
 #include <stdbool.h>
 #include <stdint.h>
-#include "utilities.h"
 
 
 typedef struct {
@@ -13,8 +12,8 @@ typedef struct {
 } MOTOR_PINS;
 
 void DCMOTOR_init(void);
-void DCMOTOR_move_forward_seconds(uint16_t seconds);
-void DCMOTOR_move_reverse_seconds(uint16_t seconds);
+void DCMOTOR_move_forward(void);
+void DCMOTOR_stop(void);
 
 
 

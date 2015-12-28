@@ -2,7 +2,7 @@
 //
 // adc.c - Driver for the ADC.
 //
-// Copyright (c) 2005-2014 Texas Instruments Incorporated.  All rights reserved.
+// Copyright (c) 2005-2015 Texas Instruments Incorporated.  All rights reserved.
 // Software License Agreement
 // 
 //   Redistribution and use in source and binary forms, with or without
@@ -33,7 +33,7 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // 
-// This is part of revision 2.1.0.12573 of the Tiva Peripheral Driver Library.
+// This is part of revision 2.1.1.71 of the Tiva Peripheral Driver Library.
 //
 //*****************************************************************************
 
@@ -107,7 +107,7 @@ _ADCIntNumberGet(uint32_t ui32Base, uint32_t ui32SequenceNum)
     {
         ui8Int = ((ui32Base == ADC0_BASE) ?
                   (INT_ADC0SS0_TM4C123 + ui32SequenceNum) :
-                  (INT_ADC0SS0_TM4C123 + ui32SequenceNum));
+                  (INT_ADC1SS0_TM4C123 + ui32SequenceNum));
     }
     else if(CLASS_IS_TM4C129)
     {
@@ -1605,7 +1605,12 @@ ADCIntStatusEx(uint32_t ui32Base, bool bMasked)
 void
 ADCIntClearEx(uint32_t ui32Base, uint32_t ui32IntFlags)
 {
-    HWREG(ui32Base + ADC_O_ISC) |= ui32IntFlags;
+    //
+    // Note: The interrupt bits are "W1C" so we DO NOT use a logical OR
+    // here to clear the requested bits. Doing so would clear all outstanding
+    // interrupts rather than just those which the caller has specified.
+    //
+    HWREG(ui32Base + ADC_O_ISC) = ui32IntFlags;
 }
 
 //*****************************************************************************
@@ -1929,7 +1934,7 @@ ADCClockConfigSet(uint32_t ui32Base, uint32_t ui32Config,
     //
     // Clock must be valid divider.
     //
-    ASSERT(((ui32ClockDiv - 1) & ~ADC_CC_CLKDIV_M) == 0);
+    ASSERT(((ui32ClockDiv - 1) & (ADC_CC_CLKDIV_M >> ADC_CC_CLKDIV_S)) == 0);
 
     //
     // Write the sample conversion rate.

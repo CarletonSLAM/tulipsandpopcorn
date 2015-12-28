@@ -1,4 +1,4 @@
-
+//*****************************************************************************
 //
 // startup_gcc.c - Startup code for use with GNU tools.
 //
@@ -20,7 +20,8 @@
 //
 // This is part of revision 2.1.0.12573 of the EK-TM4C123GXL Firmware Package.
 //
-//****************************************************************************
+//*****************************************************************************
+
 #include <stdint.h>
 #include "CU_TM4C123.h"
 #include <CU_system_TM4C123.h>
@@ -36,13 +37,16 @@ static void FaultISR(void);
 static void IntDefaultHandler(void);
 
 extern void ButtonHandler(void);
+extern void WTIMER0A_Handler(void);
+extern void TIMER0A_Handler(void);
+extern void TIMER0B_Handler(void);
 extern void GPIOF_Handler(void);
 
-extern void WIFI_UART_IntHandler(void);
+
+extern void TIVA_one_Second_Timer_Handler(void);
 
 extern void (*__init_array_start)();
 extern void (*__init_array_end)();
-
 
 //*****************************************************************************
 //
@@ -90,7 +94,7 @@ void (* const __Vectors[])(void) =
     IntDefaultHandler,                      // GPIO Port D
     IntDefaultHandler,                      // GPIO Port E
     IntDefaultHandler,                      // UART0 Rx and Tx
-    WIFI_UART_IntHandler,                      // UART1 Rx and Tx
+    IntDefaultHandler,                      // UART1 Rx and Tx
     IntDefaultHandler,                      // SSI0 Rx and Tx
     IntDefaultHandler,                      // I2C0 Master and Slave
     IntDefaultHandler,                      // PWM Fault
@@ -103,7 +107,7 @@ void (* const __Vectors[])(void) =
     IntDefaultHandler,                      // ADC Sequence 2
     IntDefaultHandler,                      // ADC Sequence 3
     IntDefaultHandler,                      // Watchdog timer
-    IntDefaultHandler,                       // Timer 0 subtimer A
+    TIVA_one_Second_Timer_Handler,                      // Timer 0 subtimer A
     IntDefaultHandler,                      // Timer 0 subtimer B
     IntDefaultHandler,                      // Timer 1 subtimer A
     IntDefaultHandler,                      // Timer 1 subtimer B

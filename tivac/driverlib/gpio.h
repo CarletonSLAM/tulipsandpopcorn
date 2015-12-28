@@ -2,7 +2,7 @@
 //
 // gpio.h - Defines and Macros for GPIO API.
 //
-// Copyright (c) 2005-2014 Texas Instruments Incorporated.  All rights reserved.
+// Copyright (c) 2005-2015 Texas Instruments Incorporated.  All rights reserved.
 // Software License Agreement
 // 
 //   Redistribution and use in source and binary forms, with or without
@@ -33,7 +33,7 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // 
-// This is part of revision 2.1.0.12573 of the Tiva Peripheral Driver Library.
+// This is part of revision 2.1.1.71 of the Tiva Peripheral Driver Library.
 //
 //*****************************************************************************
 
@@ -160,6 +160,7 @@ extern void GPIOPinConfigure(uint32_t ui32PinConfig);
 extern void GPIOPinTypeADC(uint32_t ui32Port, uint8_t ui8Pins);
 extern void GPIOPinTypeCAN(uint32_t ui32Port, uint8_t ui8Pins);
 extern void GPIOPinTypeComparator(uint32_t ui32Port, uint8_t ui8Pins);
+extern void GPIOPinTypeComparatorOutput(uint32_t ui32Port, uint8_t ui8Pins);
 extern void GPIOPinTypeEPI(uint32_t ui32Port, uint8_t ui8Pins);
 extern void GPIOPinTypeEthernetLED(uint32_t ui32Port, uint8_t ui8Pins);
 extern void GPIOPinTypeEthernetMII(uint32_t ui32Port, uint8_t ui8Pins);

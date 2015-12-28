@@ -477,6 +477,11 @@
               <FilePath>.\mpu.c</FilePath>
             </File>
             <File>
+              <FileName>onewire.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\onewire.c</FilePath>
+            </File>
+            <File>
               <FileName>pwm.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\pwm.c</FilePath>

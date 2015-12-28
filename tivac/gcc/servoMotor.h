@@ -2,8 +2,6 @@
 #define __SERVO_MOTOR_H__
 #include <stdbool.h>
 #include <stdint.h>
-#include "utilities.h"
-
 
 
 

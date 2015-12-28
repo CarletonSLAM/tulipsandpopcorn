@@ -1,0 +1,3 @@
+//#define __VERBOSE_DEBUG_MODE__
+
+#define DEGREES_PER_SECTION 20

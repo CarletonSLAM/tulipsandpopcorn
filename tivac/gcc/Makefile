@@ -14,7 +14,8 @@ OBJDIR:=obj
 BINDIR:=bin/
 
 PROJECT_ROOT:=./
-INCLUDE_ROOT:=$(PROJECT_ROOT)/../inc/driverlib/ $(PROJECT_ROOT)/../inc/CMSIS/
+INCLUDE_ROOT:=$(PROJECT_ROOT)/../inc/CMSIS/ $(PROJECT_ROOT)/../inc/ $(PROJECT_ROOT)/../driverlib/
+
 
 INCLUDE_PATHS:=$(INCLUDE_ROOT)
 
@@ -31,7 +32,6 @@ CXXFLAGS=-fno-exceptions -fno-rtti -g -g3 -nostartfiles -Wall -Wextra
 
 LD:=$(ARCH)-gcc
 LDFLAGS:=-Wl,-eResetISR,--gc-sections,-marmelf
-
 
 INCLUDE=$(INCLUDE_PATHS:%=-I%)
 
@@ -59,7 +59,7 @@ endif
 
 # include new .c files here
 
-SRC_C:=main.c CU_system_TM4C123.c startup.c utilities.c wifiBoard.c dcMotor.c
+SRC_C:=main.c CU_system_TM4C123.c startup.c i2cFunc.c utilities.c compass.c dcMotor.c timers.c
 SRC_CPP:=
 
 OBJ:=$(SRC_C:.c=.o) $(SRC_CPP:.cpp=.o)
