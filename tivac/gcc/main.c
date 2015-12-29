@@ -21,11 +21,17 @@
 #include "tulips.h"
 #include "dcMotor.h"
 #include "timers.h"
+#include "wifiBoard.h"
 
 
 
 //----------------------------- CONSTANTS-------------------------------------------------//
 //----------------------------------------------------------------------------------------//
+
+const char WIFI_SSID []= "dd-wrt";
+const char WIFI_PWD []= "3ab9bcf43er";
+const char WIFI_HOST []= "192.168.1.139";//"192.168.1.139";
+const char WIFI_PORT []= "8000";
 
 
 //------------------------- FUNCTION PROTOTYPES ------------------------------------------//
@@ -36,26 +42,34 @@ extern int16_vec_t AccellData, MagnData;
 
 
 int main(void){
-    //uint8_t response ;
 
 
-    int16_t heading;
-    uint8_t singCharBuf;
-    char strBuf[15];
-    int index;
-
-    int16_t pitch,roll, TILT_COMP_MX,TILT_COMP_MY, TILT_COMP_MZ;
     TIVA_init();
     TIVA_wait_miliSeconds(5000);
     DEBUGCONSOLE_init();
-    TIVA_Timer_setup();
-    DCMOTOR_init();
-    if(!COMPASS_init()){  return 0; }
+    //TIVA_Timer_setup();
+    //DCMOTOR_init();
+    //if(!COMPASS_init()){  return 0; }
 
     TIVA_wait_miliSeconds(2000);
+
+    WIFI_init();
+    WIFI_set_config();
+
+
+    if(!EVENT_connect_to_wifi_network(WIFI_SSID,WIFI_PWD))  return 0;
+
+
+    if(!EVENT_connect_to_server(WIFI_HOST,WIFI_PORT))  return 0;
+
+
+    if(!EVENT_send_to_server(WIFI_HOST,"POST /hello/soilType=LOAM&cropName=TOMATOE&password=ghid\0"))  return 0;
+
+
+    /*
     DCMOTOR_move_forward();
     COMPASS_wait_Section_Reached(4);
     DCMOTOR_stop();
-
+    */
 
 }

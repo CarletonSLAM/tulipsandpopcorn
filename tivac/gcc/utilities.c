@@ -26,7 +26,7 @@ void TIVA_init()
 
 void DEBUGCONSOLE_init()
 {
-  /*
+  /* FOR UART SERIAL THROUGH USB
   ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_UART0);
   ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);
   ROM_GPIOPinConfigure(GPIO_PA0_U0RX);
@@ -174,6 +174,11 @@ char* TIVA_int_to_String(char b[],int i){
     return b;
 }
 
+int16_t TIVA_find_First_Occurance_Char(char* str, char c){
+    uint16_t index = 0;
+    while(*(str+index)!=c) index++;
+    return index;
+}
 void TIVA_error_encoutered(const char* strErrorMsg, const int errorNum ){
     char strErrorBuf [50];
     char strErrorNum [10];

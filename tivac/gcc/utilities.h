@@ -40,6 +40,8 @@ int16_t FLASH_read(const uint32_t pui32Address, char* pui8Data);
 void TIVA_wait_miliSeconds(uint32_t ms);
 void TIVA_init(void);
 char* TIVA_int_to_String(char b[], int i);
+int16_t TIVA_find_First_Occurance_Char(char* str, char c);
+
 void TIVA_error_encoutered(const char* strErrorMsg, const int errorNum );
 
 
