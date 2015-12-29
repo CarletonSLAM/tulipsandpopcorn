@@ -29,7 +29,7 @@
 //----------------------------------------------------------------------------------------//
 
 const char WIFI_SSID []= "dd-wrt";
-const char WIFI_PWD []= "3ab9bcf43er";
+const char WIFI_PWD []= "*";
 const char WIFI_HOST []= "192.168.1.139";//"192.168.1.139";
 const char WIFI_PORT []= "8000";
 
