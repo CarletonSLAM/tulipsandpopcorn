@@ -44,6 +44,7 @@ extern void GPIOF_Handler(void);
 
 extern void WIFI_UART_IntHandler(void);
 extern void TIVA_one_Second_Timer_Handler(void);
+extern void DEBUGCONSOLE_UART_IntHandler(void);
 
 extern void (*__init_array_start)();
 extern void (*__init_array_end)();
@@ -149,7 +150,7 @@ void (* const __Vectors[])(void) =
     IntDefaultHandler,                      // SSI3 Rx and Tx
     IntDefaultHandler,                      // UART3 Rx and Tx
     IntDefaultHandler,                      // UART4 Rx and Tx
-    IntDefaultHandler,                         // UART5 Rx and Tx
+    DEBUGCONSOLE_UART_IntHandler,                         // UART5 Rx and Tx
     IntDefaultHandler,                      // UART6 Rx and Tx
     IntDefaultHandler,                      // UART7 Rx and Tx
     0,                                      // Reserved

@@ -13,6 +13,12 @@
 #include "utilities.h"
 #include "tulips.h"
 
+
+uint16_t debugUARTIndex = 0;
+char debugUARTBuffer [UART_BUFFER_LENGTH];
+bool debugDelimiterEntered;
+char configCharCount;
+bool debugStartPrompt;
 void TIVA_init()
 {
   ROM_FPUEnable();
@@ -43,8 +49,15 @@ void DEBUGCONSOLE_init()
   ROM_GPIOPinTypeUART(GPIO_PORTE_BASE, GPIO_PIN_4 | GPIO_PIN_5);
   ROM_UARTConfigSetExpClk(UART5_BASE, ROM_SysCtlClockGet(), 115200, (UART_CONFIG_WLEN_8 | UART_CONFIG_STOP_ONE | UART_CONFIG_PAR_NONE));
 
+  ROM_IntEnable(INT_UART5);
+  ROM_UARTIntEnable(UART5_BASE, UART_INT_RX | UART_INT_RT);
+
+
   DEBUGCONSOLE_print_line("\n--------------RESET-------------\0");
   DEBUGCONSOLE_print_line("DEBUG CONSOLE: Init --> OK\0");
+  debugDelimiterEntered = false;
+  configCharCount=0;
+  debugStartPrompt = false;
 }
 
 
@@ -54,9 +67,7 @@ void DEBUGCONSOLE_print(const char *pui8Buffer)
 
    while(*pui8Buffer != '\0')
     {
-        //ROM_UARTCharPut(UART0_BASE,(uint8_t)*pui8Buffer++);
-        ROM_UARTCharPut(UART5_BASE,(uint8_t)*pui8Buffer++);
-        //while (ROM_UARTBusy(UART0_BASE));
+        ROM_UARTCharPutNonBlocking(UART5_BASE,(uint8_t)*pui8Buffer++);
         while (ROM_UARTBusy(UART5_BASE));
     }
 }
@@ -66,14 +77,14 @@ void DEBUGCONSOLE_print_line(const char *pui8Buffer)
 
    DEBUGCONSOLE_print(pui8Buffer);
 
-    //ROM_UARTCharPut(UART0_BASE,(uint8_t)'\r');
+    //ROM_UARTCharPutNonBlocking(UART0_BASE,(uint8_t)'\r');
     //while (ROM_UARTBusy(UART0_BASE));
-    //ROM_UARTCharPut(UART0_BASE,(uint8_t)'\n');
+    //ROM_UARTCharPutNonBlocking(UART0_BASE,(uint8_t)'\n');
     // while (ROM_UARTBusy(UART0_BASE));
 
-    ROM_UARTCharPut(UART5_BASE,(uint8_t)'\r');
+    ROM_UARTCharPutNonBlocking(UART5_BASE,(uint8_t)'\r');
     while (ROM_UARTBusy(UART5_BASE));
-    ROM_UARTCharPut(UART5_BASE,(uint8_t)'\n');
+    ROM_UARTCharPutNonBlocking(UART5_BASE,(uint8_t)'\n');
     while (ROM_UARTBusy(UART5_BASE));
 
 }
@@ -84,8 +95,8 @@ void DEBUGCONSOLE_print_length(const char *pui8Buffer,uint32_t pui32Count)
 
    while(pui32Count -- != 0)
     {
-        //ROM_UARTCharPut(UART0_BASE,(uint8_t)*pui8Buffer++);
-        ROM_UARTCharPut(UART5_BASE,(uint8_t)*pui8Buffer++);
+        //ROM_UARTCharPutNonBlocking(UART0_BASE,(uint8_t)*pui8Buffer++);
+        ROM_UARTCharPutNonBlocking(UART5_BASE,(uint8_t)*pui8Buffer++);
         //while (ROM_UARTBusy(UART0_BASE));
         while (ROM_UARTBusy(UART5_BASE));
     }
@@ -98,48 +109,7 @@ void UART_wait_forResponse(const uint32_t UARTBase)
   while(!ROM_UARTCharsAvail(UARTBase));
 }
 
-/*
-int16_t FLASH_write(const uint32_t pui32Address, const char *pui8Data){
 
-  int16_t response;
-
-  DEBUGCONSOLE_print("BEFORE: ", 10);
-  DEBUGCONSOLE_print_line(pui32Address, 16);
-
-  // Erase a block of the flash.
-  ROM_FlashErase(pui32Address);
-
-  DEBUGCONSOLE_print("ERASED: ", 8);
-  DEBUGCONSOLE_print_line(pui32Address, 16);
-
-  DEBUGCONSOLE_print("FLASHING: ",10);
-  DEBUGCONSOLE_print_line(pui8Data, sizeof(pui8Data)/sizeof(char));
-
-  // Program some data into the newly erased block of the flash.
-  response = ROM_FlashProgram(pui8Data, pui32Address, sizeof(pui8Data));
-
-
-  if(response==0)
-    DEBUGCONSOLE_print_line("FLASH WRITE: SUCCESS", 20);
-  else
-    DEBUGCONSOLE_print_line("FLASH WRITE: FAIL", 18);
-  return response;
-}
-
-int16_t FLASH_read(const uint32_t pui32Address, char* pui8Data){
-
-  uint32_t* addressPointer= (uint32_t*)pui32Address;
-  pui8Data[0] = '\0';
-
-  for(uint16_t i = 0; *addressPointer!=0xFF;i++){
-    *(pui8Data+i) = *(addressPointer++);
-  }
-  if(pui8Data[0]=='\0')
-    return -1;
-  else
-    return 0;
-}
-*/
 
 
 void TIVA_wait_miliSeconds(uint32_t ms) {
@@ -176,7 +146,13 @@ char* TIVA_int_to_String(char b[],int i){
 
 int16_t TIVA_find_First_Occurance_Char(char* str, char c){
     uint16_t index = 0;
-    while(*(str+index)!=c) index++;
+    while(*(str+index)!=c){
+      index++;
+      if (index>UART_BUFFER_LENGTH){
+        TIVA_error_encoutered("TIVA: Could not find character in buffer ERROR\0",index );
+        return -1;
+      }
+    }
     return index;
 }
 void TIVA_error_encoutered(const char* strErrorMsg, const int errorNum ){
@@ -220,4 +196,50 @@ void TIVA_vector_cross_16_float( int16_vec_t *a,  float_vec_t *b, float_vec_t *o
  float TIVA_vector_dot( int16_vec_t *a,  int16_vec_t *b)
 {
   return (a->x * b->x) + (a->y * b->y) + (a->z * b->z);
+}
+
+
+void DEBUGCONSOLE_UART_IntHandler(void){
+  uint32_t ui32Status = ROM_UARTIntStatus(UART5_BASE, true);
+  ROM_UARTIntClear(UART5_BASE, ui32Status);
+  char c;
+  // Loop while there are characters in the receive FIFO.
+  while(ROM_UARTCharsAvail(UART5_BASE))
+  {
+    // Read the next character from the UART and write it back to the UART.
+    c = ROM_UARTCharGetNonBlocking(UART5_BASE);
+
+    if(c == TIVA_CONFIG_CHAR ){
+      configCharCount++;
+      c = '\0';
+
+    }
+    else if(debugStartPrompt){
+      debugUARTBuffer[debugUARTIndex++] ='~';
+      debugStartPrompt = false;
+    }
+    else if(c == END_DELIMTER){
+      debugDelimiterEntered=true;
+      c = '\0';
+    }
+    //reset buffer to beginning
+    if (debugUARTIndex++ >= UART_BUFFER_LENGTH){
+      debugUARTIndex = 0;
+    }
+    debugUARTBuffer[debugUARTIndex] = c;
+    ROM_UARTCharPutNonBlocking(UART5_BASE,c);
+  }
+}
+
+
+void DEBUGCONSOLE_clear_UARTBuffer()
+{
+  for(uint16_t i =0; i< UART_BUFFER_LENGTH; i++){
+    debugUARTBuffer[i] = (char) '\0';
+  }
+  debugUARTIndex=0;
+}
+
+void DEBUGCONSOLE_add_startDelimeter(void){
+  debugStartPrompt = true;
 }

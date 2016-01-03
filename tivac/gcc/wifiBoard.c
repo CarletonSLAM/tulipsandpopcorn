@@ -30,21 +30,21 @@ const AT_CMD _ATCWMODE = {100,"AT+CWMODE=3\r\n\0"};
 const AT_CMD _ATCWMODE_CUR = {100,"AT+CWMODE?\r\n\0"};
 const AT_CMD _AT_CW_LAP = {5000, "AT+CWLAP\r\n\0"};
 const AT_CMD _AT_CW_LAP_CUR = {500, "AT+CWJAP?\r\n\0"};
-const AT_CMD _ATCIPMUX =  {500, "AT+CIPMUX=1\r\n\0"};
+const AT_CMD _ATCIPMUX =  {500, "AT+CIPMUX=0\r\n\0"};
 const AT_CMD _ATCIPCLOSE = {500,"AT+CIPCLOSE\r\n\0"};
 
 const AT_CMD _AT_TEST_CWJAP = {10000, "AT+CWJAP=\"dd-wrt\",\"3ab9bcf43er\"\r\n\0"};
 const AT_CMD _AT_TEST_PING = {3000, "AT+PING=\"192.168.1.1\"\r\n\0"};
-const AT_CMD _AT_TEST_CIP_START = {5000, "AT+CIPSTART=4,\"TCP\",\"www.google.com\",80\r\n\0"};
-const AT_CMD _AT_TEST_CIP_SEND = {1000,"AT+CIPSEND=4,42\r\n\0"};
+const AT_CMD _AT_TEST_CIP_START = {5000, "AT+CIPSTART=\"TCP\",\"www.google.com\",80\r\n\0"};
+const AT_CMD _AT_TEST_CIP_SEND = {1000,"AT+CIPSEND=42\r\n\0"};
 const AT_CMD _AT_TEST_DATA = {1000,"GET / HTTP/1.1\r\nHost: www.google.com\r\n\r\n\r\n\0"};
-const AT_CMD AT_TEST_SEND_DATA_HELLO = {5000,"POST /hello/soilType=LOAM&cropName=TOMATOE&password=ghid HTTP/1.0\r\nHost: www.google.com\r\n\0"};
+const AT_CMD AT_TEST_SEND_DATA_HELLO = {5000,"POST /hello/soilType=LOAM&cropName=TOMATOE&password=ghid HTTP/1.0\r\nHost: 192.168.1.139\r\n\0"};
 
 
 const char STR_AT_CW_JAP [] = "AT+CWJAP=";
 const char STR_AT_PING [] = "AT+PING=";
-const char STR_AT_CIP_START [] = "AT+CIPSTART=4,\"TCP\",";
-const char STR_AT_CIP_SEND [] = "AT+CIPSEND=4,";
+const char STR_AT_CIP_START [] = "AT+CIPSTART=\"TCP\",";
+const char STR_AT_CIP_SEND [] = "AT+CIPSEND=";
 
 const char STR_NEXT_STATE [] = "POST /viewState/username=";
 
@@ -202,8 +202,8 @@ uint8_t EVENT_connect_to_wifi_network(const char* ssid, const char* pwd) {
     TIVA_error_encoutered("Wifi: Connected Network --> ERROR:",3);
     return 0;
   }
-  DEBUGCONSOLE_print_line("Wifi:Connected Network --> \0");
-  DEBUGCONSOLE_print_line(TIVA_find_First_Occurance_Char(wifiUARTBuffer,'\"'));
+  DEBUGCONSOLE_print("Wifi:Connected Network --> \0");
+  DEBUGCONSOLE_print_line(wifiUARTBuffer+TIVA_find_First_Occurance_Char(wifiUARTBuffer,'\"')+1);
   WIFI_clear_UARTBuffer();
 
   return 1;
@@ -254,12 +254,12 @@ uint8_t EVENT_send_to_server(const char *host,char* cmd){
   }
 
   strcpy(tempBuf,cmd);
-  strcat(tempBuf," HTTP/1.0\r\nHost: \"");
-  cmdLength+=20;
+  strcat(tempBuf,"HTTP/1.0\r\nHost: ");
+  cmdLength+=16;
   strcat(tempBuf,host);
   cmdLength+=hostLength;
-  strcat(tempBuf,"\"\r\n\0");
-  cmdLength+=4;
+  strcat(tempBuf,"\r\n\0");
+  cmdLength+=2;
   SEND_DATA.timeout =5000;
   strcpy(SEND_DATA.cmd,tempBuf);
 
@@ -288,7 +288,7 @@ uint8_t EVENT_send_to_server(const char *host,char* cmd){
 
   if(!WIFI_check_Ack("OK",2)){
     DEBUGCONSOLE_print_length(wifiUARTBuffer, UART_BUFFER_LENGTH);
-    TIVA_error_encoutered("Wifi:Send Length--> ERROR:",1);
+    TIVA_error_encoutered("Wifi:Send Command--> ERROR:",2);
     return 0;
   }
   DEBUGCONSOLE_print_line("Wifi:Send Command --> OK\0");
@@ -297,7 +297,7 @@ uint8_t EVENT_send_to_server(const char *host,char* cmd){
   WIFI_send_commandBlocking(&_ATCIPCLOSE);
   if(!WIFI_check_Ack("Unlink",2)){
     DEBUGCONSOLE_print_length(wifiUARTBuffer, UART_BUFFER_LENGTH);
-    TIVA_error_encoutered("Wifi:Send Length--> ERROR:",1);
+    TIVA_error_encoutered("Wifi:TCP Conn Clos--> ERROR:",3);
     return 0;
   }
   DEBUGCONSOLE_print_line("Wifi:TCP Conn Close --> OK\0");

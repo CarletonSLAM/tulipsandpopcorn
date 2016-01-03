@@ -51,4 +51,7 @@ void TIVA_vector_cross_16_flaot( int16_vec_t *a,  float_vec_t *b, float_vec_t *o
 
 float TIVA_vector_dot( int16_vec_t *a,  int16_vec_t *b);
 
+void DEBUGCONSOLE_UART_IntHandler(void);
+void DEBUGCONSOLE_add_startDelimeter(void);
+
 #endif /*__UTILITIES_H_*/
