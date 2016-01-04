@@ -29,13 +29,14 @@
 #include "eeprom.h"
 
 
+#include "cJSON.h"
+
+
 
 //----------------------------- CONSTANTS-------------------------------------------------//
 //----------------------------------------------------------------------------------------//
 
 
-const char WIFI_HOST []= "192.168.1.139";//"192.168.1.139";
-const char WIFI_PORT []= "8000";
 
 //------------------------- FUNCTION PROTOTYPES ------------------------------------------//
 //----------------------------------------------------------------------------------------//
@@ -46,99 +47,70 @@ extern char debugUARTBuffer [UART_BUFFER_LENGTH];
 extern char configCharCount;
 
 
-char deviceMode;   //C for Config, N for Normal
+char deviceMode;   //C for Config, N for Norma
+
 char wifiSSID[32];
 char wifiPass[64];
-char serverIP[32]="https://slack.com/api";
+char serverIP[32]="api.openweathermap.org";
 char serverPort[8]="80";
 
-void TIVA_checkForConfigMode(void){
-  if(configCharCount>2){
-    deviceMode = 'C';
-  }
-  else{
-    deviceMode = 'N';
-  }
+
+/* Parse text to JSON, then render back to text, and print! */
+void doit(char *text)
+{
+	char *out;
+  cJSON *json;
+
+  char* jsonStringValue;
+
+  json=cJSON_Parse(text);
+	if (!json) {printf("Error before: [%s]\n",cJSON_GetErrorPtr());}
+	else
+	{
+		out=cJSON_Print(json);
+
+		DEBUGCONSOLE_print_line(out);
+  	DEBUGCONSOLE_print_line(&(cJSON_GetObjectItem(json,"dict")->valuestring));
+    DEBUGCONSOLE_print_line(&(cJSON_GetObjectItem(json,"next_state")->valuestring));
+    DEBUGCONSOLE_print_line(&(cJSON_GetObjectItem(json,"username")->valuestring));
+
+		cJSON_Delete(json);
+		free(out);
+	}
 }
 
+void TIVA_get_wifiSSID(char* buffer){
+  ROM_EEPROMRead(buffer, 0x0E, 32);
+}
+void TIVA_get_wifiPW(char* buffer){
+  ROM_EEPROMRead(buffer, 0x19, 64);
+}
 
-void TIVA_configureNetwork(void){
+void TIVA_get_serverIP(char* buffer){
+  ROM_EEPROMRead(buffer, 0x29, 32);
+}
+void TIVA_get_serverPort(char* buffer){
+  ROM_EEPROMRead(buffer, 0x3B, 8 );
+}
 
-  char tempBuffer[64];
-  DEBUGCONSOLE_print("CONFIGURATION MODE SELECTED\n\0");
+void TIVA_EEPROM_init(void){
 
-  DEBUGCONSOLE_clear_UARTBuffer();
-  DEBUGCONSOLE_print("Enter desired Wifi-Network SSID (start with the tilda \'~\' sign, IF UNCHANGED enter \'~!\'): \0");
-  //DEBUGCONSOLE_add_startDelimeter();
-  while(!debugDelimiterEntered);
-  debugDelimiterEntered = false;
-  strcpy(&tempBuffer,debugUARTBuffer+TIVA_find_First_Occurance_Char(debugUARTBuffer,'~')+1);
-  if(tempBuffer[0]!='!'){
-  DEBUGCONSOLE_print("Network SSID captured as: \0");
-    DEBUGCONSOLE_print_line(&tempBuffer);
-    ROM_EEPROMProgram(&tempBuffer, 0x0E, 32 );
-  }
-  else{
-    DEBUGCONSOLE_print_line("Network SSID unchanged\0");
-  }
-
-  DEBUGCONSOLE_clear_UARTBuffer();
-  DEBUGCONSOLE_print("Enter desired Wifi-Network password (start with the tilda \'~\' sign, IF UNCHANGED enter \'~!\'): \0");
-  //DEBUGCONSOLE_add_startDelimeter();
-  while(!debugDelimiterEntered);
-  debugDelimiterEntered = false;
-  strcpy(&tempBuffer,debugUARTBuffer+TIVA_find_First_Occurance_Char(debugUARTBuffer,'~')+1);
-  if(tempBuffer[0]!='!'){
-    DEBUGCONSOLE_print("Network PW captured as: \0");
-    DEBUGCONSOLE_print_line(&tempBuffer);
-    ROM_EEPROMProgram(&tempBuffer, 0x19, 64 );
-  }
-  else{
-    DEBUGCONSOLE_print_line("Network PW unchanged\0");
-  }
-
-  DEBUGCONSOLE_print("NETWORK CONFIGURATION DONE\n\0");
-
-
-  DEBUGCONSOLE_clear_UARTBuffer();
-  DEBUGCONSOLE_print("Enter the Host IP of server (start with the tilda \'~\' sign, IF UNCHANGED enter \'~!\'): \0");
-  //DEBUGCONSOLE_add_startDelimeter();
-  while(!debugDelimiterEntered);
-  debugDelimiterEntered = false;
-  strcpy(&tempBuffer,debugUARTBuffer+TIVA_find_First_Occurance_Char(debugUARTBuffer,'~')+1);
-  if(tempBuffer[0]!='!'){
-    DEBUGCONSOLE_print("Host IP captured as: \0");
-    DEBUGCONSOLE_print_line(&tempBuffer);
-    ROM_EEPROMProgram(&tempBuffer, 0x29, 32 );
-  }
-  else{
-    DEBUGCONSOLE_print_line("Host IP unchanged\0");
-  }
-
-  DEBUGCONSOLE_clear_UARTBuffer();
-  //DEBUGCONSOLE_add_startDelimeter();
-  DEBUGCONSOLE_print("Enter the Host Port of server (start with the tilda \'~\' sign, IF UNCHANGED enter \'~!\'): \0");
-  while(!debugDelimiterEntered);
-  debugDelimiterEntered = false;
-  strcpy(&tempBuffer,debugUARTBuffer+TIVA_find_First_Occurance_Char(debugUARTBuffer,'~')+1);
-  if(tempBuffer[0] !='!'){
-    DEBUGCONSOLE_print("Host PORT captured as: \0");
-    DEBUGCONSOLE_print_line(&tempBuffer);
-    ROM_EEPROMProgram(&tempBuffer, 0x3B, 8 );
-  }
-  else{
-    DEBUGCONSOLE_print_line("Host PORT unchanged\0");
-  }
-
-  DEBUGCONSOLE_print_line("PLEASE RESTART DEVICE NOW\0");
+  uint32_t tempReturn;
+  ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_EEPROM0);
+  do
+   {
+       tempReturn=ROM_EEPROMInit(); // EEPROM start
+   }
+   while(tempReturn!=EEPROM_INIT_OK);
 
 }
+
 int main(void){
 
-    uint32_t tempReturn;
     TIVA_init();
-    TIVA_wait_miliSeconds(5000);
+    TIVA_EEPROM_init();
     DEBUGCONSOLE_init();
+    TIVA_wait_miliSeconds(500);
     //TIVA_Timer_setup();
     //DCMOTOR_init();
     //if(!COMPASS_init()){  return 0; }
@@ -146,35 +118,28 @@ int main(void){
     WIFI_set_config();
     DEBUGCONSOLE_print("ENTER \'+\' REPEATEDLY TO ENTER CONFIGURATION MODE.\n\0");
 
-    TIVA_wait_miliSeconds(5000);
-    TIVA_checkForConfigMode();
+    TIVA_wait_miliSeconds(7000);
 
-    ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_EEPROM0);
-    do
-     {
-         tempReturn=ROM_EEPROMInit(); // EEPROM start
-     }
-     while(tempReturn!=EEPROM_INIT_OK);
-
-
+    deviceMode = TIVA_checkForConfigMode();
     switch(deviceMode){
       case 'C':
+        DEBUGCONSOLE_print("CONFIGURATION MODE SELECTED\n\0");
         TIVA_configureNetwork();
-
-
         break;
 
       case 'N':
         DEBUGCONSOLE_print("NORMAL DEVICE MODE SELECTED\n\0");
-        ROM_EEPROMRead(&wifiSSID, 0x0E, 32);
-        ROM_EEPROMRead(&wifiPass, 0x19, 64);
-        //ROM_EEPROMRead(&serverIP, 0x29, 32);
-        //ROM_EEPROMRead(&serverPort, 0x3B, 8 );
+        TIVA_get_wifiSSID(&wifiSSID);
+        TIVA_get_wifiPW(&wifiPass);
+        //TIVA_get_serverIP(&serverIP);
+        //TIVA_get_serverPort(&serverPort);
 
         if(!EVENT_connect_to_wifi_network(wifiSSID,wifiPass))  return 0;
         if(!EVENT_connect_to_server(serverIP,serverPort))  return 0;
         //if(!EVENT_send_to_server(serverIP,"POST /hello/soilType=LOAM&cropName=TOMATOE&password=ghid\0"))  return 0;
-        if(!EVENT_send_to_server(serverIP,"GET /api.test\0")) return 0;
+        if(!EVENT_send_to_server(serverIP,"GET /data/2.5/weather?q=Ottawa,ca&appid=2de143494c0b295cca9337e1e96b00e0\0")) return 0;
+        DEBUGCONSOLE_print_length(WIFI_get_Buffer(),1024);
+        doit((char*)(WIFI_get_Buffer()+TIVA_find_First_Occurance_Char(WIFI_get_Buffer(),'{')));
         break;
 
     }

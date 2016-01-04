@@ -24,5 +24,8 @@ uint8_t EVENT_connect_to_wifi_network(const char* ssid, const char* pwd);
 uint8_t EVENT_connect_to_server(const char *host, const char *port);
 uint8_t EVENT_send_to_server(const char *host,char* cmd);
 
+char* WIFI_get_Buffer(void);
+uint8_t EVENT_close_connection(void);
+
 
 #endif /*__WIFIBOARD_H_*/

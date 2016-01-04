@@ -19,6 +19,8 @@ char debugUARTBuffer [UART_BUFFER_LENGTH];
 bool debugDelimiterEntered;
 char configCharCount;
 bool debugStartPrompt;
+
+
 void TIVA_init()
 {
   ROM_FPUEnable();
@@ -242,4 +244,82 @@ void DEBUGCONSOLE_clear_UARTBuffer()
 
 void DEBUGCONSOLE_add_startDelimeter(void){
   debugStartPrompt = true;
+}
+
+char TIVA_checkForConfigMode(void){
+  if(configCharCount>2){
+    return 'C';
+  }
+  return 'N';
+}
+
+
+void TIVA_configureNetwork(void){
+
+  char tempBuffer[64];
+  DEBUGCONSOLE_clear_UARTBuffer();
+  DEBUGCONSOLE_print("Enter desired Wifi-Network SSID (start with the tilda \'~\' sign, IF UNCHANGED enter \'~!\'): \0");
+  //DEBUGCONSOLE_add_startDelimeter();
+  while(!debugDelimiterEntered);
+  debugDelimiterEntered = false;
+  strcpy(&tempBuffer,debugUARTBuffer+TIVA_find_First_Occurance_Char(debugUARTBuffer,'~')+1);
+  if(tempBuffer[0]!='!'){
+  DEBUGCONSOLE_print("Network SSID captured as: \0");
+    DEBUGCONSOLE_print_line(&tempBuffer);
+    ROM_EEPROMProgram(&tempBuffer, 0x0E, 32 );
+  }
+  else{
+    DEBUGCONSOLE_print_line("Network SSID unchanged\0");
+  }
+
+  DEBUGCONSOLE_clear_UARTBuffer();
+  DEBUGCONSOLE_print("Enter desired Wifi-Network password (start with the tilda \'~\' sign, IF UNCHANGED enter \'~!\'): \0");
+  //DEBUGCONSOLE_add_startDelimeter();
+  while(!debugDelimiterEntered);
+  debugDelimiterEntered = false;
+  strcpy(&tempBuffer,debugUARTBuffer+TIVA_find_First_Occurance_Char(debugUARTBuffer,'~')+1);
+  if(tempBuffer[0]!='!'){
+    DEBUGCONSOLE_print("Network PW captured as: \0");
+    DEBUGCONSOLE_print_line(&tempBuffer);
+    ROM_EEPROMProgram(&tempBuffer, 0x19, 64 );
+  }
+  else{
+    DEBUGCONSOLE_print_line("Network PW unchanged\0");
+  }
+
+  DEBUGCONSOLE_print("NETWORK CONFIGURATION DONE\n\0");
+
+
+  DEBUGCONSOLE_clear_UARTBuffer();
+  DEBUGCONSOLE_print("Enter the Host IP of server (start with the tilda \'~\' sign, IF UNCHANGED enter \'~!\'): \0");
+  //DEBUGCONSOLE_add_startDelimeter();
+  while(!debugDelimiterEntered);
+  debugDelimiterEntered = false;
+  strcpy(&tempBuffer,debugUARTBuffer+TIVA_find_First_Occurance_Char(debugUARTBuffer,'~')+1);
+  if(tempBuffer[0]!='!'){
+    DEBUGCONSOLE_print("Host IP captured as: \0");
+    DEBUGCONSOLE_print_line(&tempBuffer);
+    ROM_EEPROMProgram(&tempBuffer, 0x29, 32 );
+  }
+  else{
+    DEBUGCONSOLE_print_line("Host IP unchanged\0");
+  }
+
+  DEBUGCONSOLE_clear_UARTBuffer();
+  //DEBUGCONSOLE_add_startDelimeter();
+  DEBUGCONSOLE_print("Enter the Host Port of server (start with the tilda \'~\' sign, IF UNCHANGED enter \'~!\'): \0");
+  while(!debugDelimiterEntered);
+  debugDelimiterEntered = false;
+  strcpy(&tempBuffer,debugUARTBuffer+TIVA_find_First_Occurance_Char(debugUARTBuffer,'~')+1);
+  if(tempBuffer[0] !='!'){
+    DEBUGCONSOLE_print("Host PORT captured as: \0");
+    DEBUGCONSOLE_print_line(&tempBuffer);
+    ROM_EEPROMProgram(&tempBuffer, 0x3B, 8 );
+  }
+  else{
+    DEBUGCONSOLE_print_line("Host PORT unchanged\0");
+  }
+
+  DEBUGCONSOLE_print_line("PLEASE RESTART DEVICE NOW\0");
+
 }

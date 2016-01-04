@@ -31,6 +31,7 @@ const AT_CMD _ATCWMODE_CUR = {100,"AT+CWMODE?\r\n\0"};
 const AT_CMD _AT_CW_LAP = {5000, "AT+CWLAP\r\n\0"};
 const AT_CMD _AT_CW_LAP_CUR = {500, "AT+CWJAP?\r\n\0"};
 const AT_CMD _ATCIPMUX =  {500, "AT+CIPMUX=0\r\n\0"};
+const AT_CMD _ATRECEIEVE = {1000,"+IPD\n\0"};
 const AT_CMD _ATCIPCLOSE = {500,"AT+CIPCLOSE\r\n\0"};
 
 const AT_CMD _AT_TEST_CWJAP = {10000, "AT+CWJAP=\"dd-wrt\",\"3ab9bcf43er\"\r\n\0"};
@@ -254,12 +255,12 @@ uint8_t EVENT_send_to_server(const char *host,char* cmd){
   }
 
   strcpy(tempBuf,cmd);
-  strcat(tempBuf,"HTTP/1.0\r\nHost: ");
-  cmdLength+=16;
+  strcat(tempBuf," HTTP/1.0\r\nHost: ");
+  cmdLength+=17;
   strcat(tempBuf,host);
   cmdLength+=hostLength;
-  strcat(tempBuf,"\r\n\0");
-  cmdLength+=2;
+  strcat(tempBuf,"\r\n\r\n\0");
+  cmdLength+=4;
   SEND_DATA.timeout =5000;
   strcpy(SEND_DATA.cmd,tempBuf);
 
@@ -293,9 +294,18 @@ uint8_t EVENT_send_to_server(const char *host,char* cmd){
   }
   DEBUGCONSOLE_print_line("Wifi:Send Command --> OK\0");
 
+  return 1;
 
+}
+
+
+char* WIFI_get_Buffer(void){
+  return &wifiUARTBuffer;
+}
+
+uint8_t EVENT_close_connection(void){
   WIFI_send_commandBlocking(&_ATCIPCLOSE);
-  if(!WIFI_check_Ack("Unlink",2)){
+  if(!WIFI_check_Ack("Unlink",6)){
     DEBUGCONSOLE_print_length(wifiUARTBuffer, UART_BUFFER_LENGTH);
     TIVA_error_encoutered("Wifi:TCP Conn Clos--> ERROR:",3);
     return 0;
