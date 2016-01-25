@@ -26,71 +26,71 @@ TulipsAndPopcorn is a device-web-server system that efficiently waters sections 
 
 ##### Developing on the Tiva Launchpad
 - Install the cross compiler for ARM
-    ```sh
+    ```
     $ sudo apt-get install gcc-arm-none-eabi
     ```
 - Create a new folder called SLAMTools
-    ```sh
+    ```
     $ mkdir SLAMTools
     ```
-    ```sh
+    ```
     $ cd SLAMTools
     ```
 - Install lm4flash tool needed to communicate with the Tiva
-    ```sh
+    ```
     $ git clone https://github.com/utzig/lm4tools.git
     ```
-    ```sh
+    ```
     $ cd lm4tools/lm4flash/
     ```
-    ```sh
+    ```
     $ make
     $ sudo cp lm4flash /usr/bin/
     ```
 - Go back to the SLAMTools directory
-    ```sh
+    ```
     $ cd ..
     ```
 - Install OpenOCD (the Open On-Chip Debugger) with ICDI (in-circuit debug interface) support to flash and debug the LaunchPad.
-    ```sh
+    ```
     $ git clone git://git.code.sf.net/p/openocd/code openocd.git
     ```
-    ```sh
+    ```
     $ cd openocd.git
     ```
-    ```sh
+    ```
     $ ./bootstrap
     ```
     - NOTE: If a "aclocal is not found" error is encountered, install automake
-        ```sh
+        ```
         $ sudo apt-get install automake
         ```
 - Configure the debugger
-    ```sh
+    ```
     $ ./configure --prefix=/usr --enable-maintainer-mode --enable-stlink --enable-ti-icdi
     ```
-    ```sh
+    ```
     $ make
     ```
-    ```sh
+    ```
     $ sudo make install
     ```
 - Go create a new folder to put all your Launchpad Code in
 - Clone the tiva123 demo from https://github.com/CarletonSLAM/tivac123
-    ```sh
+    ```
     $ git clone https://github.com/CarletonSLAM/tivac123.git
     ```
 - Plug in your Tiva to your PC
-    ```sh
+    ```
     $ cd tivac123/gcc
     ```
-    ```sh
+    ```
     $ arm-none-eabi-gcc -v
     ```
-    ```sh
+    ```
     $ make
     ```
-    ```sh
+    ```
     $ make deploy
     ```
     - Note: If you get an "ACCESS" Error, try ```sudo make deploy```
