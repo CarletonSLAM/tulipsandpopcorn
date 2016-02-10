@@ -266,7 +266,7 @@ void TIVA_configureNetwork(void){
   if(tempBuffer[0]!='!'){
   DEBUGCONSOLE_print("Network SSID captured as: \0");
     DEBUGCONSOLE_print_line(&tempBuffer);
-    ROM_EEPROMProgram(&tempBuffer, 0x0E, 32 );
+    ROM_EEPROMProgram(&tempBuffer, 0x04, 64);
   }
   else{
     DEBUGCONSOLE_print_line("Network SSID unchanged\0");
@@ -281,7 +281,7 @@ void TIVA_configureNetwork(void){
   if(tempBuffer[0]!='!'){
     DEBUGCONSOLE_print("Network PW captured as: \0");
     DEBUGCONSOLE_print_line(&tempBuffer);
-    ROM_EEPROMProgram(&tempBuffer, 0x19, 64 );
+    ROM_EEPROMProgram(&tempBuffer, 0x48, 64 );
   }
   else{
     DEBUGCONSOLE_print_line("Network PW unchanged\0");
@@ -299,7 +299,7 @@ void TIVA_configureNetwork(void){
   if(tempBuffer[0]!='!'){
     DEBUGCONSOLE_print("Host IP captured as: \0");
     DEBUGCONSOLE_print_line(&tempBuffer);
-    ROM_EEPROMProgram(&tempBuffer, 0x29, 32 );
+    ROM_EEPROMProgram(&tempBuffer, 0x8C, 32 );
   }
   else{
     DEBUGCONSOLE_print_line("Host IP unchanged\0");
@@ -314,10 +314,24 @@ void TIVA_configureNetwork(void){
   if(tempBuffer[0] !='!'){
     DEBUGCONSOLE_print("Host PORT captured as: \0");
     DEBUGCONSOLE_print_line(&tempBuffer);
-    ROM_EEPROMProgram(&tempBuffer, 0x3B, 8 );
+    ROM_EEPROMProgram(&tempBuffer, 0xB4, 8 );
   }
   else{
     DEBUGCONSOLE_print_line("Host PORT unchanged\0");
+  }
+
+  DEBUGCONSOLE_clear_UARTBuffer();
+  //DEBUGCONSOLE_add_startDelimeter();
+  DEBUGCONSOLE_print("Clear Access Token? (\'~Y\' for yes,IF UNCHANGED enter \'~!\'): \0");
+  while(!debugDelimiterEntered);
+  debugDelimiterEntered = false;
+  strcpy(&tempBuffer,debugUARTBuffer+TIVA_find_First_Occurance_Char(debugUARTBuffer,'~')+1);
+  if(tempBuffer[0] =='Y'){
+    ROM_EEPROMProgram("ACCESS_TOKEN_NOT_SET", 0xCB, 64);
+    DEBUGCONSOLE_print_line("Access Token Reset\0");
+  }
+  else if(tempBuffer[0] =='!'){
+    DEBUGCONSOLE_print_line("Access Token unchanged\0");
   }
 
   DEBUGCONSOLE_print_line("PLEASE RESTART DEVICE NOW\0");

@@ -42,11 +42,14 @@ const AT_CMD _AT_TEST_DATA = {1000,"GET / HTTP/1.1\r\nHost: www.google.com\r\n\r
 const AT_CMD AT_TEST_SEND_DATA_HELLO = {5000,"POST /hello/soilType=LOAM&cropName=TOMATOE&password=ghid HTTP/1.0\r\nHost: 192.168.1.139\r\n\0"};
 
 
+//AT+CIPSTART="TCP","www.google.com",80
+
 const char STR_AT_CW_JAP [] = "AT+CWJAP=";
 const char STR_AT_PING [] = "AT+PING=";
 const char STR_AT_CIP_START [] = "AT+CIPSTART=\"TCP\",";
 const char STR_AT_CIP_SEND [] = "AT+CIPSEND=";
-
+const char HTTP_HEADER_GET [] = "\0";
+const char HTTP_HEADER_POST [] = "\r\nContent-Type: application/json\r\nAccept: application/json\r\nConnection: keep-alive\r\nContent-Length: ";
 const char STR_NEXT_STATE [] = "POST /viewState/username=";
 
 
@@ -226,6 +229,7 @@ uint8_t EVENT_connect_to_server(const char *host, const char *port){
 
   START_CONN.timeout =5000;
   strcpy(START_CONN.cmd,tempBuf);
+  WIFI_clear_UARTBuffer();
   WIFI_send_commandBlocking(&START_CONN);
   if(!WIFI_check_Ack("Linked",6)){
     DEBUGCONSOLE_print_length(wifiUARTBuffer, UART_BUFFER_LENGTH);
@@ -237,46 +241,87 @@ uint8_t EVENT_connect_to_server(const char *host, const char *port){
   return 1;
 }
 
-uint8_t EVENT_send_to_server(const char *host,char* cmd){
+uint8_t EVENT_send_to_server(const char *httpMethod,const char *httpCmd, const char* host, char* data){
 
 
   char cmdLenBuf[10];
-  char tempBuf [512];
-  int16_t cmdLength=0, hostLength=0;
+  char tempBuf [1024];
+  char *tempPtr;
+  int16_t tempLength=0, cmdLength=0,hostLength=0,dataLength=0,headerLength=0;
   AT_CMD SEND_CONN,SEND_DATA;
 
-  while(cmd[cmdLength]!='\0'){
+  while(httpMethod[tempLength]!='\0'){
+    tempLength++;
+  }
+
+  while(httpCmd[cmdLength]!='\0'){
     cmdLength++;
   }
-  cmd[cmdLength]=' ';
-
   while(host[hostLength]!='\0'){
     hostLength++;
   }
 
-  strcpy(tempBuf,cmd);
-  strcat(tempBuf," HTTP/1.0\r\nHost: ");
-  cmdLength+=17;
+  strcpy(tempBuf,httpMethod);
+  strcat(tempBuf," ");
+  strcat(tempBuf,httpCmd);
+  tempLength+=cmdLength+1;
+  strcat(tempBuf," HTTP/1.1\r\nHost: ");
+  tempLength+=17;
   strcat(tempBuf,host);
-  cmdLength+=hostLength;
-  strcat(tempBuf,"\r\n\r\n\0");
-  cmdLength+=4;
+  tempLength+=hostLength;
+
+  if(!strncmp(httpMethod,"GET",3)){
+    DEBUGCONSOLE_print_line("GET Method Called\0");
+    while(HTTP_HEADER_GET[headerLength]!='\0'){
+      headerLength++;
+    }
+    strcat(tempBuf,HTTP_HEADER_GET);
+    tempLength+=headerLength;
+  }
+  else if(!strncmp(httpMethod,"POST",4)){
+    DEBUGCONSOLE_print_line("POST Method Called\0");
+    while(HTTP_HEADER_POST[headerLength]!='\0'){
+      headerLength++;
+    }
+
+    while(data[dataLength]!='\0'){
+      dataLength++;
+    }
+
+    strcat(tempBuf,HTTP_HEADER_POST);
+    tempLength+=headerLength;
+
+    strcat(tempBuf,TIVA_int_to_String(cmdLenBuf,dataLength));
+    tempLength+=strlen(TIVA_int_to_String(cmdLenBuf,dataLength));
+
+    strcat(tempBuf,"\r\n\r\n");
+    tempLength+=4;
+
+    strcat(tempBuf,data);
+    tempLength+= dataLength;
+  }
+  else{
+    TIVA_error_encoutered("Wifi:Unknown/Unimplemented HTTP Method Call--> ERROR:",1);
+    return 0;
+  }
+  strcat(tempBuf,"\r\n\r\n");
+  tempLength+=4;
   SEND_DATA.timeout =5000;
   strcpy(SEND_DATA.cmd,tempBuf);
 
   strcpy(tempBuf,STR_AT_CIP_SEND);
-  strcat(tempBuf,TIVA_int_to_String(cmdLenBuf,cmdLength));
-  strcat(tempBuf,"\r\n\0");
-  SEND_CONN.timeout =2000;
+  strcat(tempBuf,TIVA_int_to_String(cmdLenBuf,tempLength));
+  strcat(tempBuf,"\r\n");
+  SEND_CONN.timeout =500;
   strcpy(SEND_CONN.cmd,tempBuf);
 
-
+  WIFI_clear_UARTBuffer();
   WIFI_send_commandBlocking(&SEND_CONN);
 
   DEBUGCONSOLE_print_length(wifiUARTBuffer, UART_BUFFER_LENGTH);
   if(!WIFI_check_Ack(">",1)){
     DEBUGCONSOLE_print_length(wifiUARTBuffer, UART_BUFFER_LENGTH);
-    TIVA_error_encoutered("Wifi:Send Length--> ERROR:",1);
+    TIVA_error_encoutered("Wifi:Send Length--> ERROR:",2);
     return 0;
   }
   DEBUGCONSOLE_print_line(SEND_CONN.cmd);
@@ -289,11 +334,10 @@ uint8_t EVENT_send_to_server(const char *host,char* cmd){
 
   if(!WIFI_check_Ack("OK",2)){
     DEBUGCONSOLE_print_length(wifiUARTBuffer, UART_BUFFER_LENGTH);
-    TIVA_error_encoutered("Wifi:Send Command--> ERROR:",2);
+    TIVA_error_encoutered("Wifi:Send Command--> ERROR:",3);
     return 0;
   }
   DEBUGCONSOLE_print_line("Wifi:Send Command --> OK\0");
-
   return 1;
 
 }
@@ -304,6 +348,7 @@ char* WIFI_get_Buffer(void){
 }
 
 uint8_t EVENT_close_connection(void){
+  WIFI_clear_UARTBuffer();
   WIFI_send_commandBlocking(&_ATCIPCLOSE);
   if(!WIFI_check_Ack("Unlink",6)){
     DEBUGCONSOLE_print_length(wifiUARTBuffer, UART_BUFFER_LENGTH);
@@ -311,5 +356,6 @@ uint8_t EVENT_close_connection(void){
     return 0;
   }
   DEBUGCONSOLE_print_line("Wifi:TCP Conn Close --> OK\0");
+  WIFI_clear_UARTBuffer();
   return 1;
 }

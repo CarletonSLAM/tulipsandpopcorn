@@ -8,7 +8,7 @@
 #define UART_BUFFER_LENGTH 1024
 typedef struct {
   uint32_t timeout;
-  char cmd[512];
+  char cmd[768];
 } AT_CMD;
 
 void WIFI_init(void);
@@ -22,7 +22,7 @@ void WIFI_UART_IntHandler(void);
 
 uint8_t EVENT_connect_to_wifi_network(const char* ssid, const char* pwd);
 uint8_t EVENT_connect_to_server(const char *host, const char *port);
-uint8_t EVENT_send_to_server(const char *host,char* cmd);
+uint8_t EVENT_send_to_server(const char *httpMethod, const char *httpCmd, const char *host, char* data);
 
 char* WIFI_get_Buffer(void);
 uint8_t EVENT_close_connection(void);

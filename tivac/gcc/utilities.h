@@ -34,8 +34,6 @@ void DEBUGCONSOLE_print(const char *pui8Buffer);
 void DEBUGCONSOLE_print_line(const char *pui8Buffer);
 void DEBUGCONSOLE_print_length(const char *pui8Buffer,uint32_t pui32Count);
 
-int16_t FLASH_write(const uint32_t pui32Address, const char *pui8Data);
-int16_t FLASH_read(const uint32_t pui32Address, char* pui8Data);
 
 void TIVA_wait_miliSeconds(uint32_t ms);
 void TIVA_init(void);
