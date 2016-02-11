@@ -14,7 +14,7 @@ typedef struct {
 void WIFI_init(void);
 uint8_t WIFI_set_config(void);
 void WIFI_send_commandBlocking(const AT_CMD *cmd);
-uint8_t WIFI_check_Ack(char* ackMsg, uint16_t ackLen);
+uint8_t WIFI_check_Ack(const char* ackMsg, uint16_t ackLen);
 void WIFI_clear_UARTBuffer(void);
 void WIFI_UART_IntHandler(void);
 

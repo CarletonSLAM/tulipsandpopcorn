@@ -83,11 +83,10 @@ uint8_t WIFI_set_config(void)
   wifiResetComplete = true;
   WIFI_send_commandBlocking(&_ATE0);
   if(!WIFI_check_Ack("OK",2)){
-  DEBUGCONSOLE_print_length(wifiUARTBuffer, UART_BUFFER_LENGTH);
+    DEBUGCONSOLE_print_length(wifiUARTBuffer, UART_BUFFER_LENGTH);
     TIVA_error_encoutered("Wifi: ECHO Disable --> ERROR:",1);
     return 0;
   }
-
   WIFI_send_commandBlocking(&_ATCIPMUX);
   if(!WIFI_check_Ack("OK",2)){
     DEBUGCONSOLE_print_length(wifiUARTBuffer, UART_BUFFER_LENGTH);
@@ -120,7 +119,7 @@ void WIFI_send_commandBlocking(const AT_CMD *wificmd)
 
 }
 
-uint8_t WIFI_check_Ack(char* ackMsg,uint16_t ackLen){
+uint8_t WIFI_check_Ack(const char* ackMsg,uint16_t ackLen){
   uint16_t i;
   for(i =0; i< UART_BUFFER_LENGTH; i++){
 
@@ -131,6 +130,9 @@ uint8_t WIFI_check_Ack(char* ackMsg,uint16_t ackLen){
       return 1;
     }
   }
+  #ifdef __VERBOSE_DEBUG_MODE__
+    DEBUGCONSOLE_print_line("ACK NOT FOUND!\0");
+  #endif
   return 0;
 }
 
@@ -230,6 +232,7 @@ uint8_t EVENT_connect_to_server(const char *host, const char *port){
   START_CONN.timeout =5000;
   strcpy(START_CONN.cmd,tempBuf);
   WIFI_clear_UARTBuffer();
+  DEBUGCONSOLE_print(START_CONN.cmd);
   WIFI_send_commandBlocking(&START_CONN);
   if(!WIFI_check_Ack("Linked",6)){
     DEBUGCONSOLE_print_length(wifiUARTBuffer, UART_BUFFER_LENGTH);
@@ -350,11 +353,11 @@ char* WIFI_get_Buffer(void){
 uint8_t EVENT_close_connection(void){
   WIFI_clear_UARTBuffer();
   WIFI_send_commandBlocking(&_ATCIPCLOSE);
-  if(!WIFI_check_Ack("Unlink",6)){
-    DEBUGCONSOLE_print_length(wifiUARTBuffer, UART_BUFFER_LENGTH);
-    TIVA_error_encoutered("Wifi:TCP Conn Clos--> ERROR:",3);
-    return 0;
-  }
+  // if(!WIFI_check_Ack("Unlink",6)){
+  //   DEBUGCONSOLE_print_length(wifiUARTBuffer, UART_BUFFER_LENGTH);
+  //   TIVA_error_encoutered("Wifi:TCP Conn Clos--> ERROR:",1);
+  //   return 0;
+  // }
   DEBUGCONSOLE_print_line("Wifi:TCP Conn Close --> OK\0");
   WIFI_clear_UARTBuffer();
   return 1;
