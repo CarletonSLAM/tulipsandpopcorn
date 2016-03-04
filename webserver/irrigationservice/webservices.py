@@ -64,7 +64,7 @@ class BaseWebService(object):
 class DarkSkyWebService(BaseWebService):
 
     _NAMESPACE = 'https://api.forecast.io/forecast/'
-    _APITOKEN = '95078e3382b74bed6aac7e4a81e8713f'
+    _APITOKEN = ''
     _REQFORMAT = '<accesspoint><apikey>/<lat>,<long>'
 
     def __init__(self, latitude, longtitude):
@@ -116,7 +116,7 @@ class DarkSkyWebService(BaseWebService):
 class GoogleMapsWebService(BaseWebService):
 
     _NAMESPACE = 'https://maps.googleapis.com/maps/api/geocode/json?'
-    _APITOKEN = 'AIzaSyD4F9LEYOSsJg0MfzzMGAGRc5eB0sFXD2M'
+    _APITOKEN = ''
     _REQFORMAT = '<accesspoint>address=<addr>&key=<apikey>'
 
     def __init__(self, address):
